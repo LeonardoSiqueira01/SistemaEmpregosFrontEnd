@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro e Verificação</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Tela Inicial -->
+    <div id="initialScreen">
+      <div class="home">
+        <h1>Bem-vindo ao nosso site!</h1>
+        <p>
+          Aqui você pode cadastrar clientes e profissionais para realizar os serviços.
+        </p>
+      </div>
+      <div class="form-container">
+        <h2>Cadastro</h2>
+        <form id="registerForm">
+          <label for="userType">Você é:</label>
+          <select id="userType" name="userType" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option value="profissional">Profissional</option>
+            <option value="cliente">Cliente</option>
+          </select>
+
+          <label for="name">Nome:</label>
+          <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+          <label for="password">Senha:</label>
+          <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Tela de Verificação -->
+    <div id="verificationScreen" style="display: none;">
+      <h2>Verificação de E-mail</h2>
+      <p>Digite o código enviado ao seu e-mail para concluir o cadastro.</p>
+      <form id="verificationForm">
+        <label for="verificationCode">Código de Verificação:</label>
+        <input type="text" id="verificationCode" name="verificationCode" placeholder="Digite o código" required>
+        <button type="submit">Verificar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
