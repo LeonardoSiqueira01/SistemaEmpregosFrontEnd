@@ -8,7 +8,10 @@ body {
     height: 100vh;
     background-color: #f4f4f9;
   }
-  
+  .texto{
+    text-align: center;
+}
+
   .container {
     display: flex;
     gap: 2rem;
