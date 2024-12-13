@@ -1,94 +1,54 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
     margin: 0;
-    padding: 0;
-}
-
-nav {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+  }
+  
+  .container {
+    display: flex;
+    width: 100%;
+  }
+  
+  .sidebar {
+    width: 250px;
     background-color: #333;
-    padding: 10px;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
+    color: #fff;
+    padding: 15px;
+    height: 100vh;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
     padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-h1, h2 {
-    text-align: center;
-    color: #333;
-}
-
-form, .filters {
-    margin-top: 20px;
-}
-
-form label, .filters label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-}
-
-form input, form textarea, form select, .filters input, .filters select {
-    width: 100%;
-    padding: 10px;
+  }
+  
+  .sidebar ul li {
     margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th, table td {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #ddd;
-}
-
-table th {
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    display: block;
+  }
+  
+  .sidebar ul li a:hover {
+    color: #f0a500;
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding: 20px;
     background-color: #f4f4f4;
-}
-
-.actions button {
-    margin-right: 5px;
-}
+  }
+  
+  #response {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  

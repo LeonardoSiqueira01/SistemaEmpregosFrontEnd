@@ -1,111 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel do Cliente</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serviços do Cliente</title>
+  <link rel="stylesheet" href="../Dashboard-Cliente/styles.css">
 </head>
 <body>
-    <!-- Menu de navegação -->
-    <nav>
-        <ul>
-            <li><a href="#serviceRegistration" onclick="showSection('serviceRegistration')">Cadastrar Serviço</a></li>
-            <li><a href="#serviceList" onclick="showSection('serviceList')">Lista de Serviços</a></li>
-            <li><a href="#professionalList" onclick="showSection('professionalList')">Lista de Profissionais</a></li>
-        </ul>
+  <div class="container">
+    <!-- Menu lateral -->
+    <nav class="sidebar">
+      <ul>
+        <li><a href="#" id="list-services">Listar Serviços</a></li>
+        <li><a href="#" id="create-service">Criar Serviço</a></li>
+        <li><a href="#" id="update-service">Alterar Serviço</a></li>
+        <li><a href="#" id="specialty-services">Serviços por Especialidade</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
+      </ul>
     </nav>
 
-    <div class="container">
-        <h1>Bem-vindo, Cliente</h1>
-
-        <!-- Cadastro de serviço -->
-        <div class="section" id="serviceRegistration" style="display:block;">
-            <h2>Cadastrar Novo Serviço</h2>
-            <form id="serviceForm">
-                <label for="name">Nome do Serviço:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="description">Descrição:</label>
-                <textarea id="description" name="description" required></textarea>
-
-                <label for="specialty">Especialidade:</label>
-                <select id="specialty" name="specialty" required>
-                    <option value="eletrica">Elétrica</option>
-                    <option value="hidraulica">Hidráulica</option>
-                    <option value="pintura">Pintura</option>
-                    <!-- Adicione mais especialidades conforme necessário -->
-                </select>
-
-                <button type="submit">Cadastrar Serviço</button>
-            </form>
-        </div>
-
-        <!-- Lista de serviços -->
-        <div class="section" id="serviceList" style="display:none;">
-            <h2>Meus Serviços</h2>
-            
-            <!-- Filtro para status de serviços -->
-            <div class="filters">
-                <label for="serviceFilterStatus">Filtrar por Status:</label>
-                <select id="serviceFilterStatus">
-                    <option value="">Todos</option>
-                    <option value="em aberto">Em Aberto</option>
-                    <option value="iniciado">Iniciado</option>
-                    <option value="finalizado">Finalizado</option>
-                </select>
-            </div>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Especialidade</th>
-                        <th>Status</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="servicesList">
-                    <!-- Os serviços serão inseridos dinamicamente aqui -->
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Lista de profissionais -->
-        <div class="section" id="professionalList" style="display:none;">
-            <h2>Lista de Profissionais</h2>
-            
-            <!-- Filtros para profissionais -->
-            <div class="filters">
-                <label for="specialtyFilter">Filtrar por Especialidade:</label>
-                <select id="specialtyFilter" multiple>
-                    <option value="eletrica">Elétrica</option>
-                    <option value="hidraulica">Hidráulica</option>
-                    <option value="pintura">Pintura</option>
-                </select>
-
-                <label for="ratingFilter">Filtrar por Nota (1-10):</label>
-                <input type="range" id="ratingFilter" min="1" max="10" value="5" step="1">
-                <span id="ratingValue">5</span>
-            </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Especialidade</th>
-                        <th>Nota</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="professionalsList">
-                    <!-- Os profissionais serão inseridos dinamicamente aqui -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+    <!-- Área principal -->
+    <main class="content">
+      <h1>Bem-vindo, Cliente</h1>
+      <div id="response"></div>
+      <!-- Lista de serviços (onde serão mostrados os serviços) -->
+      <ul id="service-list"></ul>
+    </main>
+  </div>
+  <script src="../Dashboard-Cliente/script.js"></script>
 </body>
 </html>

@@ -32,27 +32,28 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
 
   // Validar os campos antes de enviar
   if (!validateForm({ email, password })) return;
+
   try {
     const registerResponse = await fetch("http://localhost:8080/api/register", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
     });
 
     if (registerResponse.ok) {
-        alert("Cadastro realizado! Um código foi enviado ao seu e-mail.");
-        document.getElementById("registerForm").reset(); // Limpa o formulário
-        toggleScreens("verificationScreen"); // Alterna para a tela de verificação
+      alert("Cadastro realizado! Um código foi enviado ao seu e-mail.");
+      document.getElementById("registerForm").reset(); // Limpa o formulário
+      toggleScreens("verificationScreen"); // Alterna para a tela de verificação
     } else {
-        const errorText = await registerResponse.text(); // Pega o conteúdo como texto
-        alert(`Erro no cadastro: ${errorText}`); // Exibe o erro
+      const errorText = await registerResponse.text(); // Pega o conteúdo como texto
+      alert(`Erro no cadastro: ${errorText}`); // Exibe o erro
     }
-} catch (err) {
+  } catch (err) {
     alert("Erro ao se conectar com o servidor.");
     console.error(err);
-}
+  }
 });
 
 // Gerencia o envio do formulário de verificação
@@ -63,7 +64,7 @@ document.getElementById("verificationForm").addEventListener("submit", async (ev
 
   try {
     const verifyResponse = await fetch("http://localhost:8080/api/verify?code=" + verificationCode, {
-      method: "GET",  // Alterado para GET
+      method: "GET", // Alterado para GET
       headers: {
         "Content-Type": "application/json",
       },
