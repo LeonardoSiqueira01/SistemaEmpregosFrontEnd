@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Serviços do Cliente</title>
-  <link rel="stylesheet" href="../Dashboard-Cliente/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Cliente</title>
+    <link rel="stylesheet" href="../Dashboard-Cliente/styles.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Menu lateral -->
-    <nav class="sidebar">
-      <ul>
-        <li><a href="#" id="list-services">Listar Serviços</a></li>
-        <li><a href="#" id="create-service">Criar Serviço</a></li>
-        <li><a href="#" id="update-service">Alterar Serviço</a></li>
-        <li><a href="#" id="specialty-services">Serviços por Especialidade</a></li>
-        <li><a href="#" id="logout">Logout</a></li>
-      </ul>
+    <header>
+        <h1>Bem-vindo ao Dashboard Cliente</h1>
+        <div id="user-info">
+            <p id="welcome-message"></p>
+            <button id="logout">Sair</button>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" id="list-services">Listar Serviços</a></li>
+            <li><a href="#" id="create-service">Cadastrar Novo Serviço</a></li>
+            <li><a href="#" id="update-service">Atualizar Serviço</a></li>
+            <li><a href="#" id="specialty-services">Serviços por Especialidade</a></li>
+        </ul>
     </nav>
 
-    <!-- Área principal -->
-    <main class="content">
-      <h1>Bem-vindo, Cliente</h1>
-      <div id="response"></div>
-      <!-- Lista de serviços (onde serão mostrados os serviços) -->
-      <ul id="service-list"></ul>
-    </main>
-  </div>
-  <script src="../Dashboard-Cliente/script.js"></script>
+    <section id="service-list-container">
+        <h2>Meus Serviços</h2>
+        <ul id="service-list"></ul>
+    </section>
+
+    <script src="../Dashboard-Cliente/script.js"></script>
 </body>
 </html>
