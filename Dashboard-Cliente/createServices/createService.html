@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Serviço</title>
+        <link rel="stylesheet" href="../createServices/styles.css">
+</head>
+<body>
+    <h1>Cadastro de Serviço</h1>
+    <form id="serviceForm">
+        <label for="name">Nome do Serviço:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="description">Descrição:</label>
+        <textarea id="description" name="description" required></textarea><br><br>
+        
+        <!-- Outros campos que você queira adicionar ao serviço -->
+        
+        <button type="submit">Cadastrar Serviço</button>
+        
+        <!-- Botão de Cancelar -->
+        <button type="button" id="cancelButton" onclick="goBack()">Cancelar</button>
+    </form>
+
+    <script src="../createServices/scripts.js"></script>
+</body>
+</html>

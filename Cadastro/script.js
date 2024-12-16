@@ -23,23 +23,23 @@ function validateForm({ email, password }) {
 document.getElementById("registerForm").addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const userType = document.getElementById("userType").value;
+  const userType = document.getElementById("userType").value;  // Tipo de usuário
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const payload = { type: userType, name, email, password };
+  const payload = { name, email, password }; // Envia nome, email e senha
 
   // Validar os campos antes de enviar
   if (!validateForm({ email, password })) return;
 
   try {
-    const registerResponse = await fetch("http://localhost:8080/api/register", {
+    const registerResponse = await fetch(`http://localhost:8080/api/register?type=${userType}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(payload),  // Envia os dados de cadastro
     });
 
     if (registerResponse.ok) {
@@ -55,12 +55,10 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
     console.error(err);
   }
 });
-
-// Gerencia o envio do formulário de verificação
 document.getElementById("verificationForm").addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const verificationCode = document.getElementById("verificationCode").value;
+  const verificationCode = document.getElementById("verificationCode").value; // Verifique se o ID está correto
 
   try {
     const verifyResponse = await fetch("http://localhost:8080/api/verify?code=" + verificationCode, {
@@ -74,8 +72,16 @@ document.getElementById("verificationForm").addEventListener("submit", async (ev
       alert("Cadastro concluído com sucesso!");
       toggleScreens("initialScreen"); // Retorna para a tela inicial
     } else {
-      const error = await verifyResponse.json();
-      alert(`Erro na verificação: ${error.message}`);
+      const contentType = verifyResponse.headers.get("Content-Type");
+
+      // Verifica se a resposta é JSON
+      if (contentType && contentType.includes("application/json")) {
+        const error = await verifyResponse.json();
+        alert(`Erro na verificação: ${error.message}`);
+      } else {
+        const errorText = await verifyResponse.text();
+        alert(`Erro na verificação: ${errorText}`);
+      }
     }
   } catch (err) {
     alert("Erro ao se conectar com o servidor.");

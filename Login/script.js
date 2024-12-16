@@ -39,9 +39,10 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         localStorage.setItem("userType", data.userType);
 
         // Redirecionar com base no tipo de usuário
-        const dashboardUrl = data.userType === "cliente"
+        const userType = data.userType.toUpperCase(); // Converte para maiúsculas para garantir consistência
+        const dashboardUrl = userType === "CLIENT"
             ? "../Dashboard-Cliente/index.html"
-            : data.userType === "profissional"
+            : userType === "PROFESSIONAL"
             ? "../Dashboard-Profissional/index.html"
             : null;
 

@@ -6,7 +6,7 @@ function getAuthToken() {
 // Função para verificar o tipo de usuário
 function isUserClient() {
   const userType = localStorage.getItem("userType");
-  return userType === "cliente"; // Verifica se o tipo de usuário é 'cliente'
+  return userType === "CLIENT"; // Verifica se o tipo de usuário é 'CLIENT' (em maiúsculas)
 }
 
 // Função para fazer logout
@@ -40,7 +40,7 @@ function listServices() {
   const servicesContainer = document.getElementById("service-list");
   servicesContainer.innerHTML = ''; // Limpa a lista antes de preencher
 
-  fetchWithAuth("http://localhost:8080/api/services")
+  fetchWithAuth("http://localhost:8080/api/services/client")
     .then(data => {
       if (data && data.length > 0) {
         data.forEach(service => {
@@ -68,7 +68,7 @@ function editService(serviceId) {
 
 // Função para cadastrar um novo serviço
 function createNewService() {
-  window.location.href = "createService.html";
+  window.location.href = "createServices/createService.html"; 
 }
 
 // Função para garantir que o cliente está logado
