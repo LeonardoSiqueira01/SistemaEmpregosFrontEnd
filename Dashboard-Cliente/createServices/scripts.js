@@ -1,45 +1,76 @@
-// Função para criar um novo serviço
-function createService(token, serviceData) {
-    fetch('http://localhost:8080/api/services', {
-        method: 'POST',
-        headers: {
-            'Authorization': 'Bearer ' + token,  // Inclui o token no cabeçalho de autenticação
-            'Content-Type': 'application/json'   // Define o tipo de conteúdo como JSON
-        },
-        body: JSON.stringify(serviceData)  // Envia os dados do serviço como JSON
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();  // Se a resposta for OK, converte para JSON
-        } else {
-            throw new Error('Erro ao criar o serviço');  // Caso contrário, lança um erro
-        }
-    })
-    .then(data => {
-        console.log('Serviço criado:', data);  // Exibe os dados do serviço criado no console
-        // Aqui você pode adicionar código para atualizar a UI com a resposta, por exemplo:
-        alert('Serviço criado com sucesso!');
-    })
-    .catch(error => {
-        console.error('Erro:', error);  // Exibe o erro no console
-        alert('Erro ao criar o serviço');
-    });
+// Função para obter o token do localStorage
+function getAuthToken() {
+    return localStorage.getItem("authToken");
 }
 
-// Exemplo de como chamar a função
-const token = 'seu-token-jwt';  // Substitua pelo token JWT real
-const serviceData = {
-    name: 'Novo Serviço',
-    description: 'Descrição do novo serviço',
-    // Adicione outros campos que são necessários para o cadastro do serviço
-};
+// Função para garantir que o cliente esteja logado
+function ensureClientAuthenticated() {
+    const token = getAuthToken();
+    const userType = localStorage.getItem("userType");
 
-// Quando o formulário for submetido, chamamos a função para criar o serviço
-document.getElementById('serviceForm').addEventListener('submit', function(event) {
-    event.preventDefault();  // Impede o envio do formulário
-    createService(token, serviceData);  // Cria o serviço usando o token e os dados fornecidos
+    if (!token || userType !== "CLIENT") {
+        alert("Você precisa estar autenticado como Cliente para acessar esta página.");
+        window.location.href = "../Login/index.html"; // Redireciona para login se não houver token ou não for cliente
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    ensureClientAuthenticated(); // Verifica se o cliente está logado antes de carregar a página
+
+    // Definir o ID do cliente no campo oculto
+    const clientId = localStorage.getItem("userId");
+    if (clientId) {
+        document.getElementById("client").value = clientId;
+    } else {
+        alert("ID do cliente não encontrado no localStorage.");
+        return; // Impede o restante da execução se o ID não for encontrado
+    }
+
+    // Adicionando evento de envio do formulário
+    document.getElementById("serviceForm").addEventListener("submit", criarServico);
 });
-// Função para voltar para a tela anterior
-function goBack() {
-    window.history.back();
+
+// Função para enviar o formulário de serviço
+async function criarServico(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    const serviceData = {
+        name: document.getElementById("name").value,
+        description: document.getElementById("description").value,
+        serviceDate: document.getElementById("serviceDate").value,
+        specialty: document.getElementById("specialty").value,
+        location: document.getElementById("location").value,
+        client: document.getElementById("client").value, // O ID do cliente
+        professional: null, // O profissional será null
+        status: "ABERTO" // Ou algum status inicial que você defina
+    };
+
+    // Verifique se todos os campos obrigatórios estão preenchidos antes de enviar
+    if (!serviceData.name || !serviceData.description || !serviceData.serviceDate || !serviceData.location) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
+        return;
+    }
+
+    const token = getAuthToken();
+    const headers = {
+        "Authorization": token,
+        "Content-Type": "application/json"
+    };
+
+    try {
+        const response = await fetch("http://localhost:8080/api/services", { // ou o endereço correto da sua API
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(serviceData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao criar serviço: ' + response.statusText);
+        }
+
+        const result = await response.json();
+        alert("Serviço criado com sucesso: " + result.id);
+    } catch (error) {
+        alert("Erro ao criar serviço: " + error.message);
+    }
 }

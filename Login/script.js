@@ -1,17 +1,24 @@
-// Evento de envio do formulário de login
 document.getElementById("loginForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
     const loginButton = document.querySelector("button[type=submit]");
-    loginButton.disabled = true; // Desativa o botão para evitar múltiplos cliques
+    loginButton.disabled = true;
     loginButton.textContent = "Carregando...";
 
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
+
+    // Validação de entrada no front-end
+    if (!email || !password) {
+        document.getElementById("errorMessage").textContent = "Por favor, preencha todos os campos.";
+        loginButton.disabled = false;
+        loginButton.textContent = "Entrar";
+        return;
+    }
 
     const loginData = { email, password };
 
-    fetch("http://localhost:8080/api/login", {
+    fetch(`${API_BASE_URL}/api/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -24,22 +31,23 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
 
         if (!response.ok) {
             return response.json().then(data => {
-                throw new Error(data.message || "Erro no login.");
+                throw new Error(data.message || "Erro ao tentar realizar o login.");
             });
         }
         return response.json();
     })
     .then(data => {
         if (!data.token || !data.userType) {
-            throw new Error("Token ou tipo de usuário ausente na resposta.");
+            throw new Error("Resposta inválida do servidor: token ou tipo de usuário ausente.");
         }
 
-        // Salvar o token e o tipo de usuário no localStorage
-        localStorage.setItem("authToken", data.token);
+        // Armazena o token e o tipo de usuário
+        localStorage.setItem("authToken", `Bearer ${data.token}`);
         localStorage.setItem("userType", data.userType);
+        localStorage.setItem("userId", data.userId); // Salvar o ID do usuário
 
-        // Redirecionar com base no tipo de usuário
-        const userType = data.userType.toUpperCase(); // Converte para maiúsculas para garantir consistência
+        // Redireciona o usuário para o painel correspondente
+        const userType = data.userType.toUpperCase();
         const dashboardUrl = userType === "CLIENT"
             ? "../Dashboard-Cliente/index.html"
             : userType === "PROFESSIONAL"
@@ -49,7 +57,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         if (dashboardUrl) {
             window.location.href = dashboardUrl;
         } else {
-            alert("Tipo de usuário desconhecido!");
+            alert("Tipo de usuário desconhecido.");
         }
     })
     .catch(error => {
@@ -58,32 +66,31 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     });
 });
 
-// Função para obter o token do localStorage
+// Funções auxiliares
+const API_BASE_URL = "http://localhost:8080"; // Utilize variável de ambiente no futuro
+
 function getAuthToken() {
     return localStorage.getItem("authToken");
 }
 
-// Função para fazer logout
 function logout() {
     localStorage.removeItem("authToken");
     localStorage.removeItem("userType");
     window.location.href = "../Login/index.html";
 }
 
-// Função para fazer requisições autenticadas
 function fetchWithAuth(url, options = {}) {
     const token = getAuthToken();
     if (token) {
         options.headers = {
             ...options.headers,
-            "Authorization": `Bearer ${token}`
+            "Authorization": token
         };
     }
 
     return fetch(url, options).then(response => {
         if (response.status === 401) {
-            // Redirecionar para login em caso de token inválido
-            logout();
+            logout(); // Redireciona para login se o token for inválido
         }
         return response;
     });

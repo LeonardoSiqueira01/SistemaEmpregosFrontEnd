@@ -4,10 +4,12 @@ function getAuthToken() {
 }
 
 // Função para verificar o tipo de usuário
+// Função para verificar o tipo de usuário
 function isUserClient() {
   const userType = localStorage.getItem("userType");
   return userType === "CLIENT"; // Verifica se o tipo de usuário é 'CLIENT' (em maiúsculas)
 }
+
 
 // Função para fazer logout
 function logout() {
