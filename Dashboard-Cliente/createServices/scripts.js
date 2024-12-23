@@ -3,6 +3,13 @@ function getAuthToken() {
     return localStorage.getItem("authToken");
 }
 
+// Função para decodificar o token JWT e obter o payload
+function decodeJWT(token) {
+    const payloadBase64 = token.split('.')[1];
+    const decodedPayload = JSON.parse(atob(payloadBase64));
+    return decodedPayload;
+}
+
 // Função para garantir que o cliente esteja logado
 function ensureClientAuthenticated() {
     const token = getAuthToken();
@@ -10,67 +17,79 @@ function ensureClientAuthenticated() {
 
     if (!token || userType !== "CLIENT") {
         alert("Você precisa estar autenticado como Cliente para acessar esta página.");
-        window.location.href = "../Login/index.html"; // Redireciona para login se não houver token ou não for cliente
+        window.location.assign("../Login/index.html");
+      
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    ensureClientAuthenticated(); // Verifica se o cliente está logado antes de carregar a página
-
-    // Definir o ID do cliente no campo oculto
-    const clientId = localStorage.getItem("userId");
-    if (clientId) {
-        document.getElementById("client").value = clientId;
-    } else {
-        alert("ID do cliente não encontrado no localStorage.");
-        return; // Impede o restante da execução se o ID não for encontrado
-    }
-
-    // Adicionando evento de envio do formulário
-    document.getElementById("serviceForm").addEventListener("submit", criarServico);
-});
-
-// Função para enviar o formulário de serviço
+// Função para criar o serviço
 async function criarServico(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
+    event.preventDefault();
 
+    // Decodifica o token para obter o e-mail
+    const token = getAuthToken();
+    const decodedToken = decodeJWT(token);
+    const email = decodedToken.sub;  // E-mail do cliente extraído do token
+
+    // Coleta os dados do formulário
     const serviceData = {
-        name: document.getElementById("name").value,
-        description: document.getElementById("description").value,
-        serviceDate: document.getElementById("serviceDate").value,
+        name: document.getElementById("name").value.trim(),
+        description: document.getElementById("description").value.trim(),
+        serviceDate: document.getElementById("serviceDate").value,  // data no formato 'yyyy-MM-dd'
         specialty: document.getElementById("specialty").value,
-        location: document.getElementById("location").value,
-        client: document.getElementById("client").value, // O ID do cliente
-        professional: null, // O profissional será null
-        status: "ABERTO" // Ou algum status inicial que você defina
+        location: document.getElementById("location").value
     };
 
-    // Verifique se todos os campos obrigatórios estão preenchidos antes de enviar
+    // Validação dos campos obrigatórios
     if (!serviceData.name || !serviceData.description || !serviceData.serviceDate || !serviceData.location) {
         alert("Por favor, preencha todos os campos obrigatórios.");
         return;
     }
 
-    const token = getAuthToken();
-    const headers = {
-        "Authorization": token,
-        "Content-Type": "application/json"
-    };
-
+    // Envia a requisição para o backend para criar o serviço, passando o email diretamente
     try {
-        const response = await fetch("http://localhost:8080/api/services", { // ou o endereço correto da sua API
+        const response = await fetch(`http://localhost:8080/api/services/${email}`, {
             method: "POST",
-            headers: headers,
-            body: JSON.stringify(serviceData)
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(serviceData)  // Envia os dados do serviço
         });
 
         if (!response.ok) {
-            throw new Error('Erro ao criar serviço: ' + response.statusText);
+            const errorDetails = await response.text();
+            throw new Error(`${response.statusText} - ${errorDetails}`);
         }
 
         const result = await response.json();
-        alert("Serviço criado com sucesso: " + result.id);
+        alert(`Serviço criado com sucesso! ID: ${result.id}`);
+        window.location.assign("/Dashboard-Cliente/index.html");
+        
+
     } catch (error) {
-        alert("Erro ao criar serviço: " + error.message);
+        alert(`Erro ao criar serviço: ${error.message}`);
     }
 }
+
+// Função para garantir que o token seja válido
+function isTokenValid(token) {
+    if (!token) return false;
+
+    try {
+        const payload = decodeJWT(token);
+        const now = Math.floor(Date.now() / 1000);  // Timestamp atual
+        return payload.exp > now;  // Verifica se o token não expirou
+    } catch (e) {
+        console.error("Erro ao validar o token:", e);
+        return false;
+    }
+}
+
+// Adiciona o evento de envio do formulário
+document.addEventListener("DOMContentLoaded", function () {
+    ensureClientAuthenticated(); // Verifica se o cliente está logado antes de carregar a página
+
+    // Adicionando evento de envio do formulário
+    document.getElementById("serviceForm").addEventListener("submit", criarServico);
+});

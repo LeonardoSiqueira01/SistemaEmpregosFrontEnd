@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro e Verificação</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../Cadastro/styles.css">
 </head>
 <body>
   <div class="container">
@@ -31,6 +31,21 @@
 
           <label for="password">Senha:</label>
           <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+          
+          <label for="specialties" id="specialtiesLabel" style="display: none;">Especialidades:</label>
+          <select id="specialties" name="specialties" multiple style="display: none;">
+            <option value="Serviços Gerais">Serviços Gerais</option>
+            <option value="Mestre de Obras">Mestre de Obras</option>
+            <option value="Ajudante de Mestre de Obras">Ajudante de Mestre de Obras</option>
+            <option value="Dentista">Dentista</option>
+            <option value="Pintor">Pintor</option>
+            <option value="Cozinheiro">Cozinheiro</option>
+            <option value="Diarista">Diarista</option>
+            <option value="Free Lancer de Designer">Free Lancer de Designer</option>
+          </select>
+          <label for="location">Sua localização:</label>
+          <input type="text" id="location" name="location" placeholder="Digite seu endereço" required style="display: none;">
+          
           <p class="texto"><a href="../Login/index.html">Já possui uma conta?</a></p>
           <button type="submit">Cadastrar</button>
         </form>
@@ -47,7 +62,7 @@
       </form>
     </div>
   </div>
-
   <script src="../Cadastro/script.js"></script>
+
 </body>
-</html>
+</html> 
