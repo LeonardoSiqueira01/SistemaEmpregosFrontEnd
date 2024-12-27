@@ -150,3 +150,87 @@ ul#service-list li button:hover {
       margin-left: 0;
   }
 }
+/* Container de serviços */
+#service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Cartão de serviço */
+.service-item {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Cabeçalho do serviço */
+.service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.service-status {
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Cores do status */
+.status-open {
+  background-color: #28a745; /* Verde */
+  color: #fff;
+}
+
+.status-started {
+  background-color: #007bff; /* Azul */
+  color: #fff;
+}
+
+.status-completed {
+  background-color: #ffc107; /* Amarelo */
+  color: #000;
+}
+
+.status-canceled {
+  background-color: #6f42c1; /* Roxo */
+  color: #fff;
+}
+
+/* Estilo para os detalhes do serviço */
+p {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+/* Botão de editar */
+.edit-btn, .assign-professional-btn{
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.edit-btn:hover, .assign-professional-btn:hover{
+  background-color: #0056b3;
+}

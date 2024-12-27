@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="../vincularProfissional/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vincular Profissional ao Serviço</title>
+</head>
+<body>
+    <!-- Formulário para vincular um profissional -->
+    <div class="assign-professional-container">
+        <h2>Vincular Profissional ao Serviço</h2>
+        <form id="assign-professional-form">
+            <div class="form-group">
+                <label for="professional-id">ID do Profissional</label>
+                <input type="text" id="professional-id" name="professionalId" required />
+            </div>
+            <div class="form-group">
+                <button type="submit">Vincular Profissional</button>
+            </div>
+        </form>
+        <p id="confirmation-message" style="display:none;"></p> <!-- Mensagem de confirmação -->
+    </div>
+    <script src="../vincularProfissional/script.js"></script>
+</body>
+</html>

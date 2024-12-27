@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Serviço</title>
+  <link rel="stylesheet" href="/Dashboard-Cliente/edit-service-container/styles.css"> 
+</head>
+<body>
+
+  <!-- Formulário de Edição -->
+  <div class="edit-service-container">
+    <h2>Editar Serviço</h2>
+    <form id="edit-service-form">
+      <div class="form-group">
+        <label for="service-name">Nome do Serviço</label>
+        <input type="text" id="service-name" name="name" required />
+      </div>
+      <div class="form-group">
+        <label for="service-description">Descrição</label>
+        <textarea id="service-description" name="description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="service-location">Localização</label>
+        <input type="text" id="service-location" name="location" required />
+      </div>
+      <div class="form-group">
+        <label for="service-specialty">Especialidade</label>
+        <input type="text" id="service-specialty" name="specialty" required />
+      </div>
+      <div class="form-group">
+        <button type="button" onclick="cancelEdit()">Cancelar</button>
+        <button type="submit">Salvar Alterações</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="/Dashboard-Cliente/edit-service-container/script.js"></script> 
+</body>
+</html>
