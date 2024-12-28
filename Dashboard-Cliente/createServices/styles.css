@@ -8,9 +8,12 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Título */
 h1 {
     text-align: center;
     color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 /* Estilos para o formulário */
@@ -24,6 +27,7 @@ label {
     font-size: 14px;
     margin-bottom: 8px;
     color: #555;
+    font-weight: 600;
 }
 
 /* Estilos para os inputs e textarea */
@@ -31,20 +35,30 @@ input[type="text"],
 input[type="date"],
 input[type="hidden"],
 textarea {
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
     width: 100%;
+    transition: border-color 0.3s ease;
 }
 
+/* Foco nos campos de input */
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Estilo para o textarea */
 textarea {
     resize: vertical;
-    height: 100px;
+    height: 120px;
 }
 
-/* Estilos para o botão de submit */
+/* Estilos para os botões */
 button {
     background-color: #4CAF50;
     color: white;
@@ -53,10 +67,19 @@ button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 10px;
 }
 
 button:hover {
     background-color: #45a049;
+}
+
+button[type="button"] {
+    background-color: #f44336;
+}
+
+button[type="button"]:hover {
+    background-color: #e53935;
 }
 
 /* Estilos para mensagens de erro ou sucesso */
@@ -67,6 +90,7 @@ button:hover {
     color: #333;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 14px;
 }
 
 /* Estilos de erro */
@@ -79,4 +103,19 @@ button:hover {
 .success {
     color: green;
     background-color: #d4edda;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    button {
+        padding: 10px 18px;
+    }
 }

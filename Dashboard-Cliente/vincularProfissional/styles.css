@@ -56,3 +56,35 @@ button:hover {
     border-radius: 4px;
     display: none;
 }
+/* Estilo para os botões */
+.form-group button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.form-group button[type="button"] {
+  background-color: #f44336;
+}
+
+.form-group button:hover {
+  background-color: #45a049;
+}
+
+.form-group button[type="button"]:hover {
+  background-color: #e53935;
+}
+
+/* Estilo para a mensagem de erro */
+.error-message {
+  color: #f44336;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}

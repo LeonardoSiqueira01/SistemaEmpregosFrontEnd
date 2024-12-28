@@ -93,3 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Adicionando evento de envio do formulário
     document.getElementById("serviceForm").addEventListener("submit", criarServico);
 });
+
+function cancelEdit() {
+    // Redireciona para a página de lista de serviços (ou página anterior)
+      window.location.href = "../index.html";
+  }
+  

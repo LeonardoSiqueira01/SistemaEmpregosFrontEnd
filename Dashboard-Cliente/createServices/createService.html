@@ -17,7 +17,6 @@
             
             <input type="hidden" id="client" name="client">
 
-
             <label for="description">Descrição:</label>
             <textarea id="description" required placeholder="Descrição do serviço"></textarea>
             
@@ -30,10 +29,8 @@
             <label for="location">Localização:</label>
             <input type="text" id="location" required placeholder="Localização do serviço">
 
-            <!-- Campo oculto para o ID do cliente -->
-            <input type="hidden" id="client">
-
             <button type="submit">Criar Serviço</button>
+            <button type="button" onclick="cancelEdit()">Cancelar</button>
         </form>
 
         <div id="message" class="message"></div>

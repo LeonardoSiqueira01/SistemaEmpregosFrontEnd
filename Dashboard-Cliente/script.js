@@ -123,6 +123,8 @@ function editService(serviceId) {
     servicesContainer.innerHTML = "<p>Erro ao carregar os serviços. Tente novamente mais tarde.</p>";
   }
 }
+
+
 function assignProfessional(serviceId) {
   // Corrigir caminho relativo para a página de vinculação de profissional
   window.location.href = "../Dashboard-Cliente/vincularProfissional/index.html?serviceId=" + serviceId;
@@ -159,9 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Adicionar eventos de clique para os itens do menu
 document.getElementById("list-services").addEventListener("click", listServices);
 document.getElementById("create-service").addEventListener("click", createNewService);
-document.getElementById("update-service").addEventListener("click", function () {
-  window.location.href = "/Dashboard-Cliente/edit-service-container/index.html"; // Caminho absoluto
-});
+
 document.getElementById("specialty-services").addEventListener("click", function () {
   window.location.href = "specialtyServices.html";
 });
