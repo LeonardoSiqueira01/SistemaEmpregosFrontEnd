@@ -73,7 +73,7 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  const location = document.getElementById("location").value;  // Localização
+  const location = document.getElementById("location").value;  // Localização (agora com o endereço completo)
 
   const specialtiesSelect = document.getElementById("specialties");
   const specialties = Array.from(specialtiesSelect.selectedOptions).map(option => option.value).join(", "); // Juntar as especialidades em uma string separada por vírgulas
@@ -86,7 +86,7 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
       password,
     },
     specialties: userType === "profissional" ? specialties : null, // Usar a string de especialidades ou null
-    location: userType === "profissional" ? location : null,  // Apenas adiciona localização para profissionais
+    location: userType === "profissional" ? location : null,  // Apenas adiciona localização para profissionais (endereço completo)
     userType: userType,
   };
   
@@ -114,6 +114,7 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
     console.error(err);
   }
 });
+
 
 document.getElementById("verificationForm").addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -146,6 +147,8 @@ function toggleScreens(screenId) {
   document.getElementById("verificationScreen").style.display = "none";
   document.getElementById(screenId).style.display = "block";
 }
+
+
 document.getElementById("location").addEventListener("blur", function() {
   const cepField = this;
   const cep = cepField.value.replace(/\D/g, ''); // Remove caracteres não numéricos
@@ -160,8 +163,12 @@ document.getElementById("location").addEventListener("blur", function() {
       .then(data => {
         if (!data.erro) {
           // Preencher o campo de endereço
-          document.getElementById("formattedAddress").textContent = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+          const address = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+          document.getElementById("formattedAddress").textContent = address;
           document.getElementById("addressOutput").style.display = "block"; // Exibe o endereço
+          
+          // Agora, preencher o campo 'location' com o endereço completo
+          cepField.value = address;  // Atualiza o campo 'location' com o endereço completo
           cepField.dataset.validated = "true"; // Marca o campo como validado
         } else {
           alert('CEP não encontrado. Verifique e tente novamente.');
@@ -174,9 +181,10 @@ document.getElementById("location").addEventListener("blur", function() {
       });
   } else {
     alert('Formato de CEP inválido.');
-    cepField.dataset.validated = "false"; // Reseta o indicador
+    cepField.dataset.validated = "false"; // Reseta a validação
   }
 });
+
 
 // Quando o usuário alterar manualmente o campo, resetar o estado de validação
 document.getElementById("location").addEventListener("input", function() {
