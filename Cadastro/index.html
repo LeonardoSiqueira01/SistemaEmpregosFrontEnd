@@ -43,8 +43,18 @@
             <option value="Diarista">Diarista</option>
             <option value="Free Lancer de Designer">Free Lancer de Designer</option>
           </select>
-          <label for="location">Sua localização:</label>
-          <input type="text" id="location" name="location" placeholder="Digite seu endereço" required style="display: none;">
+          
+          <label for="location" id="locationLabel" style="display: none;">Sua localização (CEP):</label>
+<input type="text" id="location" name="location" placeholder="Digite seu CEP" style="display: none;" required>
+
+<div id="addressOutput" style="display: none;">
+  <p><strong>Seu endereço:</strong> <span id="formattedAddress"></span></p>
+</div>
+
+<p id="cep-link">
+  <a href="https://buscacepinter.correios.com.br/app/localidade_logradouro/index.php" target="_blank">Não sabe seu endereço? Pesquise aqui seu CEP.</a>
+</p>
+
           
           <p class="texto"><a href="../Login/index.html">Já possui uma conta?</a></p>
           <button type="submit">Cadastrar</button>

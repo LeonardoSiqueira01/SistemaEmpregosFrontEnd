@@ -3,58 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bem-vindo</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Opcional: adicione um arquivo CSS -->
+    <title>Dashboard Profissional</title>
+    <link rel="stylesheet" href="../Dashboard-Profissional/styles.css">
 </head>
 <body>
-    <div class="welcome-container">
-        <h1>Bem-vindo! profissional</h1>
-        <p>Estamos felizes em tê-lo aqui.</p>
-        <p>Escolha uma opção abaixo para continuar:</p>
-       
-    </div>
+    <header>
+        <h1>Bem-vindo ao Dashboard Profissional</h1>
+        <div id="user-info">
+            <p id="welcome-message">Olá, [Profissional]</p>
+            <button id="logout">Sair</button>
+        </div>
+    </header>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .welcome-container {
-            text-align: center;
-            background: #ffffff;
-            padding: 20px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333333;
-        }
-        p {
-            color: #555555;
-            margin: 10px 0;
-        }
-        .actions {
-            margin-top: 20px;
-        }
-        .button {
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 5px;
-            border-radius: 5px;
-            background-color: #007BFF;
-            color: white;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <nav>
+        <ul>
+            <li><a href="#" id="search-services">Procurar Serviço</a></li>
+            <li><a href="#" id="all-services">Todos os Serviços Disponíveis</a></li>
+            <li><a href="#" id="linked-services">Meus Serviços Vinculados</a></li>
+            <li><a href="#" id="edit-profile">Editar Perfil</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="filter-section">
+            <h2>Filtrar Serviços</h2>
+            <form id="filter-form">
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" placeholder="Digite o CEP" maxlength="9">
+                <button type="button" id="search-cep">Buscar Endereço</button>
+                
+                <label for="city">Cidade:</label>
+                <input type="text" id="city" placeholder="Digite a cidade">
+        
+                <label for="specialty">Especialidade:</label>
+                <input type="text" id="specialty" placeholder="Digite a especialidade">
+        
+                <button type="button" id="apply-filters">Aplicar Filtros</button>
+            </form>
+            <div id="address-info" style="margin-top: 10px; display: none;">
+                <p><strong>Logradouro:</strong> <span id="logradouro"></span></p>
+                <p><strong>Bairro:</strong> <span id="bairro"></span></p>
+                <p><strong>Estado:</strong> <span id="estado"></span></p>
+            </div>
+        </section>
+        
+
+        <section id="service-list-container">
+            <h2>Serviços Disponíveis</h2>
+            <ul id="service-list"></ul>
+        </section>
+    </main>
+
+    <script src="../Dashboard-Profissional/script.js"></script>
 </body>
 </html>

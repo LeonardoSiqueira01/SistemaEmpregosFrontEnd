@@ -4,6 +4,8 @@ document.getElementById("userType").addEventListener("change", function() {
   const specialtiesLabel = document.getElementById("specialtiesLabel");
   const locationField = document.getElementById("location");
   const locationLabel = document.querySelector('label[for="location"]');
+  const cepLink = document.getElementById("cep-link");
+  const addressOutput = document.getElementById("addressOutput"); // Adicionado para controlar a exibição do endereço formatado
 
   if (userType === "profissional") {
     specialtiesField.style.display = "block"; // Mostra o campo de especialidades
@@ -11,14 +13,26 @@ document.getElementById("userType").addEventListener("change", function() {
     locationField.style.display = "block"; // Mostra o campo de localização
     locationLabel.style.display = "block"; // Mostra o label de localização
     locationField.required = true; // Torna o campo de localização obrigatório
+    cepLink.style.display = "block"; // Garante que o link seja visível para profissionais
+
+    // Verifica se o campo de localização já está validado
+    if (locationField.dataset.validated === "true") {
+      addressOutput.style.display = "block"; // Exibe o endereço formatado se já estiver validado
+    } else {
+      addressOutput.style.display = "none"; // Esconde o endereço até que seja validado novamente
+    }
   } else {
     specialtiesField.style.display = "none"; // Esconde o campo de especialidades
     specialtiesLabel.style.display = "none"; // Esconde o label de especialidades
     locationField.style.display = "none"; // Esconde o campo de localização
     locationLabel.style.display = "none"; // Esconde o label de localização
     locationField.required = false; // Remove a obrigatoriedade do campo de localização
+    cepLink.style.display = "none"; // Oculta o link de CEP para clientes
+    addressOutput.style.display = "none"; // Oculta o endereço formatado para clientes
   }
 });
+
+
 
 
 function validateForm({ email, password, specialties, userType, location }) {
@@ -116,7 +130,7 @@ document.getElementById("verificationForm").addEventListener("submit", async (ev
 
     if (verifyResponse.ok) {
       alert("Cadastro concluído com sucesso!");
-      toggleScreens("initialScreen");
+      window.location.href = "../Login/index.html";
     } else {
       const errorText = await verifyResponse.text();
       alert(`Erro na verificação: ${errorText}`);
@@ -132,3 +146,39 @@ function toggleScreens(screenId) {
   document.getElementById("verificationScreen").style.display = "none";
   document.getElementById(screenId).style.display = "block";
 }
+document.getElementById("location").addEventListener("blur", function() {
+  const cepField = this;
+  const cep = cepField.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+  const validated = cepField.dataset.validated; // Recupera o indicador de validação
+
+  if (validated === "true") return; // Evita reprocessamento se o CEP já estiver validado
+
+  if (cep.length === 8) {
+    // Fazer a requisição para a API de CEP
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.erro) {
+          // Preencher o campo de endereço
+          document.getElementById("formattedAddress").textContent = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+          document.getElementById("addressOutput").style.display = "block"; // Exibe o endereço
+          cepField.dataset.validated = "true"; // Marca o campo como validado
+        } else {
+          alert('CEP não encontrado. Verifique e tente novamente.');
+          cepField.dataset.validated = "false"; // Reseta o indicador
+        }
+      })
+      .catch(() => {
+        alert('Erro ao buscar o CEP. Verifique sua conexão.');
+        cepField.dataset.validated = "false"; // Reseta o indicador
+      });
+  } else {
+    alert('Formato de CEP inválido.');
+    cepField.dataset.validated = "false"; // Reseta o indicador
+  }
+});
+
+// Quando o usuário alterar manualmente o campo, resetar o estado de validação
+document.getElementById("location").addEventListener("input", function() {
+  this.dataset.validated = "false"; // Reseta a validação sempre que o usuário edita
+});
