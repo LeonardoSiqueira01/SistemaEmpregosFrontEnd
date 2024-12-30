@@ -17,7 +17,7 @@ function ensureClientAuthenticated() {
 
     if (!token || userType !== "CLIENT") {
         alert("Você precisa estar autenticado como Cliente para acessar esta página.");
-        window.location.assign("../Login/index.html");
+        window.location.assign("../../Login/index.html");
     }
 }
 

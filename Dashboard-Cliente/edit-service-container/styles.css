@@ -1,86 +1,123 @@
 /* Estilo geral para o formulário de edição */
 .edit-service-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .edit-service-container h2 {
-    text-align: center;
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  /* Estilo para os grupos de formulário */
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    display: block;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 8px;
-  }
-  
-  /* Estilo para os inputs de texto */
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .form-group input:focus,
-  .form-group textarea:focus {
-    border-color: #4CAF50;
-    outline: none;
-  }
-  
-  /* Estilo para o textarea */
-  .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  /* Estilo para os botões */
-  .form-group button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-right: 10px;
-  }
-  
-  .form-group button[type="button"] {
-    background-color: #f44336;
-  }
-  
-  .form-group button:hover {
-    background-color: #45a049;
-  }
-  
-  .form-group button[type="button"]:hover {
-    background-color: #e53935;
-  }
-  
-  /* Estilo para a mensagem de erro */
-  .error-message {
-    color: #f44336;
-    font-size: 14px;
-    margin-top: 10px;
-    text-align: center;
-  }
-  
+  width: 100%;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.edit-service-container h2 {
+  text-align: center;
+  color: #333;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Estilo para os grupos de formulário */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+/* Estilo para os inputs de texto */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #4CAF50;
+  background-color: #e8f5e9;
+  outline: none;
+}
+
+/* Estilo para o textarea */
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Estilo para os botões */
+.form-group button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 15px;
+  width: 150px;
+  display: inline-block;
+  text-align: center;
+}
+
+.form-group button[type="button"] {
+  background-color: #f44336;
+}
+
+.form-group button:hover {
+  background-color: #45a049;
+}
+
+.form-group button[type="button"]:hover {
+  background-color: #e53935;
+}
+
+/* Estilo para alinhar os botões lado a lado */
+.form-group.buttons {
+  display: flex;
+  justify-content: space-between; /* Garante que os botões fiquem separados */
+  gap: 10px; /* Adiciona espaçamento entre os botões */
+}
+
+/* Estilo para o texto de ajuda */
+.help-text {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* Estilo para a mensagem de erro */
+.error-message {
+  color: #f44336;
+  font-size: 14px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Estilo para campos de erro */
+.form-group input.error,
+.form-group textarea.error {
+  border-color: #f44336;
+  background-color: #ffe6e6;
+}
+
+.form-group input.error:focus,
+.form-group textarea.error:focus {
+  background-color: #ffcccc;
+  border-color: #d32f2f;
+}

@@ -1,33 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Editar Serviço</title>
-  <link rel="stylesheet" href="/Dashboard-Cliente/edit-service-container/styles.css"> 
+  <link rel="stylesheet" href="/Dashboard-Cliente/edit-service-container/styles.css">
 </head>
+
 <body>
 
-  <!-- Formulário de Edição -->
+  <!-- Formulário de Edição de Serviço -->
   <div class="edit-service-container">
     <h2>Editar Serviço</h2>
     <form id="edit-service-form">
+      <!-- Nome do Serviço -->
       <div class="form-group">
         <label for="service-name">Nome do Serviço</label>
-        <input type="text" id="service-name" name="name" required />
+        <input type="text" id="service-name" name="name" required placeholder="Digite o nome do serviço" />
       </div>
+
+      <!-- Descrição do Serviço -->
       <div class="form-group">
         <label for="service-description">Descrição</label>
-        <textarea id="service-description" name="description" required></textarea>
+        <textarea id="service-description" name="description" required placeholder="Digite a descrição do serviço"></textarea>
       </div>
+
+      <!-- Localização do Serviço -->
       <div class="form-group">
         <label for="service-location">Localização</label>
-        <input type="text" id="service-location" name="location" required />
+        <input type="text" id="service-location" name="location" required placeholder="Digite a localização" />
       </div>
+
+      <!-- CEP para Atualização de Endereço -->
+      <div class="form-group">
+        <label for="service-cep">CEP</label>
+        <input type="text" id="service-cep" name="cep" maxlength="8" placeholder="Digite o CEP" />
+        <p class="help-text">Caso queira alterar o endereço, insira um novo CEP e clique em "Buscar Endereço".</p>
+        <button type="button" onclick="fetchAddress()">Buscar Endereço</button>
+      </div>
+
+      <!-- Especialidade do Serviço -->
       <div class="form-group">
         <label for="service-specialty">Especialidade</label>
-        <input type="text" id="service-specialty" name="specialty" required />
+        <input type="text" id="service-specialty" name="specialty" required placeholder="Digite a especialidade" />
       </div>
+
+      <!-- Botões de Ação -->
       <div class="form-group">
         <button type="submit" onclick="saveServiceChanges()">Salvar Alterações</button>
         <button type="button" onclick="cancelEdit()">Cancelar</button>
@@ -35,6 +54,7 @@
     </form>
   </div>
 
-  <script src="/Dashboard-Cliente/edit-service-container/script.js"></script> 
+  <script src="/Dashboard-Cliente/edit-service-container/script.js"></script>
 </body>
+
 </html>

@@ -117,3 +117,34 @@ function cancelEdit() {
   // Redireciona para a página de lista de serviços (ou página anterior)
     window.location.href = "../index.html";
 }
+// Função para buscar o endereço usando o ViaCEP
+async function fetchAddress() {
+  const cep = document.getElementById("service-cep").value.replace(/\D/g, ''); // Remove qualquer caractere não numérico
+
+  if (cep.length !== 8) {
+    alert("Por favor, insira um CEP válido com 8 dígitos.");
+    return;
+  }
+
+  try {
+    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+
+    if (!response.ok) {
+      throw new Error("Erro ao buscar o endereço.");
+    }
+
+    const addressData = await response.json();
+
+    if (addressData.erro) {
+      alert("CEP não encontrado.");
+      return;
+    }
+
+    // Preenche o campo de localização com os dados recebidos
+    document.getElementById("service-location").value = `${addressData.logradouro}, ${addressData.bairro}, ${addressData.localidade} - ${addressData.uf}`;
+
+  } catch (error) {
+    console.error("Erro ao buscar o endereço:", error);
+    alert("Erro ao buscar o endereço. Tente novamente.");
+  }
+}
