@@ -87,18 +87,21 @@ services.forEach(service => {
     default:
       statusClass = '';
   }
+  const date = new Date(service.serviceDate);
+  const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+  
   serviceElement.innerHTML = `
-  <div class="service-header">
-    <h3 class="service-name">${service.name}</h3>
-    <span class="service-status ${statusClass}">${service.status}</span>
-  </div>
-  <p><strong>Especialidade:</strong> ${service.specialty}</p>
-  <p><strong>Data do Serviço:</strong> ${service.serviceDate}</p>
-  <p><strong>Descrição:</strong> ${service.description}</p>
-  <p><strong>Localização:</strong> ${service.location}</p>
-  <button class="edit-btn" onclick="editService(${service.id})">Editar</button>
-  <button class="assign-professional-btn" onclick="assignProfessional(${service.id})">Vincular Profissional</button>
-`;
+    <div class="service-header">
+      <h3 class="service-name">${service.name}</h3>
+      <span class="service-status ${statusClass}">${service.status}</span>
+    </div>
+    <p><strong>Especialidade:</strong> ${service.specialty}</p>
+    <p><strong>Data do Serviço:</strong> ${formattedDate}</p>
+    <p><strong>Descrição:</strong> ${service.description}</p>
+    <p><strong>Localização:</strong> ${service.location}</p>
+    <button class="edit-btn" onclick="editService(${service.id})">Editar</button>
+    <button class="assign-professional-btn" onclick="assignProfessional(${service.id})">Vincular Profissional</button>
+  `;
 
 // Função para editar o serviço
 function editService(serviceId) {
