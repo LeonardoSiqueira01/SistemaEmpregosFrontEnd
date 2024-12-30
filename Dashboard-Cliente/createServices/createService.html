@@ -17,17 +17,22 @@
             
             <input type="hidden" id="client" name="client">
 
+            
             <label for="description">Descrição:</label>
             <textarea id="description" required placeholder="Descrição do serviço"></textarea>
+            
+            <label for="location">CEP:</label>
+            <input type="text" id="location" required placeholder="Digite o CEP">
+            
+            <div id="formattedAddress" style="display: none; margin-top: 10px;">
+                <strong>Endereço:</strong> <span id="addressOutput"></span>
+            </div>
             
             <label for="serviceDate">Data do Serviço:</label>
             <input type="date" id="serviceDate" required>
 
             <label for="specialty">Especialidade:</label>
             <input type="text" id="specialty" required placeholder="Especialidade (ex: encanador)">
-            
-            <label for="location">Localização:</label>
-            <input type="text" id="location" required placeholder="Localização do serviço">
 
             <button type="submit">Criar Serviço</button>
             <button type="button" onclick="cancelEdit()">Cancelar</button>

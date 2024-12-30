@@ -18,26 +18,66 @@ function ensureClientAuthenticated() {
     if (!token || userType !== "CLIENT") {
         alert("Você precisa estar autenticado como Cliente para acessar esta página.");
         window.location.assign("../Login/index.html");
-      
     }
 }
 
-// Função para criar o serviço
+// Função para validar o token
+function isTokenValid(token) {
+    if (!token) return false;
+
+    try {
+        const payload = decodeJWT(token);
+        const now = Math.floor(Date.now() / 1000); // Timestamp atual
+        return payload.exp > now; // Verifica se o token não expirou
+    } catch (e) {
+        console.error("Erro ao validar o token:", e);
+        return false;
+    }
+}
+
+// Função para buscar o endereço na API do ViaCEP
+async function fetchAddress(cep) {
+    try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await response.json();
+
+        if (data.erro) {
+            throw new Error("CEP não encontrado.");
+        }
+
+        // Formata o endereço no padrão do Google Maps
+        const formattedAddress = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}, ${data.cep}`;
+        return formattedAddress;
+    } catch (error) {
+        console.error("Erro ao buscar o endereço:", error);
+        throw new Error("Não foi possível buscar o endereço. Verifique o CEP e tente novamente.");
+    }
+}
+
 async function criarServico(event) {
     event.preventDefault();
 
-    // Decodifica o token para obter o e-mail
     const token = getAuthToken();
+    if (!isTokenValid(token)) {
+        alert("Sessão expirada. Faça login novamente.");
+        window.location.assign("../Login/index.html");
+        return;
+    }
+
+    // Decodifica o token para obter o e-mail
     const decodedToken = decodeJWT(token);
-    const email = decodedToken.sub;  // E-mail do cliente extraído do token
+    const email = decodedToken.sub; // E-mail do cliente extraído do token
 
     // Coleta os dados do formulário
+    const descriptionElement = document.getElementById("description");
+    const descriptionValue = descriptionElement ? descriptionElement.value.trim() : "";
+
     const serviceData = {
         name: document.getElementById("name").value.trim(),
-        description: document.getElementById("description").value.trim(),
-        serviceDate: document.getElementById("serviceDate").value,  // data no formato 'yyyy-MM-dd'
+        description: descriptionValue,
+        serviceDate: document.getElementById("serviceDate").value, // data no formato 'yyyy-MM-dd'
         specialty: document.getElementById("specialty").value,
-        location: document.getElementById("location").value
+        location: document.getElementById("location").value.trim(), // Agora pega o valor do campo de localização
     };
 
     // Validação dos campos obrigatórios
@@ -46,15 +86,15 @@ async function criarServico(event) {
         return;
     }
 
-    // Envia a requisição para o backend para criar o serviço, passando o email diretamente
+    // Envia a requisição para o backend para criar o serviço
     try {
         const response = await fetch(`http://localhost:8080/api/services/${email}`, {
             method: "POST",
             headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(serviceData)  // Envia os dados do serviço
+            body: JSON.stringify(serviceData),
         });
 
         if (!response.ok) {
@@ -65,26 +105,31 @@ async function criarServico(event) {
         const result = await response.json();
         alert(`Serviço criado com sucesso! ID: ${result.id}`);
         window.location.assign("/Dashboard-Cliente/index.html");
-        
-
     } catch (error) {
         alert(`Erro ao criar serviço: ${error.message}`);
     }
 }
 
-// Função para garantir que o token seja válido
-function isTokenValid(token) {
-    if (!token) return false;
+// Adiciona o evento blur ao campo de CEP para buscar o endereço automaticamente
+document.getElementById("location").addEventListener("blur", async function () {
+    const cep = this.value.replace(/\D/g, ""); // Remove caracteres não numéricos
 
-    try {
-        const payload = decodeJWT(token);
-        const now = Math.floor(Date.now() / 1000);  // Timestamp atual
-        return payload.exp > now;  // Verifica se o token não expirou
-    } catch (e) {
-        console.error("Erro ao validar o token:", e);
-        return false;
+    if (cep.length === 8) {
+        try {
+            const formattedAddress = await fetchAddress(cep);
+            // Preenche o campo de localização com o endereço formatado
+            document.getElementById("location").value = formattedAddress;
+            document.getElementById("addressOutput").textContent = formattedAddress;
+            document.getElementById("formattedAddress").style.display = "none";
+        } catch (error) {
+            alert(error.message);
+            document.getElementById("formattedAddress").style.display = "none";
+        }
+    } else {
+        alert("Formato de CEP inválido. O CEP deve conter 8 dígitos.");
+        document.getElementById("formattedAddress").style.display = "none";
     }
-}
+});
 
 // Adiciona o evento de envio do formulário
 document.addEventListener("DOMContentLoaded", function () {
@@ -95,7 +140,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function cancelEdit() {
-    // Redireciona para a página de lista de serviços (ou página anterior)
-      window.location.href = "../index.html";
-  }
-  
+    window.location.href = "../index.html";
+}
