@@ -37,6 +37,36 @@ async function fetchWithAuth(url, options = {}) {
   }
   return response.json();
 }
+// Função para excluir um serviço
+async function deleteService(serviceId) {
+  // Verifica se o usuário confirma a exclusão do serviço
+  if (!confirm("Tem certeza de que deseja excluir este serviço?")) {
+    return; // Cancela a exclusão se o usuário não confirmar
+  }
+
+  try {
+    const token = getAuthToken();  // Obtém o token de autenticação do localStorage
+    if (!token) {
+      throw new Error("Token não encontrado.");
+    }
+
+    // Faz a requisição para excluir o serviço usando a função fetchWithAuth
+    const response = await fetchWithAuth(`http://localhost:8080/api/services/${serviceId}`, {
+      method: "DELETE"
+    });
+
+    if (response.success) {
+      alert("Serviço excluído com sucesso.");
+      listServices(); // Recarrega a lista de serviços após exclusão
+    } else {
+      alert("Erro ao excluir o serviço.");
+    }
+  } catch (error) {
+    console.error("Erro ao excluir o serviço:", error);
+    alert("Erro ao excluir o serviço. Tente novamente mais tarde.");
+  }
+}
+
 
 // Função para listar os serviços do cliente logado
 async function listServices() {
@@ -101,7 +131,8 @@ services.forEach(service => {
     <p><strong>Localização:</strong> ${service.location}</p>
     <button class="edit-btn" onclick="editService(${service.id})">Editar</button>
     <button class="assign-professional-btn" onclick="assignProfessional(${service.id})">Vincular Profissional</button>
-  `;
+<button class="delete-btn" onclick="deleteService(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Excluir</button>
+    `;
 
 // Função para editar o serviço
 function editService(serviceId) {
@@ -170,3 +201,4 @@ document.getElementById("specialty-services").addEventListener("click", function
 });
 document.getElementById("logout").addEventListener("click", logout);
 });
+

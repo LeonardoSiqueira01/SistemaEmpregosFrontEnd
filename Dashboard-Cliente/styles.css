@@ -267,4 +267,33 @@ p {
     margin-top: 10px;
     text-align: center;
   }
-  
+  /* Botão de deletar */
+.delete-btn {
+  background-color: #f44336; /* Vermelho */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #e53935; /* Vermelho mais escuro no hover */
+}
+
+/* Estilo para os botões de serviço (editar, atribuir, deletar) */
+ul#service-list li button.delete-btn {
+  background-color: #f44336; /* Vermelho */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+ul#service-list li button.delete-btn:hover {
+  background-color: #e53935; /* Vermelho mais escuro no hover */
+}

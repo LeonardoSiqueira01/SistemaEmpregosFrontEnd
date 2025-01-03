@@ -85,7 +85,11 @@ async function criarServico(event) {
         alert("Por favor, preencha todos os campos obrigatórios.");
         return;
     }
-
+    const currentDate = new Date().toISOString().split('T')[0]; // Obtém a data atual no formato 'yyyy-MM-dd'
+    if (serviceData.serviceDate < currentDate) {
+        alert("A data do serviço deve ser a partir de hoje.");
+        return;
+    }
     // Envia a requisição para o backend para criar o serviço
     try {
         const response = await fetch(`http://localhost:8080/api/services/${email}`, {
