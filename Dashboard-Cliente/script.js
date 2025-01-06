@@ -134,17 +134,13 @@ services.forEach(service => {
 <button class="delete-btn" onclick="deleteService(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Excluir</button>
     `;
 
-// Função para editar o serviço
-function editService(serviceId) {
-  // Usando caminho relativo para a pasta edit-service-container
-// Função para editar o serviço
 function editService(serviceId) {
   // Atualize para o caminho correto para a página de edição
   window.location.href = "..Dashboard-Cliente/edit-service-container/index.html?id=" + serviceId;
 }
 
 
-}
+
 
   servicesContainer.appendChild(serviceElement);
 });

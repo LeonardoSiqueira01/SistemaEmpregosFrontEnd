@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Profissional</title>
+    <title>Dashboard do Profissional - Serviços e Filtros</title>
     <link rel="stylesheet" href="../Dashboard-Profissional/styles.css">
 </head>
 <body>
     <header>
         <h1>Bem-vindo ao Dashboard Profissional</h1>
         <div id="user-info">
-            <p id="welcome-message">Olá, [Profissional]</p>
+            <p id="welcome-message">Olá, <span id="user-name">[Profissional]</span></p>
             <button id="logout">Sair</button>
         </div>
     </header>
 
     <nav>
         <ul>
-            <li><a href="#" id="search-services">Procurar Serviço</a></li>
-            <li><a href="#" id="all-services">Todos os Serviços Disponíveis</a></li>
-            <li><a href="#" id="linked-services">Meus Serviços Vinculados</a></li>
-            <li><a href="#" id="edit-profile">Editar Perfil</a></li>
+            <li><a href="#" id="search-services" aria-label="Procurar serviço">Procurar Serviço</a></li>
+            <li><a href="#" id="all-services" aria-label="Ver todos os serviços disponíveis">Todos os Serviços Disponíveis</a></li>
+            <li><a href="#" id="linked-services" aria-label="Ver meus serviços vinculados">Meus Serviços Vinculados</a></li>
+            <li><a href="#" id="edit-profile" aria-label="Editar perfil">Editar Perfil</a></li>
         </ul>
     </nav>
 
@@ -29,28 +29,27 @@
             <h2>Filtrar Serviços</h2>
             <form id="filter-form">
                 <label for="cep">CEP:</label>
-                <input type="text" id="cep" placeholder="Digite o CEP" maxlength="9">
-                <button type="button" id="search-cep">Buscar Endereço</button>
+                <input type="text" id="cep" placeholder="Digite o CEP" maxlength="9" pattern="\d{5}-?\d{3}" title="Digite um CEP válido no formato 00000-000">
+                <button type="button" id="search-cep" aria-label="Buscar endereço pelo CEP">Buscar Endereço</button>
                 
                 <label for="city">Cidade:</label>
                 <input type="text" id="city" placeholder="Digite a cidade">
-        
+
                 <label for="specialty">Especialidade:</label>
                 <input type="text" id="specialty" placeholder="Digite a especialidade">
-        
-                <button type="button" id="apply-filters">Aplicar Filtros</button>
+
+                <button type="button" id="apply-filters" aria-label="Aplicar filtros para listar serviços">Aplicar Filtros</button>
             </form>
             <div id="address-info" style="margin-top: 10px; display: none;">
-                <p><strong>Logradouro:</strong> <span id="logradouro"></span></p>
-                <p><strong>Bairro:</strong> <span id="bairro"></span></p>
-                <p><strong>Estado:</strong> <span id="estado"></span></p>
+                <p><strong>Logradouro:</strong> <span id="logradouro">N/A</span></p>
+                <p><strong>Bairro:</strong> <span id="bairro">N/A</span></p>
+                <p><strong>Estado:</strong> <span id="estado">N/A</span></p>
             </div>
         </section>
         
-
         <section id="service-list-container">
             <h2>Serviços Disponíveis</h2>
-            <ul id="service-list"></ul>
+            <ul id="service-list" aria-label="Lista de serviços disponíveis"></ul>
         </section>
     </main>
 
