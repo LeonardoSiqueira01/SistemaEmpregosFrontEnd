@@ -194,20 +194,26 @@ main {
 /* Cores do status */
 .status-open {
     background-color: #28a745; /* Verde */
+    font-weight: bold;
     color: #fff;
   }
   
   .status-started {
     background-color: #007bff; /* Azul */
     color: #fff;
+    font-weight: bold;
+
   }
   
   .status-completed {
     background-color: #ffc107; /* Amarelo */
+
+    font-weight: bold;
     color: #000;
   }
   
   .status-canceled {
+    font-weight: bold;
     background-color: #6f42c1; /* Roxo */
     color: #fff;
   }

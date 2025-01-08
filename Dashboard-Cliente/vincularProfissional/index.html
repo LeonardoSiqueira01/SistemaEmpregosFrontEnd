@@ -9,7 +9,7 @@
 <body>
     <!-- Formulário para vincular um profissional -->
     <div class="assign-professional-container">
-        <h2>Vincular Profissional ao Serviço</h2>
+        <h2>Solicitar ao Profissional o vinculo     ao Serviço</h2>
         <form id="assign-professional-form">
             <div class="form-group">
                 <label for="professional-id">ID do Profissional</label>
@@ -18,6 +18,8 @@
             <div class="form-group">
                 <button type="submit">Vincular Profissional</button>
                 <button type="button" onclick="cancelEdit()">Cancelar</button>
+                <button type="button" onclick="voltar()">Voltar</button>
+
             </div>
         </form>
         <p id="confirmation-message" style="display:none;"></p> <!-- Mensagem de confirmação -->

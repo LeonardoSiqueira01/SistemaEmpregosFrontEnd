@@ -132,3 +132,5 @@ function logout() {
     localStorage.removeItem("authToken");
     localStorage.removeItem("userType");
     window.location.href = "../Login/index.html";}
+
+

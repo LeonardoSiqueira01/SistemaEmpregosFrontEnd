@@ -88,3 +88,12 @@ button:hover {
   margin-top: 10px;
   text-align: center;
 }
+/* Estilo para o botão "Voltar" */
+.form-group button[type="button"]:nth-child(3) {
+  background-color: #FFD700; /* Cor dourada */
+  color: #fff;
+}
+
+.form-group button[type="button"]:nth-child(3):hover {
+  background-color: #FFCC00; /* Cor dourada mais suave ao passar o mouse */
+}

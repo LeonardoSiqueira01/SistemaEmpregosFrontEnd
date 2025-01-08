@@ -154,7 +154,6 @@ function editService(serviceId) {
   }
 }
 
-
 function assignProfessional(serviceId) {
   // Corrigir caminho relativo para a página de vinculação de profissional
   window.location.href = "../Dashboard-Cliente/vincularProfissional/index.html?serviceId=" + serviceId;
@@ -165,6 +164,9 @@ function editService(serviceId) {
   // Corrigir caminho relativo para a página de edição de serviço
   window.location.href = "../Dashboard-Cliente/edit-service-container/index.html?id=" + serviceId;
 }
+
+ 
+
 
 
 // Função para cadastrar um novo serviço

@@ -195,20 +195,29 @@ ul#service-list li button:hover {
 /* Cores do status */
 .status-open {
   background-color: #28a745; /* Verde */
+  font-weight: bold;
   color: #fff;
 }
 
 .status-started {
+  
   background-color: #007bff; /* Azul */
+  font-weight: bold;
+
   color: #fff;
+
 }
 
 .status-completed {
+
+  font-weight: bold;
   background-color: #ffc107; /* Amarelo */
   color: #000;
 }
 
 .status-canceled {
+
+  font-weight: bold;
   background-color: #6f42c1; /* Roxo */
   color: #fff;
 }
