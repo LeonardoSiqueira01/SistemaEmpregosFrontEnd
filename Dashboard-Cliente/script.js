@@ -94,6 +94,7 @@ async function listServices() {
         servicesContainer.innerHTML = "<p>Nenhum serviço encontrado.</p>";
         return;
       }
+      
 // Renderizar os serviços na página
 services.forEach(service => {
   const serviceElement = document.createElement("div");
@@ -129,10 +130,13 @@ services.forEach(service => {
     <p><strong>Data do Serviço:</strong> ${formattedDate}</p>
     <p><strong>Descrição:</strong> ${service.description}</p>
     <p><strong>Localização:</strong> ${service.location}</p>
+    ${service.professional && service.status !== "ABERTO" && service.status !== "CANCELADO" ? `
+      <p><strong>Profissional Vinculado:</strong> ${service.professional.name} (${service.professional.specialties})</p>
+    ` : ''}
     <button class="edit-btn" onclick="editService(${service.id})">Editar</button>
-    <button class="assign-professional-btn" onclick="assignProfessional(${service.id})">Vincular Profissional</button>
-<button class="delete-btn" onclick="deleteService(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Excluir</button>
-    `;
+    <button class="assign-professional-btn" onclick="assignProfessional(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Vincular Profissional</button>
+    <button class="delete-btn" onclick="deleteService(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Excluir</button>
+  `;
 
 function editService(serviceId) {
   // Atualize para o caminho correto para a página de edição
