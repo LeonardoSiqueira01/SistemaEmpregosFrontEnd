@@ -306,3 +306,15 @@ ul#service-list li button.delete-btn {
 ul#service-list li button.delete-btn:hover {
   background-color: #e53935; /* Vermelho mais escuro no hover */
 }
+.edit-btn {
+  background-color: #f7d825; /* Amarelo dourado */
+  color: #fff; /* Cor do texto */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background-color: #FFC107; /* Amarelo dourado mais escuro para o hover */
+}

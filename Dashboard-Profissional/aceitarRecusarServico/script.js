@@ -1,4 +1,11 @@
-
+function getEmailFromToken() {
+    const email = localStorage.getItem("email");
+    if (!email) {
+        console.error("E-mail não encontrado no localStorage.");
+        return null;
+    }
+    return email;
+}
 
 document.getElementById('requested-services').addEventListener('click', async function () {
     try {
@@ -59,8 +66,11 @@ document.getElementById('requested-services').addEventListener('click', async fu
                     <p><strong>Data do Serviço:</strong> ${formattedDate}</p>
                     <p><strong>Descrição:</strong> ${servico.description}</p>
                     <p><strong>Localização:</strong> ${servico.location}</p>
-                    <button class="aceitarBtn" data-id="${servico.id}">Aceitar</button>
-                    <button class="recusarBtn" data-id="${servico.id}">Recusar</button>
+                    <!-- Remover botões caso o serviço esteja iniciado -->
+                    ${servico.status !== 'INICIADO' ? `
+                        <button class="aceitarBtn" data-id="${servico.id}">Aceitar</button>
+                        <button class="recusarBtn" data-id="${servico.id}">Recusar</button>
+                    ` : ''}
                 `;
                 container.appendChild(serviceElement);
             });
@@ -81,6 +91,7 @@ document.getElementById('requested-services').addEventListener('click', async fu
 });
 
 
+const email = getEmailFromToken();
 
 
 async function aceitarServico(serviceId) {
@@ -90,9 +101,11 @@ async function aceitarServico(serviceId) {
         return;
     }
 
-
+   
+    
+    
     try {
-        const response = await fetch(`http://localhost:8080/api/professional/${professionalId}/services/${serviceId}/accept`, {
+        const response = await fetch(`http://localhost:8080/api/professionals/${email}/services/${serviceId}/accept`, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -101,7 +114,7 @@ async function aceitarServico(serviceId) {
 
         if (!response.ok) {
             const errorMessage = await response.text();
-            console.error('Erro ao aceitar serviço:', errorMessage); // Exibe erro detalhado no console
+            console.error('Erro ao aceitar serviço:', errorMessage);
             alert('Erro ao aceitar o serviço: ' + errorMessage);
             return;
         }
@@ -123,13 +136,11 @@ async function recusarServico(serviceId) {
         return;
     }
 
-    if (!professionalId) {
-        console.error('ID do profissional não encontrado');
-        return;
-    }
+    // Extraia o email do token ou use uma fonte confiável
+    const email = getEmailFromToken(token); // Função que você precisa implementar
 
     try {
-        const response = await fetch(`http://localhost:8080/api/professional/${professionalId}/services/${serviceId}/reject`, {
+        const response = await fetch(`http://localhost:8080/api/professionals/${email}/services/${serviceId}/reject`, {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -138,7 +149,7 @@ async function recusarServico(serviceId) {
 
         if (!response.ok) {
             const errorMessage = await response.text();
-            console.error('Erro ao recusar serviço:', errorMessage); // Exibe erro detalhado no console
+            console.error('Erro ao recusar serviço:', errorMessage);
             alert('Erro ao recusar o serviço: ' + errorMessage);
             return;
         }

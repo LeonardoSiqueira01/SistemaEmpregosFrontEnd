@@ -52,6 +52,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         const token = data.token.startsWith("Bearer ") ? data.token : `Bearer ${data.token}`;
         localStorage.setItem("authToken", token);
         localStorage.setItem("userType", data.userType);
+        localStorage.setItem("email", email);
         localStorage.setItem("userId", data.userId);
     
         const userType = data.userType.toUpperCase();
@@ -124,3 +125,6 @@ function isTokenExpired(token) {
     const decodedPayload = JSON.parse(atob(payload)); // Decodifica o payload base64
     return decodedPayload.exp * 1000 < Date.now(); // Verifica se o token expirou
 }
+
+
+
