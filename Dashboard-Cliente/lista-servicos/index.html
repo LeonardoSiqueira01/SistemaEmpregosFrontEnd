@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard do Cliente</title>
+    <link rel="stylesheet" href="../lista-servicos/styles.css"> 
+</head>
+<body>
+
+    <!-- Menu de navegação -->
+    <nav>
+        <button id="list-services">Listar Serviços</button>
+        <button id="specialty-services">Serviços por Especialidade</button>
+        <button id="cancelEdit" onclick="cancelEdit()">Voltar</button>
+    </nav>
+
+    <!-- Container para listar os serviços -->
+    <main>
+        <div id="service-list-container">
+            <h2>Serviços</h2>
+            <div id="service-list"></div>
+        </div>
+    </main>
+
+    <script src="../lista-servicos/script.js"></script> <!-- Referência ao arquivo JavaScript -->
+</body>
+</html>

@@ -2,7 +2,6 @@
 async function loadServiceDetails() {
   const urlParams = new URLSearchParams(window.location.search); // Recupera os parâmetros da URL
   const serviceId = urlParams.get('id'); // Extrai o valor do parâmetro 'id'
-  console.log(serviceId);  // Espera-se que mostre o valor de 'id' da URL
 
   if (!serviceId) {
     console.error("Service ID não encontrado na URL.");

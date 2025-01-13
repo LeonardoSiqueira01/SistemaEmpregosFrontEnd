@@ -53,7 +53,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         localStorage.setItem("authToken", token);
         localStorage.setItem("userType", data.userType);
         localStorage.setItem("email", email);
-        localStorage.setItem("userId", data.userId);
+        localStorage.setItem("userId", data.id);  
     
         const userType = data.userType.toUpperCase();
         const dashboardUrl = userType === "CLIENT"

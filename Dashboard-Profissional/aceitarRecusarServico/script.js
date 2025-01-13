@@ -55,7 +55,12 @@ document.getElementById('requested-services').addEventListener('click', async fu
                 const statusClass = statusClasses[servico.status] || "";
                 const date = new Date(servico.serviceDate);
                 const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
-
+                const inicioServico = new Date(servico.inicioServico); 
+                const formattedStartDate = `${inicioServico.getDate().toString().padStart(2, '0')}/${(inicioServico.getMonth() + 1).toString().padStart(2, '0')}/${inicioServico.getFullYear()}`;
+                const conclusaoServico = servico.conclusaoServico ? new Date(servico.conclusaoServico) : null;
+                const formattedEndDate = conclusaoServico && servico.status === "FINALIZADO"
+                    ? `${conclusaoServico.getDate().toString().padStart(2, '0')}/${(conclusaoServico.getMonth() + 1).toString().padStart(2, '0')}/${conclusaoServico.getFullYear()}`
+                    : "";
                 // Definindo o HTML
                 serviceElement.innerHTML = `
                     <div class="service-header">
@@ -63,9 +68,12 @@ document.getElementById('requested-services').addEventListener('click', async fu
                         <span class="service-status ${statusClass}">${servico.status}</span>
                     </div>
                     <p><strong>Especialidade:</strong> ${servico.specialty}</p>
-                    <p><strong>Data do Serviço:</strong> ${formattedDate}</p>
+                    <p><strong>Data de criação do Serviço:</strong> ${formattedDate}</p>
                     <p><strong>Descrição:</strong> ${servico.description}</p>
                     <p><strong>Localização:</strong> ${servico.location}</p>
+                    <p><strong>Data de início do serviço:</strong> ${formattedStartDate}</p>
+                     ${formattedEndDate ? `<p><strong>Data de Conclusão do Serviço:</strong> ${formattedEndDate}</p>` : ""}
+
                     <!-- Remover botões caso o serviço esteja iniciado -->
                     ${servico.status !== 'INICIADO' ? `
                         <button class="aceitarBtn" data-id="${servico.id}">Aceitar</button>

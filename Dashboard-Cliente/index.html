@@ -1,33 +1,38 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Cliente</title>
-    <link rel="stylesheet" href="../Dashboard-Cliente/styles.css">
-</head>
-<body>
-    <header>
-        <h1>Bem-vindo ao Dashboard Cliente</h1>
-        <div id="user-info">
-            <p id="welcome-message"></p>
-            <button id="logout">Sair</button>
-        </div>
-    </header>
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dashboard Cliente</title>
+        <link rel="stylesheet" href="../Dashboard-Cliente/styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>Bem-vindo ao Dashboard Cliente</h1>
+            <div id="user-info">
+                <p id="welcome-message"></p>
+                <button id="logout">Sair</button>
+            </div>
+        </header>
 
-    <nav>
-        <ul>
-            <li><a href="#" id="list-services">Listar Serviços</a></li>
-            <li><a href="#" id="create-service">Cadastrar Novo Serviço</a></li>
-            <li><a href="#" id="specialty-services">Serviços por Especialidade</a></li>
-        </ul>
-    </nav>
+        <section id="client-summary" class="client-summary">
+            <h2>Olá, <span id="client-name">Nome do Cliente</span>!</h2>
+            <div class="summary-stats">
+                <p><strong>Serviços solicitados:</strong> <span id="requested-services">0</span></p>
+                <p><strong>Serviços concluídos:</strong> <span id="completed-services">0</span></p>
+                <p><strong>Avaliação média:</strong> <span id="average-rating">0</span> ★</p>
+            </div>
+        </section>
+        
 
-    <section id="service-list-container">
-        <h2>Meus Serviços</h2>
-        <ul id="service-list"></ul>
-    </section>
+        <nav>
+            <ul>
+                <li><a href="../Dashboard-Cliente/lista-servicos/index.html" id="list-services">Listar Serviços</a></li>
+                <li><a href="../Dashboard-Cliente/createServices/createService.html" id="create-service">Cadastrar Novo Serviço</a></li>
+                <li><a href="../Dashboard-Cliente/procurarProfissionais/index.html" id="search-professionals" aria-label="Encontrar profissionais">Encontrar Profissionais</a></li>
+            </ul>
+        </nav>
 
-    <script src="../Dashboard-Cliente/script.js"></script>
-</body>
-</html>
+        <script src="../Dashboard-Cliente/script.js"></script>
+    </body>
+    </html>

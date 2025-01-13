@@ -1,0 +1,249 @@
+/* Resetando estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo básico do body */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Cabeçalho */
+  header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+#service-list-container {
+    padding: 20px;
+}
+
+.service-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.service-status {
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.status-open {
+    background-color: #28a745;
+}
+
+.status-started {
+    background-color: #ffc107;
+}
+
+.status-completed {
+    background-color: #007bff;
+}
+
+.status-canceled {
+    background-color: #dc3545;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Container de serviços */
+#service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Cartão de serviço */
+  .service-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .service-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Cabeçalho do serviço */
+  .service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .service-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .service-status {
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  
+/* Cores do status */
+.status-open {
+    background-color: #28a745; /* Verde */
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .status-started {
+    
+    background-color: #007bff; /* Azul */
+    font-weight: bold;
+  
+    color: #fff;
+  
+  }
+  
+  .status-completed {
+  
+    font-weight: bold;
+    background-color: #ffc107; /* Amarelo */
+    color: #000;
+  }
+  
+  .status-canceled {
+  
+    font-weight: bold;
+    background-color: #6f42c1; /* Roxo */
+    color: #fff;
+  }
+  
+  /* Estilo para os detalhes do serviço */
+  p {
+    font-size: 1rem;
+    margin: 10px 0;
+  }
+  
+  /* Estilo do link de navegação */
+  nav a.nav-link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+    padding: 12px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+    /* Estilo para os botões */
+    .form-group button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-right: 10px;
+    }
+    
+    .form-group button[type="button"] {
+      background-color: #f44336;
+    }
+    
+    .form-group button:hover {
+      background-color: #45a049;
+    }
+    
+    .form-group button[type="button"]:hover {
+      background-color: #e53935;
+    }
+    
+    /* Estilo para a mensagem de erro */
+    .error-message {
+      color: #f44336;
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+    }
+    /* Botão de deletar */
+  .delete-btn {
+    background-color: #f44336; /* Vermelho */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .delete-btn:hover {
+    background-color: #e53935; /* Vermelho mais escuro no hover */
+  }
+  
+  /* Estilo para os botões de serviço (editar, atribuir, deletar) */
+  ul#service-list li button.delete-btn {
+    background-color: #f44336; /* Vermelho */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  
+  ul#service-list li button.delete-btn:hover {
+    background-color: #e53935; /* Vermelho mais escuro no hover */
+  }
+  .edit-btn {
+    background-color: #f7d825; /* Amarelo dourado */
+    color: #fff; /* Cor do texto */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-btn:hover {
+    background-color: #FFC107; /* Amarelo dourado mais escuro para o hover */
+  }
+  
