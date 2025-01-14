@@ -97,3 +97,261 @@ button:hover {
 .form-group button[type="button"]:nth-child(3):hover {
   background-color: #FFCC00; /* Cor dourada mais suave ao passar o mouse */
 }
+/* Estilo básico para a página */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Container principal */
+.container {
+  width: 80%;
+  margin: 30px auto;
+}
+
+/* Cabeçalho */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+/* Estilo do botão de voltar */
+.back-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para o link de busca */
+nav a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Estilos para a lista de profissionais */
+.service-list-container {
+  display: none;
+}
+
+.service-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.service-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho de cada item da lista de profissionais */
+.professional-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.professional-name {
+  font-size: 22px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Informações sobre o profissional */
+.service-item p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.availability {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Disponibilidade do profissional */
+.available {
+  color: #28a745; /* Verde */
+}
+
+.not-available {
+  color: #dc3545; /* Vermelho */
+}
+
+/* Linha horizontal separadora */
+.service-item hr {
+  margin: 15px 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+  .container {
+      width: 95%;
+  }
+
+  .back-btn {
+      font-size: 14px;
+      padding: 10px 14px;
+  }
+
+  .service-item {
+      padding: 15px;
+  }
+
+  .professional-name {
+      font-size: 20px;
+  }
+
+  .service-item p {
+      font-size: 14px;
+  }
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  color: #343a40;
+  text-align: center;
+}
+
+.container, .assign-professional-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+}
+
+button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+}
+
+button.back-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.service-list-container {
+  margin-top: 20px;
+}
+
+.service-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.service-item {
+  background: #e9ecef;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.service-item h3 {
+  margin: 0;
+}
+
+.professional-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.availability {
+  margin-top: 10px;
+}
+
+.available {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.not-available {
+  color: #dc3545;
+  font-weight: bold;
+}
+.assign-button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.assign-button:hover {
+  background-color: #0056b3;
+}
+
+
+.assign-professional-container{
+  display: none;
+}

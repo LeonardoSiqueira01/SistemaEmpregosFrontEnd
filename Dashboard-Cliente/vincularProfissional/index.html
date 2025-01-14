@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link rel="stylesheet" href="../vincularProfissional/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vincular Profissional ao Serviço</title>
@@ -9,7 +9,7 @@
 <body>
     <!-- Formulário para vincular um profissional -->
     <div class="assign-professional-container">
-        <h2>Solicitar ao Profissional o vinculo     ao Serviço</h2>
+        <h2>Solicitar ao Profissional o vínculo ao Serviço</h2>
         <form id="assign-professional-form">
             <div class="form-group">
                 <label for="professional-id">ID do Profissional</label>
@@ -19,11 +19,24 @@
                 <button type="submit">Vincular Profissional</button>
                 <button type="button" onclick="cancelEdit()">Cancelar</button>
                 <button type="button" onclick="voltar()">Voltar</button>
-
             </div>
         </form>
         <p id="confirmation-message" style="display:none;"></p> <!-- Mensagem de confirmação -->
     </div>
-    <script src="../vincularProfissional/script.js"></script>
+
+    <div class="container">
+        <header>
+            <button class="back-btn" onclick="cancelEdit()">Voltar</button>
+            <h1>Buscar Profissionais</h1>
+        </header>
+        <nav>
+            <a href="#" id="search-professionals">Buscar Profissionais</a>
+        </nav>
+        <div id="service-list-container" class="service-list-container" style="display:none;">
+            <ul id="service-list" class="service-list"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
