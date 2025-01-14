@@ -1,3 +1,5 @@
+
+
 // Função para obter o token do localStorage
 function getAuthToken() {
     return localStorage.getItem("authToken");
@@ -83,38 +85,41 @@ function getAuthToken() {
       default:
         statusClass = '';
     }
-    const date = new Date(service.serviceDate);
-    const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
-    const inicioServico = new Date(service.inicioServico); 
-    const formattedStartDate = `${inicioServico.getDate().toString().padStart(2, '0')}/${(inicioServico.getMonth() + 1).toString().padStart(2, '0')}/${inicioServico.getFullYear()}`;
-    const conclusaoServico = service.conclusaoServico ? new Date(service.conclusaoServico) : null;
-    const formattedEndDate = conclusaoServico && servico.status === "FINALIZADO"
-        ? `${conclusaoServico.getDate().toString().padStart(2, '0')}/${(conclusaoServico.getMonth() + 1).toString().padStart(2, '0')}/${conclusaoServico.getFullYear()}`
-        : "";
-   
-   
-    serviceElement.innerHTML = `
-      <div class="service-header">
-        <h3 class="service-name">${service.name}</h3>
-        <span class="service-status ${statusClass}">${service.status}</span>
-      </div>
-      <p><strong>Especialidade:</strong> ${service.specialty}</p>
-      <p><strong>Data de criação do Serviço:</strong> ${formattedDate}</p>
-      <p><strong>Descrição:</strong> ${service.description}</p>
-      <p><strong>Localização:</strong> ${service.location}</p>
-      <p><strong>Data de início do serviço:</strong> ${formattedStartDate}</p>
-      ${formattedEndDate ? `<p><strong>Data de Conclusão do Serviço:</strong> ${formattedEndDate}</p>` : ""}
-  
-      ${service.professional && service.status !== "ABERTO" && service.status !== "CANCELADO" ? `
-        <p><strong>Profissional Vinculado:</strong> ${service.professional.name} (${service.professional.specialties})</p>
-      ` : ''}
-      
-      <button class="edit-btn" onclick="editService(${service.id})">Editar</button>
-      <button class="assign-professional-btn" onclick="assignProfessional(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Vincular Profissional</button>
-      <button class="delete-btn" onclick="deleteService(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Excluir</button>
-    `;
-  
 
+
+   const date = new Date(service.serviceDate);
+const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+
+const inicioServico = service.inicioServico ? new Date(service.inicioServico) : null;
+const formattedStartDate = inicioServico
+    ? `${inicioServico.getDate().toString().padStart(2, '0')}/${(inicioServico.getMonth() + 1).toString().padStart(2, '0')}/${inicioServico.getFullYear()}`
+    : null;
+
+const conclusaoServico = service.conclusaoServico ? new Date(service.conclusaoServico) : null;
+const formattedEndDate = conclusaoServico && service.status === "FINALIZADO"
+    ? `${conclusaoServico.getDate().toString().padStart(2, '0')}/${(conclusaoServico.getMonth() + 1).toString().padStart(2, '0')}/${conclusaoServico.getFullYear()}`
+    : null;
+
+// Gera o HTML do serviço, omitindo campos com datas nulas
+serviceElement.innerHTML = `
+  <div class="service-header">
+    <h3 class="service-name">${service.name}</h3>
+    <span class="service-status ${statusClass}">${service.status}</span>
+  </div>
+  <p><strong>Especialidade:</strong> ${service.specialty}</p>
+  <p><strong>Data de criação do Serviço:</strong> ${formattedDate}</p>
+  <p><strong>Descrição:</strong> ${service.description}</p>
+  <p><strong>Localização:</strong> ${service.location}</p>
+  ${formattedStartDate ? `<p><strong>Data de início do serviço:</strong> ${formattedStartDate}</p>` : ""}
+  ${formattedEndDate ? `<p><strong>Data de Conclusão do Serviço:</strong> ${formattedEndDate}</p>` : ""}
+  ${service.professional && service.status !== "ABERTO" && service.status !== "CANCELADO" ? `
+    <p><strong>Profissional Vinculado:</strong> ${service.professional.name} (${service.professional.specialties})</p>
+  ` : ''}  
+  <button class="edit-btn" onclick="editService(${service.id})">Editar</button>
+  <button class="assign-professional-btn" onclick="assignProfessional(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Vincular Profissional</button>
+  <button class="delete-btn" onclick="deleteService(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Excluir</button>
+`;
+  
   
   
   

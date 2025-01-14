@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página para filtrar e listar serviços disponíveis.">
+    <title>Filtrar e Listar Serviços</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Bem-vindo ao Portal de Serviços</h1>
+        <nav>
+            <ul>
+                <li><a href="#filter-section">Filtrar Serviços</a></li>
+                <li><a href="#service-list-container">Lista de Serviços</a></li>
+                <li><a href="../index.html">Voltar</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="filter-section">
+            <h2>Filtrar Serviços</h2>
+            <form id="filter-form">
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" placeholder="Digite o CEP" maxlength="9" pattern="\d{5}-?\d{3}" title="Digite um CEP válido no formato 00000-000">
+                <button type="button" id="search-cep" aria-label="Buscar endereço pelo CEP">Buscar Endereço</button>
+                
+                <label for="city">Cidade:</label>
+                <input type="text" id="city" placeholder="Digite a cidade">
+
+                <label for="specialty">Especialidade:</label>
+                <input type="text" id="specialty" placeholder="Digite a especialidade">
+
+                <button type="button" id="apply-filters" aria-label="Aplicar filtros para listar serviços">Aplicar Filtros</button>
+            </form>
+            <div id="address-info" style="margin-top: 10px; display: none;">
+                <p><strong>Logradouro:</strong> <span id="logradouro">N/A</span></p>
+                <p><strong>Bairro:</strong> <span id="bairro">N/A</span></p>
+                <p><strong>Estado:</strong> <span id="estado">N/A</span></p>
+            </div>
+        </section>
+        
+        <section id="service-list-container">
+            <h2>Serviços Disponíveis</h2>
+            <ul id="service-list" aria-label="Lista de serviços disponíveis">
+                <!-- Serviços serão listados dinamicamente aqui -->
+            </ul>
+        </section>
+
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Portal de Serviços. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

@@ -17,43 +17,21 @@
 
     <nav>
         <ul>
-            <li><a href="#" id="search-services" aria-label="Procurar serviço">Procurar Serviço</a></li>
-            <li><a href="#" id="all-services" aria-label="Ver todos os serviços disponíveis">Todos os Serviços Disponíveis</a></li>
-            <li><a href="#" id="linked-services" aria-label="Ver meus serviços vinculados">Meus Serviços Vinculados</a></li>
-            <li><a href="#" id="edit-profile" aria-label="Editar perfil">Editar Perfil</a></li>
-            <li><a href="../Dashboard-Profissional/aceitarRecusarServico/index.html" id="requested-services" aria-label="Serviços Solicitados">Serviços Solicitados</a></li>
-
+            <li><a href="../Dashboard-Profissional/procurarServicos/index.html" id="search-services">Procurar Serviço</a></li>
+            <li><a href="#" id="linked-services">Meus Serviços Vinculados</a></li>
+            <li><a href="#" id="edit-profile">Editar Perfil</a></li>
+            <li><a href="../Dashboard-Profissional/aceitarRecusarServico/index.html" id="nav-requested-services">Serviços Solicitados</a></li>
         </ul>
     </nav>
 
-    <main>
-        <section id="filter-section">
-            <h2>Filtrar Serviços</h2>
-            <form id="filter-form">
-                <label for="cep">CEP:</label>
-                <input type="text" id="cep" placeholder="Digite o CEP" maxlength="9" pattern="\d{5}-?\d{3}" title="Digite um CEP válido no formato 00000-000">
-                <button type="button" id="search-cep" aria-label="Buscar endereço pelo CEP">Buscar Endereço</button>
-                
-                <label for="city">Cidade:</label>
-                <input type="text" id="city" placeholder="Digite a cidade">
-
-                <label for="specialty">Especialidade:</label>
-                <input type="text" id="specialty" placeholder="Digite a especialidade">
-
-                <button type="button" id="apply-filters" aria-label="Aplicar filtros para listar serviços">Aplicar Filtros</button>
-            </form>
-            <div id="address-info" style="margin-top: 10px; display: none;">
-                <p><strong>Logradouro:</strong> <span id="logradouro">N/A</span></p>
-                <p><strong>Bairro:</strong> <span id="bairro">N/A</span></p>
-                <p><strong>Estado:</strong> <span id="estado">N/A</span></p>
-            </div>
-        </section>
-        
-        <section id="service-list-container">
-            <h2>Serviços Disponíveis</h2>
-            <ul id="service-list" aria-label="Lista de serviços disponíveis"></ul>
-        </section>
-    </main>
+    <section id="client-summary" class="client-summary">
+        <h2>Olá, <span id="professional-name">Nome do Profissional</span>!</h2>
+        <div class="summary-stats">
+            <p><strong>Serviços solicitados:</strong> <span id="requested-services">0</span></p>
+            <p><strong>Serviços concluídos:</strong> <span id="completed-services">0</span></p>
+            <p><strong>Avaliação média:</strong> <span id="average-rating">N/A</span> ★</p>
+        </div>
+    </section>
 
     <script src="../Dashboard-Profissional/script.js"></script>
 </body>
