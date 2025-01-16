@@ -42,6 +42,8 @@ async function loadServiceDetails() {
     document.getElementById("service-description").value = service.description || '';
     document.getElementById("service-location").value = service.location || '';
     document.getElementById("service-specialty").value = service.specialty || '';
+  
+  
   } catch (error) {
     console.error("Erro ao carregar os detalhes do serviço:", error);
     alert("Erro ao carregar os detalhes do serviço. Tente novamente.");
