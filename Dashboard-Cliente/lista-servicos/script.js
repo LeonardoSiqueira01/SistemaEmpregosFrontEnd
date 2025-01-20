@@ -124,8 +124,13 @@ const formattedEndDate = conclusaoServico && service.status === "FINALIZADO"
     </div>
   ` : ""}
   
-  <!-- Botões de ação -->
-  <button class="edit-btn" onclick="editService(${service.id})">Editar</button>
+<!-- Botões de ação -->
+<button class="edit-btn" 
+        onclick="editService(${service.id})" 
+        ${service.status !== 'ABERTO'  ? 'style="display:none;"' : ''}>
+    Editar
+</button>
+
   
   <!-- Exibe os botões "Vincular Profissional" e "Excluir" apenas se o serviço for ABERTO -->
   <button class="assign-professional-btn" onclick="assignProfessional(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Vincular Profissional</button>
