@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Serviço</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Finalizar Serviço</h1>
+        <form id="finalizarForm">
+      
+            <label for="rating">Nota de Avaliação:</label>
+            <input type="number" id="rating" min="1" max="5" required><br><br>
+
+            <label for="comment">Comentário:</label>
+            <textarea id="comment" rows="4" cols="50" required></textarea><br><br>
+
+            <button type="submit">Finalizar e Avaliar</button>
+        </form>
+
+        <div id="responseMessage"></div>
+    </div>
+
+    <script src="../avaliarProfissional/script.js"></script>
+</body>
+</html>

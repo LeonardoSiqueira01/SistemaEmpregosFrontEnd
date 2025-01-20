@@ -74,11 +74,12 @@ document.getElementById('requested-services').addEventListener('click', async fu
                     <p><strong>Data de início do serviço:</strong> ${formattedStartDate}</p>
                      ${formattedEndDate ? `<p><strong>Data de Conclusão do Serviço:</strong> ${formattedEndDate}</p>` : ""}
 
-                    <!-- Remover botões caso o serviço esteja iniciado -->
-                    ${servico.status !== 'INICIADO' ? `
-                        <button class="aceitarBtn" data-id="${servico.id}">Aceitar</button>
-                        <button class="recusarBtn" data-id="${servico.id}">Recusar</button>
-                    ` : ''}
+                  <!-- Remover botões caso o serviço esteja iniciado, finalizado ou cancelado -->
+${['INICIADO', 'FINALIZADO', 'CANCELADO'].includes(servico.status) ? '' : `
+    <button class="aceitarBtn" data-id="${servico.id}">Aceitar</button>
+    <button class="recusarBtn" data-id="${servico.id}">Recusar</button>
+`}
+
                 `;
                 container.appendChild(serviceElement);
             });

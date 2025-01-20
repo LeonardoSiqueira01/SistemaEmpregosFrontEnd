@@ -130,11 +130,20 @@ const formattedEndDate = conclusaoServico && service.status === "FINALIZADO"
   <!-- Exibe os botões "Vincular Profissional" e "Excluir" apenas se o serviço for ABERTO -->
   <button class="assign-professional-btn" onclick="assignProfessional(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Vincular Profissional</button>
   <button class="delete-btn" onclick="deleteService(${service.id})" ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>Excluir</button>
-`;
+<button class="finalizebtn" id="finalizebtn${service.id}" 
+            ${service.status !== "INICIADO" ? 'style="display:none"' : ''} 
+            onclick="finalizeService(${service.id})">Finalizar Serviço</button>
 
+  `;
 
-
-
+ // Adicionando o evento de clique diretamente após a renderização
+ const finalizeButton = document.getElementById(`finalizebtn${service.id}`);
+ if (finalizeButton) {
+   finalizeButton.addEventListener('click', function() {
+     // Redireciona para o formulário de finalização
+     window.location.href = `/finalizar-servico?id=${service.id}`;
+   });
+ }
 
   servicesContainer.appendChild(serviceElement);
 });
@@ -161,9 +170,9 @@ function editService(serviceId) {
 
 }
 
- 
-
-
+function finalizeService(serviceId) {
+  window.location.href = "../avaliarProfissional/index.html?id=" + serviceId;  // Corrigido para chamar o caminho de avaliação
+}
 
 
 // Função para garantir que o cliente está logado
@@ -224,8 +233,41 @@ async function deleteService(serviceId) {
 }
 
 
-
-
 function cancelEdit() {
 window.location.href = "../index.html";
 }
+
+
+// Função para finalizar o serviço e enviar a avaliação
+document.getElementById('finalizarForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const serviceId = document.getElementById('serviceId').value;
+  const rating = document.getElementById('rating').value;
+  const comment = document.getElementById('comment').value;
+
+  const clienteRating = {
+    rating: parseFloat(rating),
+    comment: comment
+  };
+
+  fetch(`http://localhost:8080/api/services/${serviceId}/finalizar`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('authToken') // Token JWT
+    },
+    body: JSON.stringify(clienteRating)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data) {
+      document.getElementById('responseMessage').textContent = 'Serviço finalizado com sucesso!';
+    } else {
+      document.getElementById('responseMessage').textContent = 'Erro ao finalizar o serviço.';
+    }
+  })
+  .catch(error => {
+    document.getElementById('responseMessage').textContent = 'Erro de comunicação com o servidor.';
+  });
+});
