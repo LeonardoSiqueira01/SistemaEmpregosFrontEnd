@@ -26,8 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById('professional-name').textContent = data.name;
                 document.getElementById('requested-services').textContent = data.requestedServices;
                 document.getElementById('completed-services').textContent = data.completedServices;
-                document.getElementById('average-rating').textContent = data.averageRating;
-            } else {
+                const roundedRating = parseFloat(data.averageRating).toFixed(2);
+                document.getElementById('average-rating').textContent = roundedRating;       
+                 } else {
                 alert('Erro ao carregar dados do cliente.');
             }
         })

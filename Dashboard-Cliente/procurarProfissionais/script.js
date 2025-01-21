@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p><strong>Especialidades:</strong> ${professional.specialties}</p>
                         <p><strong>Localização:</strong> ${professional.location}</p>
                         <p><strong>Serviços Completos:</strong> ${professional.totalServicesCompleted}</p>
-                        <p><strong>Nota Média:</strong> ${professional.averageRating}</p>
+                        <p><strong>Nota Média:</strong> ${professional.averageRating.toFixed(2)}</p>
                         <div class="availability">
                             <strong>Disponível:</strong> 
                             <span class="${professional.available ? 'available' : 'not-available'}">
