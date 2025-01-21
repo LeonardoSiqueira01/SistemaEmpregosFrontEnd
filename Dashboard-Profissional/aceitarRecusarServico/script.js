@@ -80,6 +80,10 @@ ${['INICIADO', 'FINALIZADO', 'CANCELADO'].includes(servico.status) ? '' : `
     <button class="recusarBtn" data-id="${servico.id}">Recusar</button>
 `}
 
+<!-- Adicionar o botão de Avaliar Cliente caso o serviço esteja finalizado -->
+${servico.status === 'FINALIZADO' ? `
+    <button class="avaliarClienteBtn" data-id="${servico.id}">Avaliar Cliente</button>
+` : ''}
                 `;
                 container.appendChild(serviceElement);
             });
