@@ -80,10 +80,9 @@ ${['INICIADO', 'FINALIZADO', 'CANCELADO'].includes(servico.status) ? '' : `
     <button class="recusarBtn" data-id="${servico.id}">Recusar</button>
 `}
 
-<!-- Adicionar o botão de Avaliar Cliente caso o serviço esteja finalizado -->
-${servico.status === 'FINALIZADO' ? `
-    <button class="avaliarClienteBtn" data-id="${servico.id}">Avaliar Cliente</button>
-` : ''}
+      ${servico.status === 'FINALIZADO' ? `
+                        <button class="avaliarClienteBtn" data-id="${servico.id}">Avaliar Cliente</button>
+                    ` : ''}
                 `;
                 container.appendChild(serviceElement);
             });
@@ -96,6 +95,9 @@ ${servico.status === 'FINALIZADO' ? `
 
             document.querySelectorAll('.recusarBtn').forEach(button => {
                 button.addEventListener('click', (e) => recusarServico(e.target.dataset.id));
+            });
+            document.querySelectorAll('.avaliarClienteBtn').forEach(button => {
+                button.addEventListener('click', (e) => avaliarClienteBtn(e.target.dataset.id));
             });
         }
     } catch (error) {
@@ -180,3 +182,7 @@ function Voltar() {
     // Redireciona para a página de lista de serviços (ou página anterior)
       window.location.href = "../index.html";
   }
+
+  function avaliarClienteBtn(serviceId) {
+    window.location.href = "../avaliarCliente/index.html?id=" + serviceId;  // Redireciona para a página de avaliação do cliente
+}

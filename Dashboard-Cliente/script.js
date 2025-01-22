@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', function () {
               document.getElementById('client-name').textContent = data.name;  // Alterado de clientName para name
               document.getElementById('requested-services').textContent = data.requestedServices;
               document.getElementById('completed-services').textContent = data.completedServices;
-              document.getElementById('average-rating').textContent = data.averageRating.toFixed(1);
-          } else {
+              const roundedRating = parseFloat(data.averageRating).toFixed(2);
+              document.getElementById('average-rating').textContent = roundedRating;             } else {
               alert('Erro ao carregar dados do cliente.');
           }
       })

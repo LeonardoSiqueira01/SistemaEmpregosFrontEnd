@@ -1,0 +1,31 @@
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Avaliar Cliente</title>
+        <link rel="stylesheet" href="../avaliarCliente/styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Avaliar Cliente</h1>
+            <form id="avaliarClienteForm">
+                <input type="hidden" id="serviceId" name="serviceId" />
+                <!-- O campo profissional foi removido porque o email é recuperado do localStorage -->
+                
+                <label for="rating">Nota:</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" required />
+                
+                <label for="comment">Comentário:</label>
+                <textarea id="comment" name="comment" rows="4" placeholder="Escreva sua avaliação..." required></textarea>
+                
+
+                <button type="submit">Avaliar Cliente</button>
+            </form>
+
+            <div id="responseMessage"></div>
+        </div>
+
+        <script src="../avaliarCliente/script.js"></script>
+    </body>
+    </html>
