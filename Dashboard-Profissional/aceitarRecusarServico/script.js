@@ -50,17 +50,23 @@ document.getElementById('requested-services').addEventListener('click', async fu
                     "ABERTO": "status-open",
                     "INICIADO": "status-started",
                     "FINALIZADO": "status-completed",
-                    "CANCELADO": "status-canceled"
+                 "CANCELADO": "status-canceled"
                 };
                 const statusClass = statusClasses[servico.status] || "";
                 const date = new Date(servico.serviceDate);
                 const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
-                const inicioServico = new Date(servico.inicioServico); 
-                const formattedStartDate = `${inicioServico.getDate().toString().padStart(2, '0')}/${(inicioServico.getMonth() + 1).toString().padStart(2, '0')}/${inicioServico.getFullYear()}`;
+
+                // Verificando a data de início do serviço
+                const inicioServico = servico.inicioServico ? new Date(servico.inicioServico) : null;
+                const formattedStartDate = inicioServico 
+                    ? `${inicioServico.getDate().toString().padStart(2, '0')}/${(inicioServico.getMonth() + 1).toString().padStart(2, '0')}/${inicioServico.getFullYear()}` 
+                    : null;
+
                 const conclusaoServico = servico.conclusaoServico ? new Date(servico.conclusaoServico) : null;
                 const formattedEndDate = conclusaoServico && servico.status === "FINALIZADO"
                     ? `${conclusaoServico.getDate().toString().padStart(2, '0')}/${(conclusaoServico.getMonth() + 1).toString().padStart(2, '0')}/${conclusaoServico.getFullYear()}`
                     : "";
+
                 // Definindo o HTML
                 serviceElement.innerHTML = `
                     <div class="service-header">
@@ -71,19 +77,22 @@ document.getElementById('requested-services').addEventListener('click', async fu
                     <p><strong>Data de criação do Serviço:</strong> ${formattedDate}</p>
                     <p><strong>Descrição:</strong> ${servico.description}</p>
                     <p><strong>Localização:</strong> ${servico.location}</p>
-                    <p><strong>Data de início do serviço:</strong> ${formattedStartDate}</p>
-                     ${formattedEndDate ? `<p><strong>Data de Conclusão do Serviço:</strong> ${formattedEndDate}</p>` : ""}
 
-                  <!-- Remover botões caso o serviço esteja iniciado, finalizado ou cancelado -->
-${['INICIADO', 'FINALIZADO', 'CANCELADO'].includes(servico.status) ? '' : `
-    <button class="aceitarBtn" data-id="${servico.id}">Aceitar</button>
-    <button class="recusarBtn" data-id="${servico.id}">Recusar</button>
-`}
+                    ${formattedStartDate ? `<p><strong>Data de início do serviço:</strong> ${formattedStartDate}</p>` : ""}
 
-      ${servico.status === 'FINALIZADO' ? `
+                    ${formattedEndDate ? `<p><strong>Data de Conclusão do Serviço:</strong> ${formattedEndDate}</p>` : ""}
+
+                    <!-- Remover botões caso o serviço esteja iniciado, finalizado ou cancelado -->
+                    ${['INICIADO', 'FINALIZADO', 'CANCELADO'].includes(servico.status) ? '' : `
+                        <button class="aceitarBtn" data-id="${servico.id}">Aceitar</button>
+                        <button class="recusarBtn" data-id="${servico.id}">Recusar</button>
+                    `}
+
+                    ${servico.status === 'FINALIZADO' ? `
                         <button class="avaliarClienteBtn" data-id="${servico.id}">Avaliar Cliente</button>
                     ` : ''}
                 `;
+
                 container.appendChild(serviceElement);
             });
 
