@@ -88,9 +88,11 @@ document.getElementById('requested-services').addEventListener('click', async fu
                         <button class="recusarBtn" data-id="${servico.id}">Recusar</button>
                     `}
 
-                    ${servico.status === 'FINALIZADO' ? `
+                    ${servico.status === 'FINALIZADO' && servico.ratedClient === 0 ? `
                         <button class="avaliarClienteBtn" data-id="${servico.id}">Avaliar Cliente</button>
                     ` : ''}
+                    
+                    
                 `;
 
                 container.appendChild(serviceElement);
