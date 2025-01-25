@@ -14,7 +14,6 @@ async function loadServiceDetails() {
     if (!token) {
       throw new Error("Token não encontrado. Faça login novamente.");
     }
-    console.log("Token: ", token);  // Verifique se o token é válido
     
     const response = await fetch(`http://localhost:8080/api/services/${serviceId}`, {
       method: "GET",

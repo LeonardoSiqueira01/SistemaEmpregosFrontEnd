@@ -121,3 +121,47 @@
   background-color: #ffcccc;
   border-color: #d32f2f;
 }
+/* Estilo do campo de Especialidade */
+.form-group label[for="service-specialty"] {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Estilo do campo de Especialidade (Select) */
+#service-specialty {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+/* Efeito de foco para o campo de Especialidade */
+#service-specialty:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Estilo para a seta de dropdown no Select */
+#service-specialty::-ms-expand {
+  display: none;
+}
+
+/* Estilo para o texto do placeholder */
+#service-specialty::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* Ajuste visual no campo de especialidade em dispositivos móveis */
+@media (max-width: 480px) {
+  #service-specialty {
+      padding: 12px;
+      font-size: 16px;
+  }
+}
