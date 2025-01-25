@@ -246,4 +246,52 @@ button:hover {
   .edit-btn:hover {
     background-color: #FFC107; /* Amarelo dourado mais escuro para o hover */
   }
-  
+
+
+
+
+/* Inicialmente escondido */
+.specialty-container {
+  display: none;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 20px; /* Alinha à esquerda com margem */
+  margin-right: 20px; /* Garante uma margem à direita */
+  max-width: 400px;
+  top: 20px; /* Distância do topo da página */
+  left: 20px; /* Distância da margem esquerda */
+  z-index: 1000; /* Garante que o container fique acima de outros elementos */
+}
+
+
+.specialty-container.show {
+  display: block; /* Torna o container visível */
+}
+
+/* Outros estilos para o select e label */
+.specialty-container label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.specialty-select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.specialty-select:focus {
+  border-color: #007bff;
+}

@@ -35,8 +35,7 @@ async function fetchWithAuth(url, options = {}) {
   return response.json();
 }
 
-// Função para listar os serviços do cliente logado
-async function listServices() {
+async function listServices(specialty = '') {
   const servicesContainer = document.getElementById("service-list");
   servicesContainer.innerHTML = ""; // Limpa a lista antes de preencher
 
@@ -46,7 +45,13 @@ async function listServices() {
       throw new Error("Token não encontrado.");
     }
 
-    const response = await fetch("http://localhost:8080/api/services/me", {
+    // Construa a URL com base na especialidade
+    let url = "http://localhost:8080/api/services/me";
+    if (specialty) {
+      url += `?specialty=${encodeURIComponent(specialty)}`; // Adiciona o filtro se houver
+    }
+
+    const response = await fetch(url, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`,  // Envia o token no header
@@ -61,6 +66,7 @@ async function listServices() {
         servicesContainer.innerHTML = "<p>Nenhum serviço encontrado.</p>";
         return;
       }
+
       
 // Renderizar os serviços na página
 services.forEach(service => {
@@ -188,24 +194,43 @@ function ensureClientAuthenticated() {
     window.location.href = "../Login/index.html"; // Redireciona para login se não houver token ou se não for Cliente
   }
 }
+  document.addEventListener("DOMContentLoaded", function () {
+    ensureClientAuthenticated(); // Verifica se o cliente está logado
+  
+    // Carregar serviços automaticamente ao carregar a página
+    listServices(); // Chama a função para listar os serviços assim que a página for carregada
+    
+    // Evento para o botão "Listar Serviços"
+    document.getElementById("list-services").addEventListener("click", function () {
+      // Resetar a seleção do filtro
+      document.getElementById("specialty").value = ""; // Reseta para "Selecione uma especialidade"
+      
+      // Ocultar o container de especialidades
+      document.getElementById("specialty-container").style.display = "none";
+      
+      // Carregar serviços ao clicar no botão "Listar Serviços"
+      listServices(); // Chama novamente a função para listar os serviços
+  });
+  
+  document.getElementById("specialty-services").addEventListener("click", function () {
+    const specialtyContainer = document.getElementById("specialty-container");
 
-// Carregar os serviços e configurar eventos ao carregar a página
-document.addEventListener("DOMContentLoaded", function () {
-  ensureClientAuthenticated(); // Verifica se o cliente está logado
+    // Alternar a visibilidade do container de especialidade
+    if (specialtyContainer.style.display === "none" || specialtyContainer.style.display === "") {
+      specialtyContainer.style.display = "block"; // Exibe o filtro de especialidades
+    } else {
+      specialtyContainer.style.display = "none"; // Oculta o filtro
+    }
+  });
+  
 
-  // Carregar serviços ao carregar a página
-  listServices();
-
-// Adicionar eventos de clique para os itens do menu
-document.getElementById("list-services").addEventListener("click", listServices);
-
-document.getElementById("specialty-services").addEventListener("click", function () {
-  window.location.href = "#";
+  // Evento para o botão de filtro
+  document.getElementById("filter-btn").addEventListener("click", function () {
+    const specialty = document.getElementById("specialty").value;
+    // Se uma especialidade for selecionada, passa ela como parâmetro
+    listServices(specialty); // Atualiza a listagem de serviços com o filtro
+  });
 });
-});
-
-
-
 
 // Função para excluir um serviço
 async function deleteService(serviceId) {
@@ -237,11 +262,10 @@ async function deleteService(serviceId) {
   }
 }
 
-
+// Função para cancelar edição e voltar à página principal
 function cancelEdit() {
-window.location.href = "../index.html";
+  window.location.href = "../index.html";
 }
-
 
 // Função para finalizar o serviço e enviar a avaliação
 document.getElementById('finalizarForm').addEventListener('submit', function(event) {
