@@ -76,7 +76,7 @@ async function criarServico(event) {
         name: document.getElementById("name").value.trim(),
         description: descriptionValue,
         serviceDate: document.getElementById("serviceDate").value, // data no formato 'yyyy-MM-dd'
-        specialty: document.getElementById("specialty").value,
+        specialty: document.getElementById("specialty").value,  
         location: document.getElementById("location").value.trim(), // Agora pega o valor do campo de localização
     };
 

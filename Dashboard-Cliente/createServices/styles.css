@@ -119,3 +119,33 @@ button[type="button"]:hover {
         padding: 10px 18px;
     }
 }
+/* Estilos para o campo de seleção (select) */
+#specialty {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    color: #333;
+    font-family: Arial, sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+/* Quando o campo é focado, muda a cor da borda */
+#specialty:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Estilo para as opções dentro do select */
+#specialty option {
+    padding: 8px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Muda a cor de fundo das opções ao passar o mouse */
+#specialty option:hover {
+    background-color: #f1f1f1;
+}
