@@ -298,3 +298,125 @@ button.edit-btn:hover {
     font-size: 16px;
     margin-bottom: 8px;
 }
+* Estilos do container da especialidade */
+.specialty-container {
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.specialty-container:hover {
+  transform: scale(1.02);
+}
+
+/* Título da seção de especialidade */
+.specialty-container label {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 8px;
+  display: block;
+  font-weight: bold;
+}
+
+/* Estilos para o select da especialidade */
+.specialty-select {
+  width: 100%;
+  padding: 12px 16px;
+  margin: 10px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse sobre o select */
+.specialty-select:hover {
+  border-color: #007bff;
+}
+
+/* Estilo quando o select está em foco */
+.specialty-select:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #fff;
+}
+
+/* Botão de filtro */
+#filter-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+#filter-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo do botão "Voltar" */
+#cancelEdit {
+  background-color: #ff6347;
+  color: #ffffff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Efeito ao passar o mouse sobre o botão "Voltar" */
+#cancelEdit:hover {
+  background-color: #cc4e2a;
+}
+
+/* Botões dentro do menu de navegação */
+nav button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+nav button:hover {
+  background-color: #218838;
+}
+
+/* Responsividade: Ajusta o layout para telas menores */
+@media (max-width: 600px) {
+  .specialty-container {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  #filter-btn,
+  #cancelEdit {
+    width: 100%;
+  }
+
+  nav button {
+    width: 100%;
+    margin: 10px 0;
+  }
+}

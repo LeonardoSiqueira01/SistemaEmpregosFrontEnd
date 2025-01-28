@@ -107,7 +107,7 @@ async function criarServico(event) {
         }
 
         const result = await response.json();
-        alert(`Serviço criado com sucesso! ID: ${result.id}`);
+        alert(`Serviço criado com sucesso!`);
         window.location.assign("/Dashboard-Cliente/index.html");
     } catch (error) {
         alert(`Erro ao criar serviço: ${error.message}`);

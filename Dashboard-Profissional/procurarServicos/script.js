@@ -112,16 +112,17 @@ document.addEventListener("DOMContentLoaded", () => {
     filterButton.addEventListener("click", async () => {
         try {
             const cidade = document.getElementById("city").value.trim();
-            const especialidade = document.getElementById("specialty").value.trim();
-    
+            const especialidade = document.getElementById("specialty").value;  // Agora pega o valor do select
+        
             console.log("Filtros de busca:", { cidade, especialidade });
-    
-            fetchServices({ cidade, especialidade });
+        
+            fetchServices({ cidade, especialidade });  // Envia a especialidade selecionada
         } catch (error) {
             console.error(error);
             alert("Erro ao aplicar filtros. Tente novamente.");
         }
     });
+    
 
     fetchServices(); // Carregar serviços ao carregar a página
 });
