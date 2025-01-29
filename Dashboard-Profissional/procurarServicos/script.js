@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const serviceList = document.getElementById("service-list");
     const filterButton = document.getElementById("apply-filters");
     const cepButton = document.getElementById("search-cep");
-
+    function getProfessionalEmail() {
+        return localStorage.getItem("email"); // Ajuste conforme onde armazena o email
+    }
 
 
     function getAuthToken() {
@@ -72,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
     
-    // Renderizar lista de serviços
     const renderServices = (services) => {
         serviceList.innerHTML = "";
         if (services.length === 0) {
@@ -82,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         services.forEach(service => {
             const serviceElement = document.createElement("div");
             serviceElement.classList.add("service-item");
-
+    
             // Determinar a cor do status
             const statusClasses = {
                 "ABERTO": "status-open",
@@ -91,10 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 "CANCELADO": "status-canceled"
             };
             const statusClass = statusClasses[service.status] || "";
-
+    
             const date = new Date(service.serviceDate);
             const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
-
+    
+            // Adicionando HTML para renderizar o serviço
             serviceElement.innerHTML = `
                 <div class="service-header">
                     <h3 class="service-name">${service.name}</h3>
@@ -104,10 +106,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p><strong>Data do Serviço:</strong> ${formattedDate}</p>
                 <p><strong>Descrição:</strong> ${service.description}</p>
                 <p><strong>Localização:</strong> ${service.location}</p>
+                <button class="request-link" data-service-id="${service.id}">Solicitar Vínculo</button>
             `;
             serviceList.appendChild(serviceElement);
         });
+    
+        // Adiciona evento para o botão "Solicitar Vínculo"
+        document.querySelectorAll('.request-link').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                const serviceId = event.target.getAttribute('data-service-id');
+                const professionalEmail = getProfessionalEmail(); // Método para pegar o email do profissional (a ser implementado)
+                const encodedEmail = encodeURIComponent(professionalEmail);
+
+                try {
+                    const response = await fetch(`http://localhost:8080/api/services/${encodedEmail}/solicitar/${serviceId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${getAuthToken()}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+    
+                    if (!response.ok) {
+                        throw new Error("Erro ao solicitar o vínculo.");
+                    }
+    
+                    const data = await response.json();
+                    alert("Solicitação de vínculo enviada com sucesso.");
+                } catch (error) {
+                    console.error(error);
+                    alert("Você já esta realizando um serviço. Não pode iniciar outro sem finalizar o anterior!");
+                }
+            });
+        });
     };
+    
 
     filterButton.addEventListener("click", async () => {
         try {

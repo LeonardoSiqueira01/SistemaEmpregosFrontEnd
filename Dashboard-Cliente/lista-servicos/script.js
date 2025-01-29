@@ -144,6 +144,11 @@ const formattedEndDate = conclusaoServico && service.status === "FINALIZADO"
 <button class="finalizebtn" id="finalizebtn${service.id}" 
             ${service.status !== "INICIADO" ? 'style="display:none"' : ''} 
             onclick="finalizeService(${service.id})">Finalizar Serviço</button>
+  <button class="view-requests-btn" 
+        onclick="viewProfessionalRequests(${service.id})" 
+        ${service.status !== "ABERTO" ? 'style="display:none"' : ''}>
+    Ver Solicitações
+</button>
 
   `;
 
@@ -185,6 +190,10 @@ function finalizeService(serviceId) {
   window.location.href = "../avaliarProfissional/index.html?id=" + serviceId;  // Corrigido para chamar o caminho de avaliação
 }
 
+function viewProfessionalRequests(serviceId) {
+  // Redireciona para a nova tela onde os profissionais solicitantes serão listados
+  window.location.href = "RequisicoesProfissionais/index.html?serviceId=" + serviceId;
+}
 
 // Função para garantir que o cliente está logado
 function ensureClientAuthenticated() {

@@ -1,0 +1,142 @@
+/* Estilos gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #333;
+  }
+  
+  h1 {
+    font-size: 30px;
+    color: #007bff;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  /* Container principal */
+  #professional-requests-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo para cada solicitação de profissional */
+  .professional-request {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .professional-request:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Títulos e informações dentro de cada solicitação */
+  .professional-request h3 {
+    font-size: 22px;
+    color: #2c3e50;
+    margin-bottom: 12px;
+  }
+  
+  .professional-request p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .professional-request p strong {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Estilo para a mensagem de erro quando não há profissionais */
+  .professional-request.empty-message {
+    font-size: 18px;
+    color: #e74c3c;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  /* Estilo para o botão "Voltar" */
+  button.voltar-btn {
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 30px auto;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.voltar-btn:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Estilo de mensagens gerais */
+  .error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .success-message {
+    color: #2ecc71;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  /* Responsividade para telas menores */
+  @media (max-width: 768px) {
+    body {
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 26px;
+    }
+  
+    .professional-request {
+      padding: 15px;
+    }
+  
+    .professional-request h3 {
+      font-size: 20px;
+    }
+  
+    .professional-request p {
+      font-size: 14px;
+    }
+  
+    button.voltar-btn {
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+  }
+  #voltar-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Cor verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  #voltar-btn:hover {
+    background-color: #45a049;
+  }
+  
