@@ -119,7 +119,9 @@ function voltar() {
                                             </span>
                                         </div>
                                         <button class="assign-button" onclick="assignProfessional('${professional.id}')">Vincular Profissional</button>
-                                    `;
+                                        <button onclick="viewProfile('${professional.email}')">Visualizar Perfil</button>
+
+                                        `;
                 
                                     serviceList.appendChild(listItem);
                                 });
@@ -132,7 +134,9 @@ function voltar() {
                         }
                     });
                 });
-                
+                function viewProfile(email) {
+                    window.open(`../VisualizarPerfis/index.html?email=${encodeURIComponent(email)}`, '_blank');
+                  }
                 async function assignProfessional(professionalId) {
                     const serviceId = new URLSearchParams(window.location.search).get("serviceId");
                 

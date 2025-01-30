@@ -419,4 +419,136 @@ nav button:hover {
     width: 100%;
     margin: 10px 0;
   }
+}/* Estilo para o botão "Solicitar Vínculo" */
+.request-link {
+    background-color: #4CAF50; /* Cor de fundo verde */
+    color: white; /* Texto branco */
+    font-size: 16px; /* Tamanho da fonte */
+    padding: 10px 20px; /* Espaçamento interno */
+    border: none; /* Remover borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de mãozinha */
+    transition: background-color 0.3s ease; /* Transição suave para a cor */
+}
+
+/* Estilo ao passar o mouse sobre o botão */
+.request-link:hover {
+    background-color: #45a049; /* Cor de fundo um pouco mais escura */
+}
+
+/* Estilo para o botão quando ele está desabilitado */
+.request-link:disabled {
+    background-color: #cccccc; /* Cor de fundo cinza */
+    cursor: not-allowed; /* Cursor de bloqueado */
+}
+/* Estilos gerais para o perfil */
+.profile-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título do perfil */
+.profile-container h1 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Seção de detalhes do perfil */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Cada linha de informação do perfil */
+.profile-details p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Título das seções */
+.profile-details strong {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Imagem do perfil (se houver) */
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+/* Botão de voltar */
+.back-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+}
+
+.back-button:hover {
+    background-color: #218838;
+}
+
+.back-button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+}
+ /* Estilização do botão "Visualizar Perfil do Cliente" */
+button {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white; /* Cor do texto */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Borda arredondada */
+    padding: 10px 20px; /* Espaçamento interno */
+    cursor: pointer; /* Cursor de mão para indicar ação */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: background-color 0.3s; /* Transição suave para mudança de cor */
+}
+
+/* Efeito de hover (quando o usuário passa o mouse) */
+button:hover {
+    background-color: #0056b3; /* Cor de fundo mais escura */
+}
+
+/* Efeito de foco (quando o botão é focado, como no clique ou navegação via teclado) */
+button:focus {
+    outline: none; /* Remove a borda de foco padrão */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Sombra azul clara ao redor */
+}
+
+/* Estilização quando o botão está desabilitado */
+button:disabled {
+    background-color: #ccc; /* Cor de fundo cinza */
+    cursor: not-allowed; /* Cursor de proibição */
+}
+/* Estilo para os blocos de Nome e Email do Cliente */
+.client-info-container {
+    background-color: #f1f1f1; /* Cor de fundo levemente acinzentada */
+    color: #333; /* Cor do texto */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    margin-top: 5px; /* Espaçamento superior */
+    font-size: 14px; /* Tamanho de fonte adequado */
+}
+
+/* Adicionando um efeito de hover para dar interatividade */
+.client-info-container:hover {
+    background-color: #e2e2e2; /* Cor de fundo mais escura ao passar o mouse */
 }

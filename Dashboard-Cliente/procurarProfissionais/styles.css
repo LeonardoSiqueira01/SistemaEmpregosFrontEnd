@@ -141,3 +141,66 @@ nav a:hover {
         font-size: 14px;
     }
 }
+/* Estilo básico para o botão de visualizar perfil */
+.view-profile-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Reduzido o padding para deixar o botão menor */
+    border-radius: 5px;
+    font-size: 14px; /* Font size menor */
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s ease;
+    width: auto; /* Tamanho do botão ajustado automaticamente */
+    margin-top: 10px; /* Deixa o botão numa nova linha abaixo */
+    align-self: flex-start; /* Alinha o botão à esquerda */
+}
+
+/* Efeito de hover no botão */
+.view-profile-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Pequeno efeito de elevação */
+}
+
+/* Estilos para o item de serviço (profissional) */
+.service-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Alinhamento dos itens dentro do 'availability' */
+.availability {
+    font-weight: bold;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* Faz o botão descer para uma linha abaixo */
+    gap: 10px; /* Espaçamento entre o texto e o botão */
+}
+
+/* Estilo da linha horizontal */
+.service-item hr {
+    margin: 15px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+/* Estilos responsivos para telas pequenas */
+@media (max-width: 768px) {
+    .view-profile-btn {
+        font-size: 14px;
+        padding: 8px 14px; /* Ajustado o padding */
+    }
+
+    .service-item {
+        padding: 15px;
+    }
+    
+    .service-item p {
+        font-size: 14px;
+    }
+}

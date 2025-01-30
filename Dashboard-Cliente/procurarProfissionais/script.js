@@ -63,6 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             <span class="${professional.available ? 'available' : 'not-available'}">
                                 ${professional.available ? "Sim" : "Não"}
                             </span>
+                                <button onclick="viewProfile('${professional.email}')">Visualizar Perfil</button>
+
                         </div>
                         <hr>
                     `;
@@ -81,6 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+function viewProfile(email) {
+    window.open(`../VisualizarPerfis/index.html?email=${encodeURIComponent(email)}`, '_blank');
+  }
+  
 
 document.addEventListener("DOMContentLoaded", () => {
     // Supondo que você tenha uma função que recupera os dados do cliente

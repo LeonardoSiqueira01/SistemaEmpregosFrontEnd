@@ -1,3 +1,7 @@
+function viewProfile(email) {
+    window.open('http://127.0.0.1:5500/dashboard-cliente/visualizarPerfis/index.html?email=' + encodeURIComponent(email), '_blank');
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const serviceList = document.getElementById("service-list");
     const filterButton = document.getElementById("apply-filters");
@@ -45,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const cep = document.getElementById("cep").value;
         fetchAddressByCEP(cep);
     });
-
+    
     // Função para buscar serviços com base em filtros (cidade e estado)
     const fetchServices = async (filters = {}) => {
         try {
@@ -65,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     
             let services = await response.json();
-            console.log("Resposta da API:", services); // Exibir a resposta da API
     
             renderServices(services);
         } catch (error) {
@@ -106,11 +109,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p><strong>Data do Serviço:</strong> ${formattedDate}</p>
                 <p><strong>Descrição:</strong> ${service.description}</p>
                 <p><strong>Localização:</strong> ${service.location}</p>
+                 <div class="client-info-container">
+                  <p> <strong>Nome do Cliente:</strong> ${service.clientName} </p>
+                <p> <strong>Email do Cliente:</strong> ${service.clientEmail}</p> </div>
                 <button class="request-link" data-service-id="${service.id}">Solicitar Vínculo</button>
+                <button onclick="viewProfile('${service.clientEmail}')">Visualizar Perfil do Cliente</button>  <!-- Sempre visível -->
+
             `;
             serviceList.appendChild(serviceElement);
         });
-    
+       
         // Adiciona evento para o botão "Solicitar Vínculo"
         document.querySelectorAll('.request-link').forEach(button => {
             button.addEventListener('click', async (event) => {

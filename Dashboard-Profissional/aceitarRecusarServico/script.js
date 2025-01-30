@@ -66,6 +66,7 @@ document.getElementById('requested-services').addEventListener('click', async fu
                 const formattedEndDate = conclusaoServico && servico.status === "FINALIZADO"
                     ? `${conclusaoServico.getDate().toString().padStart(2, '0')}/${(conclusaoServico.getMonth() + 1).toString().padStart(2, '0')}/${conclusaoServico.getFullYear()}`
                     : "";
+                    
 
                 // Definindo o HTML
                 serviceElement.innerHTML = `
@@ -77,6 +78,7 @@ document.getElementById('requested-services').addEventListener('click', async fu
                     <p><strong>Data de criação do Serviço:</strong> ${formattedDate}</p>
                     <p><strong>Descrição:</strong> ${servico.description}</p>
                     <p><strong>Localização:</strong> ${servico.location}</p>
+                    <p><strong>Nome do Cliente:</strong> ${servico.clientName}</p>  
 
                     ${formattedStartDate ? `<p><strong>Data de início do serviço:</strong> ${formattedStartDate}</p>` : ""}
 
@@ -87,6 +89,8 @@ document.getElementById('requested-services').addEventListener('click', async fu
                         <button class="aceitarBtn" data-id="${servico.id}">Aceitar</button>
                         <button class="recusarBtn" data-id="${servico.id}">Recusar</button>
                     `}
+                    
+                        <button onclick="viewProfile('${servico.clientEmail}')">Visualizar Perfil do Cliente</button>  <!-- Sempre visível -->
 
                     ${servico.status === 'FINALIZADO' && servico.ratedClient === 0 ? `
                         <button class="avaliarClienteBtn" data-id="${servico.id}">Avaliar Cliente</button>
@@ -115,6 +119,10 @@ document.getElementById('requested-services').addEventListener('click', async fu
         console.error('Erro ao carregar serviços solicitados:', error);
     }
 });
+
+function viewProfile(email) {
+    window.open('http://127.0.0.1:5500/dashboard-cliente/visualizarPerfis/index.html?email=' + encodeURIComponent(email), '_blank');
+}
 
 
 const email = getEmailFromToken();

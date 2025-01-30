@@ -122,13 +122,16 @@ const formattedEndDate = conclusaoServico && service.status === "FINALIZADO"
   <!-- Exibe a data de conclusão do serviço se ela existir -->
   ${formattedEndDate ? `<p><strong>Data de Conclusão do Serviço:</strong> ${formattedEndDate}</p>` : ""}
   
-  <!-- Exibe as informações do profissional vinculado, caso o serviço não esteja ABERTO ou CANCELADO -->
-  ${service.status !== "ABERTO" && service.status !== "CANCELADO" ? `
-    <div class="professional-info" style="background-color: #f1f1f1; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-      <p><strong>Profissional Vinculado:</strong> ${service.professionalName}</p>
-      <p><strong>Email:</strong> ${service.professionalEmail}</p>
-    </div>
-  ` : ""}
+ <!-- Exibe as informações do profissional vinculado, caso o serviço não esteja ABERTO ou CANCELADO -->
+${service.status !== "ABERTO" && service.status !== "CANCELADO" ? `
+  <div class="professional-info" style="background-color: #f1f1f1; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+    <p><strong>Profissional Vinculado:</strong> ${service.professionalName}</p>
+    <p><strong>Email:</strong> ${service.professionalEmail}</p>
+    <!-- Botão para visualizar o perfil -->
+    <button onclick="viewProfile('${service.professionalEmail}')">Visualizar Perfil</button>
+  </div>
+` : ""}
+
   
 <!-- Botões de ação -->
 <button class="edit-btn" 
@@ -194,6 +197,14 @@ function viewProfessionalRequests(serviceId) {
   // Redireciona para a nova tela onde os profissionais solicitantes serão listados
   window.location.href = "RequisicoesProfissionais/index.html?serviceId=" + serviceId;
 }
+
+// Função para visualizar o perfil do profissional
+function viewProfile(email) {
+  // Abre a página do perfil em uma nova aba, passando o email como parâmetro
+  window.open(`../VisualizarPerfis/index.html?email=${encodeURIComponent(email)}`, '_blank');
+}
+
+
 
 // Função para garantir que o cliente está logado
 function ensureClientAuthenticated() {
