@@ -37,6 +37,7 @@ async function loadProfessionalRequests(serviceId) {
             <p><strong>Avaliação:</strong> ${professional.averageRating}</p>
             <p><strong>Total de serviços concluídos:</strong> ${professional.totalServicesCompleted}</p>
             <p><strong>Disponibilidade:</strong> ${professional.available ? 'Disponível' : 'Indisponível'}</p>
+    <button class="view-profile-btn" onclick="viewProfile('${professional.email}')">Visualizar Perfil</button>
 
             <!-- Botões de Aceitar e Recusar -->
             <div class="action-buttons">
@@ -64,6 +65,9 @@ async function loadProfessionalRequests(serviceId) {
     console.error(error);
     document.getElementById("professional-requests-container").innerHTML = `<p>Erro ao carregar as solicitações. Tente novamente mais tarde.</p>`;
   }
+}
+function viewProfile(email) {
+  window.open('http://127.0.0.1:5500/dashboard-cliente/visualizarPerfis/index.html?email=' + encodeURIComponent(email), '_blank');
 }
 
 loadProfessionalRequests(serviceId); // Chama a função para carregar as solicitações

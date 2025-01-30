@@ -204,3 +204,123 @@ nav a:hover {
         font-size: 14px;
     }
 }
+/* Estilo básico para a página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    margin: 30px auto;
+}
+
+/* Estilos para a lista de profissionais */
+.service-list-container {
+    display: none;
+}
+
+.service-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.service-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho de cada item da lista de profissionais */
+.professional-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.professional-name {
+    font-size: 22px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Informações sobre o profissional */
+.service-item p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.availability {
+    font-weight: bold;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* Faz o botão descer para uma linha abaixo */
+    gap: 10px; /* Espaçamento entre o texto e o botão */
+}
+
+/* Disponibilidade do profissional */
+.available {
+    color: #28a745; /* Verde */
+}
+
+.not-available {
+    color: #dc3545; /* Vermelho */
+}
+
+/* Linha horizontal separadora */
+.service-item hr {
+    margin: 15px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+/* Estilo básico para o botão de visualizar perfil */
+.view-profile-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Reduzido o padding para deixar o botão menor */
+    border-radius: 5px;
+    font-size: 14px; /* Font size menor */
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s ease;
+    width: auto; /* Tamanho do botão ajustado automaticamente */
+    margin-top: 10px; /* Deixa o botão numa nova linha abaixo */
+    align-self: flex-start; /* Alinha o botão à esquerda */
+}
+
+/* Efeito de hover no botão */
+.view-profile-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Pequeno efeito de elevação */
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+    .view-profile-btn {
+        font-size: 14px;
+        padding: 8px 14px; /* Ajustado o padding */
+    }
+
+    .service-item {
+        padding: 15px;
+    }
+    
+    .service-item p {
+        font-size: 14px;
+    }
+}

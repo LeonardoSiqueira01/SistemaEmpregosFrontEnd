@@ -138,4 +138,74 @@ button.voltar-btn:hover {
 
 #voltar-btn:hover {
   background-color: #45a049;
+}/* Estilizando a div com o perfil do profissional */
+.profile-card {
+  background-color: #fff; /* Fundo branco */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Estilização do botão "Visualizar Perfil" */
+.view-profile-btn {
+  background-color: #4A90E2; /* Cor de fundo azul */
+  color: white; /* Texto branco */
+  border: none; /* Remove borda */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer; /* Muda o cursor ao passar por cima */
+  font-size: 16px; /* Tamanho de fonte */
+  margin-bottom: 20px; /* Margem inferior */
+  width: 20%; /* Faz com que ocupe toda a largura */
+  transition: background-color 0.3s ease; /* Animação suave para a cor */
+}
+
+.view-profile-btn:hover {
+  background-color: #357ABD; /* Cor do botão ao passar o mouse */
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+
+
+/* Botão Aceitar */
+.aceitar-btn {
+  background-color: #28a745; /* Cor verde */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.aceitar-btn:hover {
+  background-color: #218838; /* Cor do botão Aceitar ao passar o mouse */
+}
+
+/* Botão Recusar */
+.recusar-btn {
+  background-color: #dc3545; /* Cor vermelha */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.recusar-btn:hover {
+  background-color: #c82333; /* Cor do botão Recusar ao passar o mouse */
+}
+
+/* Estilo para os botões quando desabilitados */
+button:disabled {
+  background-color: #ddd; /* Cor de fundo quando desabilitado */
+  cursor: not-allowed; /* Cursor de "não permitido" */
 }

@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <span class="${professional.available ? 'available' : 'not-available'}">
                                 ${professional.available ? "Sim" : "Não"}
                             </span>
-                                <button onclick="viewProfile('${professional.email}')">Visualizar Perfil</button>
+        <button class="view-profile-btn" onclick="viewProfile('${professional.email}')">Visualizar Perfil</button>
 
                         </div>
                         <hr>
