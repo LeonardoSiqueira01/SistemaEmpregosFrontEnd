@@ -18,8 +18,8 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   border-radius: 10px;
-  max-width: 650px;
   width: 100%;
+  max-width: 800px; /* Aumenta a largura para telas maiores */
   transition: transform 0.3s ease;
 }
 
@@ -29,17 +29,18 @@ body {
 
 .home {
   text-align: center;
+  display: block;  
 }
 
 .home h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem; /* Ajuste para telas maiores */
   font-weight: 600;
   color: #333;
   margin-bottom: 1rem;
 }
 
 .home p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #666;
   line-height: 1.6;
   margin-bottom: 2rem;
@@ -47,12 +48,12 @@ body {
 
 /* Estilos do formulário */
 .form-container {
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 .form-container h2 {
   margin-bottom: 1.5rem;
-  font-size: 1.8rem;
+  font-size: 2rem; /* Ajuste para telas maiores */
   text-align: center;
   color: #333;
   font-weight: 600;
@@ -76,7 +77,7 @@ form button {
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.1rem; /* Aumenta o tamanho da fonte */
   outline: none;
   transition: border-color 0.3s ease;
 }
@@ -92,8 +93,8 @@ form button {
   color: white;
   cursor: pointer;
   border: none;
-  font-size: 1.1rem;
-  padding: 1rem;
+  font-size: 1.2rem; /* Aumenta o tamanho da fonte do botão */
+  padding: 1.2rem;
   transition: background-color 0.3s ease;
   border-radius: 8px;
 }
@@ -113,8 +114,8 @@ form button:hover {
 #specialties,
 #location {
   width: 100%;
-  padding: 0.8rem;
-  font-size: 1rem;
+  padding: 1rem;
+  font-size: 1.1rem;
   border-radius: 8px;
   border: 1px solid #ccc;
   background-color: #fff;
@@ -129,11 +130,11 @@ form button:hover {
 
 select[multiple] {
   width: 100%;
-  height: 150px;
+  height: 200px;
   border-radius: 8px;
   border: 1px solid #ccc;
   padding: 0.8rem;
-  font-size: 1rem;
+  font-size: 1.1rem; /* Aumenta a fonte do select */
   background-color: #fff;
   transition: border-color 0.3s ease;
 }
@@ -156,7 +157,7 @@ select[multiple]:focus {
 }
 
 #cep-link a {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #4caf50;
   text-decoration: none;
 }
@@ -172,7 +173,7 @@ select[multiple]:focus {
 
 #verificationScreen h2 {
   margin-bottom: 1rem;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #333;
 }
 
@@ -190,7 +191,7 @@ select[multiple]:focus {
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   outline: none;
   width: 100%;
   margin-bottom: 1rem;
@@ -201,7 +202,7 @@ select[multiple]:focus {
   color: white;
   cursor: pointer;
   border: none;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   padding: 1rem;
   border-radius: 8px;
   transition: background-color 0.3s ease;
@@ -211,7 +212,70 @@ select[multiple]:focus {
   background: #45a049;
 }
 
-/* Estilos responsivos */
+/* Estilos responsivos para telas maiores que 600px até 1080px */
+@media (max-width: 1080px) {
+  .container {
+    padding: 2rem;
+  }
+
+
+  .home h1 {
+    font-size: 2.5rem;
+  }
+
+  .form-container h2 {
+    font-size: 1.8rem;
+  }
+
+  form label,
+  form input,
+  form select,
+  form button {
+    font-size: 1.1rem;
+  }
+
+  #specialties,
+  #location,
+  select[multiple] {
+    font-size: 1.1rem;
+  }
+  
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 500px; /* Largura maior para telas grandes */
+    padding: 2rem; /* Aumenta o espaçamento em torno do conteúdo */
+    height: auto;
+  }
+
+  .home h1 {
+    font-size: 0.9rem; /* Maior título */
+  }
+  .home p {
+    font-size: 0.5rem; /* Maior título */
+  }
+
+  .form-container h2 {
+    font-size: 1.5rem; /* Maior subtítulo */
+  }
+
+  form label,
+  form input,
+  form select,
+  form button {
+    font-size: 0.6rem; /* Aumenta o tamanho das fontes em geral */
+  }
+
+  #specialties,
+  #location,
+  select[multiple] {
+    font-size: 0.6rem; /* Aumenta o tamanho das fontes dos selects */
+  }
+ 
+}
+
+/* Estilos responsivos para telas menores que 600px */
 @media (max-width: 600px) {
   .container {
     padding: 1rem;
@@ -240,7 +304,7 @@ select[multiple]:focus {
 }
 
 #cep-link {
-  display: none; /* Oculta por padrão */
+  display: none;
   margin-top: 1rem;
   text-align: center;
 }
@@ -253,6 +317,7 @@ select[multiple]:focus {
 #cep-link a:hover {
   text-decoration: underline;
 }
+
 /* Estilos gerais para a label */
 .specialties-label {
   font-size: 16px;
@@ -273,7 +338,7 @@ select[multiple]:focus {
   color: #333;
   background-color: #f9f9f9;
   box-sizing: border-box;
-  overflow-y: auto; /* Permite a rolagem vertical quando houver muitas opções */
+  overflow-y: auto;
   font-family: Arial, sans-serif;
   transition: border-color 0.3s ease;
 }

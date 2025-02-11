@@ -6,6 +6,11 @@ document.getElementById("userType").addEventListener("change", function() {
   const locationLabel = document.querySelector('label[for="location"]');
   const cepLink = document.getElementById("cep-link");
   const addressOutput = document.getElementById("addressOutput"); // Adicionado para controlar a exibição do endereço formatado
+  const userTypeField = document.getElementById("userType");
+  const homeScreen = document.querySelector(".home");
+
+  homeScreen.style.display = "block";
+  
 
   if (userType === "profissional") {
     specialtiesField.style.display = "block"; // Mostra o campo de especialidades
@@ -14,7 +19,7 @@ document.getElementById("userType").addEventListener("change", function() {
     locationLabel.style.display = "block"; // Mostra o label de localização
     locationField.required = true; // Torna o campo de localização obrigatório
     cepLink.style.display = "block"; // Garante que o link seja visível para profissionais
-
+    userTypeField.style.display = "block";  
     // Verifica se o campo de localização já está validado
     if (locationField.dataset.validated === "true") {
       addressOutput.style.display = "block"; // Exibe o endereço formatado se já estiver validado
@@ -76,7 +81,7 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
   const location = document.getElementById("location").value;  // Localização (agora com o endereço completo)
 
   const specialtiesSelect = document.getElementById("specialties");
-  const specialties = Array.from(specialtiesSelect.selectedOptions).map(option => option.value).join(", "); // Juntar as especialidades em uma string separada por vírgulas
+  const specialties = Array.from(specialtiesSelect.selectedOptions).map(option => option.value).join("; "); // Juntar as especialidades em uma string separada por vírgulas
   
   // Criar o payload com as especialidades como uma string
   const payload = {

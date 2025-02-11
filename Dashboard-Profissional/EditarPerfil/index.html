@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil Profissional</title>
+    <link rel="stylesheet" href="../EditarPerfil/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Editar Perfil Profissional</h2>
+        <form id="profileForm">
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <label for="specialties" id="specialtiesLabel">Especialidades:</label>
+            <select id="specialties" name="specialties" multiple>
+                <!-- As opções de especialidades serão inseridas dinamicamente aqui -->
+            </select>
+
+            <div class="form-group">
+                <label for="currentSpecialties">Especialidades Atuais (remover clicando):</label>
+                <div id="currentSpecialties">
+                </div>
+            </div>
+
+            <label for="location" id="locationLabel">Sua localização (CEP):</label>
+            <input type="text" id="location" name="location" placeholder="Digite seu CEP" required>
+            
+
+<div id="addressOutput" style="display: none;">
+    <p><strong>Seu endereço:</strong> <span id="formattedAddress"></span></p>
+</div>
+
+<p id="cep-link">
+    <a href="https://buscacepinter.correios.com.br/app/localidade_logradouro/index.php" target="_blank">Não sabe seu endereço? Pesquise aqui seu CEP.</a>
+</p>
+
+
+            <button type="button" id="editProfileButton">Salvar Alterações</button>
+        </form>
+    </div>
+
+    <script src="../EditarPerfil/script.js"></script>
+   
+</body>
+</html>

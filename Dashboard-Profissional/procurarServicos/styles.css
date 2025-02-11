@@ -552,3 +552,33 @@ button:disabled {
 .client-info-container:hover {
     background-color: #e2e2e2; /* Cor de fundo mais escura ao passar o mouse */
 }
+
+footer {
+    margin-top: 400px;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #c27a0d;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    border-top: 4px solid #28a745;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+
+/* Estilizando o conteúdo dentro do footer */
+footer p {
+    margin: 0; /* Remove margem do parágrafo */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    footer {
+        font-size: 14px; /* Ajusta o tamanho da fonte para telas pequenas */
+        padding: 15px 0; /* Diminui o padding em telas pequenas */
+    }
+}

@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const renderServices = (services) => {
         serviceList.innerHTML = "";
         if (services.length === 0) {
-            serviceList.innerHTML = "<p>Nenhum serviço encontrado.</p>";
+            serviceList.innerHTML = "<p style='margin-top: 20px;'>Nenhum serviço encontrado.</p>";
             return;
         }
         services.forEach(service => {

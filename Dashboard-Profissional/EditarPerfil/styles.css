@@ -1,0 +1,338 @@
+/* Reset de estilo básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container do formulário */
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+/* Cabeçalho do formulário */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    color: #333;
+}
+
+/* Estilos do formulário */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #333;
+}
+
+.form-group input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+input::placeholder {
+    color: #bbb;
+}
+
+/* Estilo do botão de submit */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Adicionar estilo para as especialidades */
+.specialty-item {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.specialty-item:hover {
+    background-color: #ddd;
+}
+
+.removed {
+    text-decoration: line-through;
+    color: red;
+}
+
+/* Estilo responsivo para dispositivos móveis */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.4em;
+    }
+
+    .form-group input {
+        font-size: 0.9em;
+    }
+
+    button {
+        font-size: 1em;
+    }
+}
+
+/* Ajustes para o layout do botão */
+button {
+    font-weight: bold;
+}
+
+.specialty {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+}
+
+.remove-specialty {
+    margin-left: 5px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.remove-specialty:hover {
+    background-color: #c0392b;
+}
+/* Estilo da seção de localização */
+#locationLabel {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+}
+
+#location {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+#location:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+#addressOutput {
+    background-color: #f0f9ff;
+    border-left: 5px solid #007BFF;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 4px;
+    display: none;
+    font-size: 1em;
+    color: #333;
+}
+
+#formattedAddress {
+    font-weight: bold;
+    color: #333;
+}
+
+#cep-link {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+#cep-link a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+#cep-link a:hover {
+    text-decoration: underline;
+}
+/* Estilo do rótulo de especialidades */
+#specialtiesLabel {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Estilo do campo de seleção (select) */
+#specialties {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #333;
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    height: 150px; /* Definir altura para permitir múltiplas seleções */
+    resize: vertical; /* Permite redimensionar o select verticalmente */
+    box-sizing: border-box;
+}
+
+/* Estilo de foco para o campo de especialidades */
+#specialties:focus {
+    border-color: #007BFF;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Estilo de cada opção no campo select */
+#specialties option {
+    padding: 8px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Estilo responsivo para dispositivos móveis */
+@media (max-width: 480px) {
+    #specialties {
+        font-size: 0.9em;
+    }
+
+    #specialtiesLabel {
+        font-size: 1.1em;
+    }
+}
+/* Estilo do rótulo de especialidades atuais */
+#currentSpecialties {
+    margin-top: 10px;
+}
+
+/* Estilo do container de especialidades atuais */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Estilo do título de especialidades atuais */
+#currentSpecialties label {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Estilo dos itens de especialidades */
+.specialty-item {
+    display: inline-flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #333;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Efeito de hover nos itens de especialidades */
+.specialty-item:hover {
+    background-color: #ddd;
+}
+
+/* Estilo do botão de remover (X) */
+.remove-specialty {
+    margin-left: 8px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito de hover no botão de remover */
+.remove-specialty:hover {
+    background-color: #c0392b;
+}
+
+/* Estilo responsivo para dispositivos móveis */
+@media (max-width: 480px) {
+    #currentSpecialties label {
+        font-size: 1.1em;
+    }
+
+    .specialty-item {
+        font-size: 0.9em;
+        padding: 6px 10px;
+    }
+
+    .remove-specialty {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+    }
+}
