@@ -11,15 +11,17 @@ body {
     background-color: #f4f4f9;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Alinhando ao topo da tela */
     height: 100vh;
     margin: 0;
+    padding-top: 10px; /* Ajusta o espaço do topo, se necessário */
 }
 
 /* Container do formulário */
 .container {
     background-color: white;
     padding: 20px;
+    margin-top: 100px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -27,7 +29,33 @@ body {
     box-sizing: border-box;
 }
 
-/* Cabeçalho do formulário */
+/* Container do botão de voltar */
+.back-button-container {
+    text-align: center;  /* Centraliza o botão */
+    margin-bottom: 10px;  /* Diminui o espaço abaixo do botão */
+    margin-top: 0; /* Remover qualquer margem superior para o botão */
+}
+
+/* Estilo do botão de voltar */
+#backButton {
+    width: auto; /* Deixe o tamanho do botão ajustado ao conteúdo */
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin: 0 auto; /* Centraliza o botão */
+    text-align: center;
+}
+
+#backButton:hover {
+    background-color: #45a049;
+}
+
+
 h2 {
     text-align: center;
     margin-bottom: 20px;
