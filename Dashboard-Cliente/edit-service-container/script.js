@@ -1,24 +1,40 @@
-// Função para carregar os detalhes do serviço no formulário
+function formatCEP(cep) {
+  // Remove todos os caracteres não numéricos
+  cep = cep.replace(/\D/g, '');
+
+  // Adiciona o hífen, se necessário
+  if (cep.length > 5) {
+    cep = cep.substring(0, 5) + '-' + cep.substring(5, 8);
+  }
+
+  return cep;
+}
+
+document.getElementById("service-cep").addEventListener("input", (e) => {
+  const cepInput = e.target;
+  cepInput.value = formatCEP(cepInput.value);  // Formata o valor do campo enquanto digita
+});
+
 async function loadServiceDetails() {
-  const urlParams = new URLSearchParams(window.location.search); // Recupera os parâmetros da URL
-  const serviceId = urlParams.get('id'); // Extrai o valor do parâmetro 'id'
+  const urlParams = new URLSearchParams(window.location.search);
+  const serviceId = urlParams.get('id');
 
   if (!serviceId) {
     console.error("Service ID não encontrado na URL.");
     alert("ID do serviço não encontrado na URL.");
-    return; // Retorna caso o serviceId não seja encontrado
+    return;
   }
 
   try {
-    const token = localStorage.getItem("authToken"); // Corrigido para a chave correta
+    const token = localStorage.getItem("authToken");
     if (!token) {
       throw new Error("Token não encontrado. Faça login novamente.");
     }
-    
+
     const response = await fetch(`http://localhost:8080/api/services/${serviceId}`, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${token}`, // Adiciona o token de autenticação
+        "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json"
       }
     });
@@ -33,21 +49,24 @@ async function loadServiceDetails() {
       throw new Error("Erro ao carregar os detalhes do serviço");
     }
 
-    // Quando a resposta for bem-sucedida, tenta fazer o parse do JSON
     const service = await response.json();
 
     // Preenche os campos do formulário com os dados do serviço
     document.getElementById("service-name").value = service.name || '';
     document.getElementById("service-description").value = service.description || '';
-    document.getElementById("service-location").value = service.location || '';
     document.getElementById("service-specialty").value = service.specialty || '';
-  
-  
+    
+    // Se já tiver um endereço atribuído, exibe no campo de localização
+    if (service.location) {
+      document.getElementById("service-location").value = service.location;
+    }
+
   } catch (error) {
     console.error("Erro ao carregar os detalhes do serviço:", error);
     alert("Erro ao carregar os detalhes do serviço. Tente novamente.");
   }
 }
+
 
 
 // Função para salvar as alterações no serviço
@@ -96,20 +115,18 @@ async function saveServiceChanges(serviceId) {
 // Chama a função para carregar os detalhes do serviço ao carregar a página
 window.onload = loadServiceDetails;
 
-// Função chamada quando a página carrega
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const serviceId = urlParams.get('id'); // Pega o ID do serviço da URL
+  const serviceId = urlParams.get('id');
   if (!serviceId) {
     console.error("Service ID não encontrado na URL.");
     alert("ID do serviço não encontrado na URL.");
     return;
   }
   
-  // Lidar com o envio do formulário
   document.getElementById("edit-service-form").addEventListener("submit", (e) => {
-    e.preventDefault(); // Previne o envio padrão
-    saveServiceChanges(serviceId);  // Salva as alterações
+    e.preventDefault();
+    saveServiceChanges(serviceId);  
   });
 });
 
@@ -117,9 +134,9 @@ function cancelEdit() {
   // Redireciona para a página de lista de serviços (ou página anterior)
     window.location.href = "../index.html";
 }
-// Função para buscar o endereço usando o ViaCEP
+
 async function fetchAddress() {
-  const cep = document.getElementById("service-cep").value.replace(/\D/g, ''); // Remove qualquer caractere não numérico
+  let cep = document.getElementById("service-cep").value.replace(/\D/g, ''); // Remove o hífen, se houver
 
   if (cep.length !== 8) {
     alert("Por favor, insira um CEP válido com 8 dígitos.");

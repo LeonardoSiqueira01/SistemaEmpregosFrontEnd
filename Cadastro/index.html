@@ -98,18 +98,32 @@
             <option value="Web developer (desenvolvedor de sites)">Web developer (desenvolvedor de sites)</option>
             <option value="Zelador">Zelador</option>
           </select>
-          
-          
-          <label for="location" id="locationLabel" style="display: none;">Sua localização (CEP):</label>
-<input type="text" id="location" name="location" placeholder="Digite seu CEP" style="display: none;" required>
 
-<div id="addressOutput" style="display: none;">
-  <p><strong>Seu endereço:</strong> <span id="formattedAddress"></span></p>
-</div>
 
-<p id="cep-link">
-  <a href="https://buscacepinter.correios.com.br/app/localidade_logradouro/index.php" target="_blank">Não sabe seu endereço? Pesquise aqui seu CEP.</a>
-</p>
+                      <div id="locationContainer" style="display: none; justify-content: flex-start; align-items: center; width: 100%; flex-wrap: wrap;">
+                        <label for="location" id="locationLabel" style="margin-right: 10px; display: inline-block;">Endereço:</label>
+            <input type="text" id="location" name="location" placeholder="Digite o CEP abaixo para preencher este campo" style="display: inline-block; flex-grow: 1; border: none; background: none; outline: none;" readonly>
+                      </div>
+                      
+          
+                      <div id="addressOutput" style="display: none;">
+                        <p><strong>Seu endereço a ser salvo:</strong> <span id="formattedAddress"></span></p>
+                      </div>
+            
+            
+
+                    <!-- Contêiner para o campo de CEP e o botão -->
+            <div id="locationContainer" style="display: none; display: flex; align-items: center; gap: 10px;">
+              <label for="cep" style="display: none;" id="cepLabel">CEP:</label>
+              <input type="text" style="display: none;" id="cep" name="cep" placeholder="Digite seu CEP" required>
+              <button type="button" style="display: none;" id="buscarEnderecoBtn">Buscar Endereço</button>
+            </div>
+
+
+
+            <p id="cep-link">
+              <a href="https://buscacepinter.correios.com.br/app/localidade_logradouro/index.php" target="_blank">Não sabe seu endereço? Pesquise aqui seu CEP.</a>
+            </p>
 
           
           <p class="texto"><a href="../Login/index.html">Já possui uma conta?</a></p>

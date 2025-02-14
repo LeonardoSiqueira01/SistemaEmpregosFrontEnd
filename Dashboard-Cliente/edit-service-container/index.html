@@ -26,19 +26,20 @@
         <textarea id="service-description" name="description" required placeholder="Digite a descrição do serviço"></textarea>
       </div>
 
-      <!-- Localização do Serviço -->
-      <div class="form-group">
-        <label for="service-location">Localização</label>
-        <input type="text" id="service-location" name="location" required placeholder="Digite a localização" />
-      </div>
+   <!-- Localização do Serviço -->
+<div class="form-group">
+  <label for="service-location">Localização</label>
+  <input type="text" id="service-location" name="location" required placeholder="Digite a localização" readonly />
+</div>
 
-      <!-- CEP para Atualização de Endereço -->
-      <div class="form-group">
-        <label for="service-cep">CEP</label>
-        <input type="text" id="service-cep" name="cep" maxlength="8" placeholder="Digite o CEP" />
-        <p class="help-text">Caso queira alterar o endereço, insira um novo CEP e clique em "Buscar Endereço".</p>
-        <button type="button" onclick="fetchAddress()">Buscar Endereço</button>
-      </div>
+<!-- CEP para Atualização de Endereço -->
+<div class="form-group">
+  <label for="service-cep">CEP</label>
+  <input type="text" id="service-cep" name="cep" maxlength="9" placeholder="Digite o CEP" />
+  <p class="help-text">Caso queira alterar o endereço, insira um novo CEP e clique em "Buscar Endereço".</p>
+  <button type="button" onclick="fetchAddress()">Buscar Endereço</button>
+</div>
+
 
       <div class="form-group">
         <label for="service-specialty">Especialidade</label>

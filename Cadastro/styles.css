@@ -371,3 +371,48 @@ select[multiple]:focus {
 .specialties-select option {
   margin-bottom: 5px;
 }
+/* Alinha o container de Endereço como flex */
+#locationContainer {
+  display: flex;
+  align-items: center; /* Alinha o conteúdo verticalmente no centro */
+  gap: 10px; /* Adiciona espaço entre o label e o input */
+}
+
+#locationLabel {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+  margin: 0; /* Remove margens extras */
+}
+
+#location {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1.1rem;
+  background-color: #fff;
+  color: #333;
+  width: auto; /* A largura do input pode ser automática para se ajustar ao conteúdo */
+  flex-grow: 1; /* Faz o input ocupar o restante do espaço disponível */
+}
+ /* Contêiner de localização com flexbox */
+#locationContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adiciona um espaço entre o campo e o botão */
+}
+
+/* Se necessário, ajuste a largura dos elementos */
+#cep {
+  width: 150px; /* Ajuste conforme necessário */
+}
+
+#buscarEnderecoBtn {
+  padding: 1rem 1rem;
+}
+
+/* Efeito de destaque para o campo de localização */
+#location.highlight {
+  transition: background-color 0.5s ease-in-out; /* Transição suave */
+  background-color: #e0ffe0; /* Cor de fundo para destacar */
+}

@@ -2,38 +2,90 @@ document.getElementById("userType").addEventListener("change", function() {
   const userType = this.value;
   const specialtiesField = document.getElementById("specialties");
   const specialtiesLabel = document.getElementById("specialtiesLabel");
-  const locationField = document.getElementById("location");
-  const locationLabel = document.querySelector('label[for="location"]');
-  const cepLink = document.getElementById("cep-link");
-  const addressOutput = document.getElementById("addressOutput"); // Adicionado para controlar a exibição do endereço formatado
-  const userTypeField = document.getElementById("userType");
-  const homeScreen = document.querySelector(".home");
+  const locationContainer = document.getElementById("locationContainer");
+  const cepField = document.getElementById("cep");
+  const buscarEnderecoBtn = document.getElementById("buscarEnderecoBtn");
+  const locationLabel = document.getElementById("locationLabel");  // Pega o rótulo de localização
 
-  homeScreen.style.display = "block";
-  
-
+  // Verifica se o tipo de usuário é 'profissional'
   if (userType === "profissional") {
-    specialtiesField.style.display = "block"; // Mostra o campo de especialidades
-    specialtiesLabel.style.display = "block"; // Mostra o label de especialidades
-    locationField.style.display = "block"; // Mostra o campo de localização
-    locationLabel.style.display = "block"; // Mostra o label de localização
-    locationField.required = true; // Torna o campo de localização obrigatório
-    cepLink.style.display = "block"; // Garante que o link seja visível para profissionais
-    userTypeField.style.display = "block";  
-    // Verifica se o campo de localização já está validado
-    if (locationField.dataset.validated === "true") {
-      addressOutput.style.display = "block"; // Exibe o endereço formatado se já estiver validado
-    } else {
-      addressOutput.style.display = "none"; // Esconde o endereço até que seja validado novamente
-    }
+    // Exibe os campos relevantes para profissionais
+    specialtiesField.style.display = "block";
+    specialtiesLabel.style.display = "block";
+    cepField.style.display = "inline-block"; // Torna o campo de input visível
+buscarEnderecoBtn.style.display = "inline-block"; // Torna o botão visível
+
+    // Torna o container de localização visível e usa display flex para alinha-los corretamente
+    locationContainer.style.display = "flex";  // Mudando para 'flex'
+    locationContainer.style.alignItems = "center";  // Alinha verticalmente os itens no centro
+    locationContainer.style.justifyContent = "flex-start";  // Garante que os itens fiquem alinhados à esquerda
+    
+    // Configura o label e o input para que fiquem alinhados na mesma linha
+    locationLabel.style.marginRight = "10px";  // Adiciona margem entre o rótulo e o input
+    locationLabel.style.flexShrink = "0";  // Impede que o rótulo encolha
+
+    locationContainer.querySelector('input').style.display = "inline-block"; // Torna o campo de input visível
+    locationContainer.querySelector('input').required = true; // Torna o campo obrigatório
+    locationContainer.querySelector('input').readOnly = true; // Impede a edição manual do campo de localização
+
+    // Exibe os campos de CEP e o botão de buscar endereço
+    cepField.style.display = "inline-block";
+    buscarEnderecoBtn.style.display = "inline-block";
   } else {
-    specialtiesField.style.display = "none"; // Esconde o campo de especialidades
-    specialtiesLabel.style.display = "none"; // Esconde o label de especialidades
-    locationField.style.display = "none"; // Esconde o campo de localização
-    locationLabel.style.display = "none"; // Esconde o label de localização
-    locationField.required = false; // Remove a obrigatoriedade do campo de localização
-    cepLink.style.display = "none"; // Oculta o link de CEP para clientes
-    addressOutput.style.display = "none"; // Oculta o endereço formatado para clientes
+    // Esconde todos os campos relacionados ao profissional
+    specialtiesField.style.display = "none";
+    specialtiesLabel.style.display = "none";
+    locationContainer.style.display = "none"; // Esconde o campo de localização para o cliente
+    locationContainer.querySelector('input').style.display = "none"; // Esconde o campo de input de localização
+    cepField.style.display = "none";
+    buscarEnderecoBtn.style.display = "none";
+  }
+});
+
+
+document.getElementById("cep").addEventListener("input", function() {
+  let cep = this.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+  if (cep.length > 5) {
+    cep = cep.slice(0, 5) + '-' + cep.slice(5, 8); // Adiciona o hífen após o 5º caractere
+  }
+  this.value = cep; // Atualiza o valor no campo de input
+});
+
+
+
+document.getElementById("buscarEnderecoBtn").addEventListener("click", function() {
+  let cep = document.getElementById("cep").value.replace(/\D/g, ''); // Remove o hífen e outros caracteres não numéricos
+
+  if (cep.length === 8) {
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.erro) {
+          const address = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+          
+          // Atualiza o campo de localização com o endereço completo
+          document.getElementById("location").value = address;
+
+          // Adiciona o efeito de destaque no campo de localização
+          document.getElementById("location").classList.add("highlight");
+
+          // Opcional: Remover a classe de destaque após algum tempo (ex: 1 segundo)
+          setTimeout(function() {
+            document.getElementById("location").classList.remove("highlight");
+          }, 1000); // 1000 ms = 1 segundo
+
+          // Exibe o endereço formatado
+          document.getElementById("formattedAddress").textContent = address;
+          document.getElementById("addressOutput").style.display = "block"; // Exibe o endereço
+        } else {
+          alert('CEP não encontrado. Verifique e tente novamente.');
+        }
+      })
+      .catch(() => {
+        alert('Erro ao buscar o CEP. Verifique sua conexão ou o formato do CEP.');
+      });
+  } else {
+    alert('Formato de CEP inválido.');
   }
 });
 
@@ -41,34 +93,32 @@ document.getElementById("userType").addEventListener("change", function() {
 
 
 function validateForm({ email, password, specialties, userType, location }) {
-  // Regex para validar e-mail
+  // Validação do e-mail
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  // Verificar se o e-mail é válido
   if (!emailRegex.test(email)) {
     alert("Por favor, insira um e-mail válido.");
     return false;
   }
 
-  // Verificar se a senha tem pelo menos 6 caracteres
+  // Validação da senha
   if (password.length < 6) {
     alert("A senha deve ter pelo menos 6 caracteres.");
     return false;
   }
 
-  // Se for profissional, garantir que pelo menos uma especialidade seja selecionada
+  // Validação das especialidades (se for profissional)
   if (userType === "profissional" && specialties.length === 0) {
     alert("Por favor, selecione pelo menos uma especialidade.");
     return false;
   }
 
-  // Se for profissional, garantir que a localização seja preenchida
+  // Validação da localização (se for profissional)
   if (userType === "profissional" && !location) {
     alert("Por favor, insira sua localização.");
     return false;
   }
 
-  return true;  // Tudo validado
+  return true;
 }
 
 document.getElementById("registerForm").addEventListener("submit", async (event) => {
@@ -78,23 +128,23 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  const location = document.getElementById("location").value;  // Localização (agora com o endereço completo)
+  const location = document.getElementById("location").value;
 
   const specialtiesSelect = document.getElementById("specialties");
-  const specialties = Array.from(specialtiesSelect.selectedOptions).map(option => option.value).join("; "); // Juntar as especialidades em uma string separada por vírgulas
+  const specialties = Array.from(specialtiesSelect.selectedOptions).map(option => option.value).join("; ");
   
-  // Criar o payload com as especialidades como uma string
   const payload = {
     user: {
       name,
       email,
       password,
     },
-    specialties: userType === "profissional" ? specialties : null, // Usar a string de especialidades ou null
-    location: userType === "profissional" ? location : null,  // Apenas adiciona localização para profissionais (endereço completo)
+    specialties: userType === "profissional" ? specialties : null,
+    location: userType === "profissional" ? location : null,
     userType: userType,
   };
-  
+
+  // Validação do formulário
   if (!validateForm({ email, password, specialties, userType, location })) return;
   
   try {
@@ -105,20 +155,21 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
       },
       body: JSON.stringify(payload),
     });
-  
+
     if (registerResponse.ok) {
       alert("Cadastro realizado! Um código foi enviado ao seu e-mail.");
       document.getElementById("registerForm").reset();
       toggleScreens("verificationScreen");
     } else {
       const errorText = await registerResponse.text();
-      alert(`Erro no cadastro: ${errorText}`);  
+      alert(`Erro no cadastro: ${errorText}`);
     }
   } catch (err) {
     alert("Erro ao se conectar com o servidor.");
     console.error(err);
   }
 });
+
 
 
 document.getElementById("verificationForm").addEventListener("submit", async (event) => {
@@ -153,16 +204,15 @@ function toggleScreens(screenId) {
   document.getElementById(screenId).style.display = "block";
 }
 
-
 document.getElementById("location").addEventListener("blur", function() {
   const cepField = this;
   const cep = cepField.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-  const validated = cepField.dataset.validated; // Recupera o indicador de validação
-
-  if (validated === "true") return; // Evita reprocessamento se o CEP já estiver validado
 
   if (cep.length === 8) {
-    // Fazer a requisição para a API de CEP
+    // Formatação do CEP com hífen
+    const formattedCep = cep.slice(0, 5) + '-' + cep.slice(5);
+    cepField.value = formattedCep; // Atualiza o campo com o CEP formatado
+
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then(response => response.json())
       .then(data => {
@@ -171,27 +221,26 @@ document.getElementById("location").addEventListener("blur", function() {
           const address = `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
           document.getElementById("formattedAddress").textContent = address;
           document.getElementById("addressOutput").style.display = "block"; // Exibe o endereço
-          
-          // Agora, preencher o campo 'location' com o endereço completo
-          cepField.value = address;  // Atualiza o campo 'location' com o endereço completo
-          cepField.dataset.validated = "true"; // Marca o campo como validado
+
+          // Atualiza o campo 'location' com o endereço completo
+          cepField.value = address;
         } else {
           alert('CEP não encontrado. Verifique e tente novamente.');
-          cepField.dataset.validated = "false"; // Reseta o indicador
         }
       })
       .catch(() => {
-        alert('Erro ao buscar o CEP. Verifique sua conexão.');
-        cepField.dataset.validated = "false"; // Reseta o indicador
+        alert('Erro ao buscar o CEP. Verifique sua conexão ou o formato do CEP.');
       });
+      
   } else {
     alert('Formato de CEP inválido.');
-    cepField.dataset.validated = "false"; // Reseta a validação
   }
 });
+
 
 
 // Quando o usuário alterar manualmente o campo, resetar o estado de validação
 document.getElementById("location").addEventListener("input", function() {
   this.dataset.validated = "false"; // Reseta a validação sempre que o usuário edita
 });
+
