@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="profile-card">
                     <p><strong>Nome:</strong> ${user.name}</p>
                     <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Especialidades:</strong> ${user.specialties}</p>
                     <p><strong>Total de Serviços Solicitados:</strong> ${user.totalServicesRequested}</p>
                     <p><strong>Total de Serviços Completados:</strong> ${user.totalServicesCompleted}</p>
                     <p><strong>Avaliação Média:</strong> ${user.averageRating}</p>

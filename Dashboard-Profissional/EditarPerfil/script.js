@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+    function isEmailValid(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Expressão regular para verificar o formato do e-mail
+        return emailRegex.test(email);
+    }
     // Função para carregar as especialidades existentes
     function loadSpecialties() {
         const specialtiesOptions = [
@@ -20,7 +25,26 @@ document.addEventListener("DOMContentLoaded", function() {
             "Translator (tradução)", "Veterinário", "Web designer", "Web developer (desenvolvedor de sites)", 
             "Zelador"
         ];
-
+       
+        document.getElementById('cep').addEventListener('input', function(event) {
+            let value = event.target.value;
+        
+            // Remove qualquer coisa que não seja número
+            value = value.replace(/\D/g, '');
+        
+            // Aplica o formato de CEP (xxxxx-xxx)
+            if (value.length > 5) {
+                value = value.slice(0, 5) + '-' + value.slice(5, 8);
+            }
+        
+            // Limita o tamanho do CEP a 9 caracteres
+            if (value.length > 9) {
+                value = value.slice(0, 9);
+            }
+        
+            event.target.value = value;
+        });
+        
         const specialtiesSelect = document.getElementById('specialties');
         specialtiesOptions.forEach(option => {
             const optElement = document.createElement('option');
@@ -29,10 +53,12 @@ document.addEventListener("DOMContentLoaded", function() {
             specialtiesSelect.appendChild(optElement);
         });
     }
+    function formatCep(cep) {
+        return formattedCep = cep.slice(0, 5) + '-' + cep.slice(5);    }
     
+
     loadProfileData();
 
-    // Função para exibir o endereço formatado após a consulta do CEP
     function showAddress(address) {
         const formattedAddressElement = document.getElementById("formattedAddress");
         const fullAddress = `${address.logradouro}, ${address.bairro} - ${address.localidade} / ${address.uf}`;
@@ -43,13 +69,12 @@ document.addEventListener("DOMContentLoaded", function() {
         // Atualiza o valor do campo "location" com o endereço completo
         document.getElementById("location").value = fullAddress;
     }
+    
 
     function fetchAddress(cep) {
-        // Remover qualquer caractere não numérico, incluindo o hífen
         const formattedCep = cep.replace(/\D/g, ''); // Remove caracteres não numéricos
-        
-        // Verificar se o CEP possui 8 dígitos após a remoção dos caracteres não numéricos
-        if (formattedCep.length === 8) { // Para 8 dígitos válidos
+    
+        if (formattedCep.length === 8) {  // Verifica se o CEP tem 8 dígitos
             fetch(`https://viacep.com.br/ws/${formattedCep}/json/`)
                 .then(response => response.json())
                 .then(data => {
@@ -65,10 +90,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     alert('Erro ao buscar o CEP.');
                 });
         } else {
-            // Se o CEP não tiver 8 caracteres após o tratamento, esconder o resultado
-            document.getElementById("addressOutput").style.display = "none";
+            document.getElementById("addressOutput").style.display = "none";  // Esconde os resultados se o CEP não for válido
         }
     }
+    
     
     document.getElementById("location").addEventListener("input", function(event) {
         const cep = event.target.value;
@@ -79,11 +104,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Função para carregar as especialidades atuais
+    document.getElementById("buscarEndereco").addEventListener("click", function() {
+        const cep = document.getElementById("cep").value.trim();
+        if (cep) {
+            fetchAddress(cep); // Realiza a busca do endereço
+        }
+    });
+
     function loadCurrentSpecialties() {
         const email = localStorage.getItem("email");
         const storedToken = localStorage.getItem("authToken");
-
+    
         fetch(`http://localhost:8080/api/professionals/${email}/specialties`, {
             method: 'GET',
             headers: {
@@ -94,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             let specialtiesArray = [];
             if (data.trim() !== '') {
-                specialtiesArray = data.split(';').map(item => item.trim());
+                specialtiesArray = data.split(';').map(item => item.trim()); // Aqui já está utilizando ponto e vírgula
             }
             displayCurrentSpecialties(specialtiesArray);  
         })
@@ -103,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
             alert('Erro ao carregar as especialidades.');
         });
     }
+    
 
     function loadProfileData() {
         const email = localStorage.getItem("email");
@@ -133,6 +165,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let specialtiesToRemove = []; // Lista para armazenar as especialidades removidas
 
+    function removeSpecialty(specialtyToRemove) {
+        specialtyToRemove = specialtyToRemove.trim();  // Remove espaços extras
+    
+        // Cria uma lista de especialidades, mantendo as compostas intactas
+        let specialties = [...document.querySelectorAll("#currentSpecialties span")]
+                                .map(span => span.textContent.replace('X', '').trim());
+    
+        // Filtra a lista para remover a especialidade exata (sem fragmentação)
+        specialties = specialties.filter(specialty => specialty !== specialtyToRemove);
+    
+        // Adiciona a especialidade removida à lista de especialidades a serem removidas
+        specialtiesToRemove.push(specialtyToRemove);
+    
+        // Atualiza a lista de especialidades no front-end
+        displayCurrentSpecialties(specialties);  
+    }
+    
+
+
     function displayCurrentSpecialties(currentSpecialties) {
         const currentSpecialtiesContainer = document.getElementById("currentSpecialties");
         currentSpecialtiesContainer.innerHTML = '';  // Limpa a lista antes de exibir novamente
@@ -159,77 +210,92 @@ document.addEventListener("DOMContentLoaded", function() {
         window.history.back();  // Volta para a página anterior
     });
 
-    // Atualizar a função de remoção de especialidades
-    function removeSpecialty(specialtyToRemove) {
-        specialtyToRemove = specialtyToRemove.trim();  // Remove espaços extras
-
-        // Cria uma lista de especialidades, mantendo as compostas intactas
-        let specialties = [...document.querySelectorAll("#currentSpecialties span")]
-                            .map(span => span.textContent.replace('X', '').trim());
-
-        // Filtra a lista para remover a especialidade exata (sem fragmentação)
-        specialties = specialties.filter(specialty => specialty !== specialtyToRemove);
-
-        // Adiciona a especialidade removida à lista de especialidades a serem removidas
-        specialtiesToRemove.push(specialtyToRemove);
-
-        // Atualiza a lista de especialidades no front-end
-        displayCurrentSpecialties(specialties);  
-    }
 
     document.getElementById("editProfileButton").addEventListener("click", function() {
         // Carregar os dados do perfil antes de fazer a validação
         loadProfileData();
+        const email = document.getElementById("email").value.trim();
+        if (!isEmailValid(email)) {
+            alert("Por favor, insira um e-mail válido.");
+            return;  // Impede o envio do formulário se o e-mail não for válido
+        }
 
         // Obter as especialidades selecionadas no momento
         const updatedSpecialties = [...document.querySelectorAll("#specialties option:checked")].map(option => option.value);
-
+    
         // Verificar se o campo de localização está vazio
         const location = document.getElementById("location").value.trim();
         if (!location) {
             alert("Por favor, insira um endereço válido.");
             return; // Impede a execução da função se o campo estiver vazio
         }
-
-        // Verificar se pelo menos uma especialidade foi selecionada
-        if (updatedSpecialties.length === 0 || updatedSpecialties.some(specialty => specialty.trim() === "")) {
+    
+        // Obter as especialidades atuais do perfil
+        const currentSpecialties = [...document.querySelectorAll("#currentSpecialties span")].map(span => span.textContent.trim());
+    
+        // Verificar se não há especialidades atuais no perfil e se nenhuma nova foi selecionada
+        if (currentSpecialties.length === 0 && updatedSpecialties.length === 0) {
             alert("Por favor, selecione pelo menos uma especialidade válida.");
-            return; // Impede a execução da função se não houver especialidades selecionadas
+            return; // Impede a execução da função se não houver especialidades selecionadas e nenhuma especialidade atual
         }
-
+    
         // Atualizar o perfil com as especialidades e localização
         updateProfileWithSpecialties(updatedSpecialties);
     });
+    
 
-    // Atualizar a função de envio para o backend
+    
+    document.getElementById("cep").addEventListener("input", function(event) {
+        let cep = event.target.value.replace(/\D/g, ''); // Remove qualquer caractere não numérico
+        if (cep.length > 5) {
+            cep = formatCep(cep);  // Aplica a formatação
+        }
+        event.target.value = cep;  // Atualiza o campo de entrada com o valor formatado
+    
+        if (cep.length === 10) {  // Se o CEP tiver 10 caracteres (incluindo o '-')
+            fetchAddress(cep);  // Realiza a busca do endereço
+        } else {
+            document.getElementById("addressOutput").style.display = "none";  // Esconde os resultados se o CEP não tiver 10 caracteres
+        }
+    });
+    
+
     function updateProfileWithSpecialties(specialties) {
         const name = document.getElementById("name").value;
-        const location = document.getElementById("location").value;  // Endereço completo
-
-        const email = localStorage.getItem("email");
+        const location = document.getElementById("location").value;
+        let email = document.getElementById("email").value;  // Pega o novo email diretamente do formulário
+    
         const storedToken = localStorage.getItem("authToken");
+        const currentEmail = localStorage.getItem("email");
 
-        if (!email || !storedToken) {
+        if (!currentEmail || !storedToken) {
             alert("Erro: Token de autenticação ou e-mail não encontrados.");
             return;
         }
-
+    
+        // Verifique se o email foi alterado, se sim, exiba a mensagem de confirmação
+       
+    
         // Limpeza das especialidades antes de enviar (remover espaços extras)
         const cleanedSpecialtiesToRemove = specialtiesToRemove.map(specialty => specialty.trim()).filter(Boolean);
         const cleanedSpecialties = specialties.map(specialty => specialty.trim()).filter(Boolean);
-
+    
+        // Garantir que as especialidades sejam separadas por ponto e vírgula
+        const specialtiesString = cleanedSpecialties.join(";");  // Para as especialidades
+        const specialtiesToRemoveString = cleanedSpecialtiesToRemove.join(";");  // Para as removidas
+    
         // Dados a serem enviados ao back-end
         const profileData = {
             name: name,
-            email: email,
+            email: email,  // Usa o email atualizado
             location: location,  // Endereço completo
-            specialtiesToRemove: cleanedSpecialtiesToRemove.join("; "),  // Especialidades removidas
-            specialties: cleanedSpecialties.join("; "),  // Especialidades restantes
+            specialtiesToRemove: specialtiesToRemoveString || '',  // Garante que seja uma string vazia caso esteja vazio
+            specialties: specialtiesString || '',
         };
-
+    
         console.log('Dados enviados para o back-end:', profileData);  // Para depuração
-
-        fetch(`http://localhost:8080/api/professionals/${email}/edit`, {
+    
+        fetch(`http://localhost:8080/api/professionals/${currentEmail}/edit`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -237,8 +303,26 @@ document.addEventListener("DOMContentLoaded", function() {
             },
             body: JSON.stringify(profileData)
         })
-        .then(response => response.text())
-        .then(data => {
+        .then(response => response.text().then(data => ({ status: response.status, data: data })))  // Inclui status e dados na mesma resposta
+        .then(({ status, data }) => {
+            if (status === 400 && data === "Este e-mail já está registrado em outra conta.") {
+                alert("Este e-mail já está registrado em outra conta.");
+                return;
+            }
+        
+            if (email !== currentEmail) {
+                const confirmChange = confirm("Tem certeza que deseja alterar o e-mail? Será necessário relogar.");
+                if (confirmChange) {
+                    console.log('Resposta da API:', data);
+                    alert('Perfil atualizado com sucesso!');
+                    window.location.href = "../../Login/index.html";
+                    return;  // Adiciona um "return" aqui para evitar que o código abaixo seja executado
+
+                } else {
+                    return;
+                }
+            }
+            
             console.log('Resposta da API:', data);
             alert('Perfil atualizado com sucesso!');
             window.history.back();  // Volta para a página anterior
@@ -246,8 +330,15 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => {
             alert('Erro ao atualizar o perfil: ' + error.message);
         });
+        
     }
+    
+    
+
+    
+
 
     loadSpecialties();
     loadCurrentSpecialties();
 });
+

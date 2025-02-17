@@ -5,7 +5,7 @@ document.getElementById("userType").addEventListener("change", function() {
   const locationContainer = document.getElementById("locationContainer");
   const cepField = document.getElementById("cep");
   const buscarEnderecoBtn = document.getElementById("buscarEnderecoBtn");
-  const locationLabel = document.getElementById("locationLabel");  // Pega o rótulo de localização
+  const locationLabel = document.getElementById("locationLabel");
 
   // Verifica se o tipo de usuário é 'profissional'
   if (userType === "profissional") {
@@ -13,16 +13,16 @@ document.getElementById("userType").addEventListener("change", function() {
     specialtiesField.style.display = "block";
     specialtiesLabel.style.display = "block";
     cepField.style.display = "inline-block"; // Torna o campo de input visível
-buscarEnderecoBtn.style.display = "inline-block"; // Torna o botão visível
+    buscarEnderecoBtn.style.display = "inline-block"; // Torna o botão visível
 
     // Torna o container de localização visível e usa display flex para alinha-los corretamente
-    locationContainer.style.display = "flex";  // Mudando para 'flex'
-    locationContainer.style.alignItems = "center";  // Alinha verticalmente os itens no centro
-    locationContainer.style.justifyContent = "flex-start";  // Garante que os itens fiquem alinhados à esquerda
+    locationContainer.style.display = "flex";
+    locationContainer.style.alignItems = "center";
+    locationContainer.style.justifyContent = "flex-start";
     
     // Configura o label e o input para que fiquem alinhados na mesma linha
-    locationLabel.style.marginRight = "10px";  // Adiciona margem entre o rótulo e o input
-    locationLabel.style.flexShrink = "0";  // Impede que o rótulo encolha
+    locationLabel.style.marginRight = "10px";
+    locationLabel.style.flexShrink = "0";
 
     locationContainer.querySelector('input').style.display = "inline-block"; // Torna o campo de input visível
     locationContainer.querySelector('input').required = true; // Torna o campo obrigatório
@@ -31,6 +31,10 @@ buscarEnderecoBtn.style.display = "inline-block"; // Torna o botão visível
     // Exibe os campos de CEP e o botão de buscar endereço
     cepField.style.display = "inline-block";
     buscarEnderecoBtn.style.display = "inline-block";
+
+    // Torna o campo de CEP obrigatório
+    cepField.required = true;
+
   } else {
     // Esconde todos os campos relacionados ao profissional
     specialtiesField.style.display = "none";
@@ -39,8 +43,12 @@ buscarEnderecoBtn.style.display = "inline-block"; // Torna o botão visível
     locationContainer.querySelector('input').style.display = "none"; // Esconde o campo de input de localização
     cepField.style.display = "none";
     buscarEnderecoBtn.style.display = "none";
+
+    // Torna o campo de CEP não obrigatório
+    cepField.required = false;
   }
 });
+
 
 
 document.getElementById("cep").addEventListener("input", function() {

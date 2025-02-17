@@ -93,6 +93,9 @@ input::placeholder {
     color: #bbb;
 }
 
+.form-group2{
+    margin-bottom: 50px;
+}
 /* Estilo do botão de submit */
 button {
     width: 100%;
@@ -196,11 +199,10 @@ button {
 #location {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
     font-size: 1em;
     color: #333;
     margin-bottom: 15px;
+    border: none;
 }
 
 #location:focus {
@@ -363,4 +365,175 @@ button {
         height: 18px;
         font-size: 10px;
     }
+}
+/* Estilos do formulário */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Alinhamento do campo CEP e botão de buscar */
+.cep-container {
+    display: flex;
+    justify-content: flex-end; /* Alinha à direita */
+    gap: 10px; /* Espaço entre o input e o botão */
+    width: 100%;
+}
+
+.cep-container input {
+    width: 70%; /* Ajusta a largura do input para não ocupar 100% */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    color: #333;
+}
+
+.cep-container button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.cep-container button:hover {
+    background-color: #0056b3;
+}
+
+.cep-container input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Estilo para o parágrafo que orienta o usuário */
+#cepInfo {
+    font-size: 14px;
+    color: #888;  /* Cor mais suave para o texto */
+    margin-top: 8px;  /* Distância entre o campo de localização e o parágrafo */
+    line-height: 1.5;
+    font-style: italic;
+    text-align: left;  /* Alinha o texto ao centro */
+}
+
+#cepInfo:hover {
+    color: #0056b3; /* Altera a cor do texto quando o usuário passa o mouse sobre ele */
+    cursor: pointer; /* Mostra um cursor de ponteiro indicando que o texto pode ser clicado */
+}
+/* Estilo geral do formulário */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Estilos de campos de entrada */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+.form-input:disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+/* Estilo do botão */
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    width: 50%;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para o parágrafo de informação sobre CEP */
+.form-info {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.form-info:hover {
+    color: #0056b3;
+    cursor: pointer;
+}
+
+/* Estilo para o contêiner das especialidades */
+.specialties-container {
+    margin-top: 10px;
+}
+
+.specialty {
+    display: inline-block;
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin: 5px;
+    font-size: 14px;
+    color: #333;
+    position: relative;
+}
+
+.specialty .remove-specialty {
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 12px;
+    border: none;
+    border-radius: 50%;
+    padding: 0 5px;
+    cursor: pointer;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+.specialty .remove-specialty:hover {
+    background-color: #c82333;
+}
+
+/* Estilo para mostrar o endereço */
+.address-output {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+}
+
+.address-output p {
+    margin: 0;
 }

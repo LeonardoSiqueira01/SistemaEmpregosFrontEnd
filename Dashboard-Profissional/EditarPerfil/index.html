@@ -27,16 +27,29 @@
             <select id="specialties" name="specialties" multiple>
                 <!-- As opções de especialidades serão inseridas dinamicamente aqui -->
             </select>
-
+            
             <div class="form-group">
                 <label for="currentSpecialties">Especialidades Atuais (remover clicando):</label>
                 <div id="currentSpecialties">
                 </div>
             </div>
-
-            <label for="location" id="locationLabel">Sua localização (CEP):</label>
-            <input type="text" id="location" name="location" placeholder="Digite seu CEP" required>
             
+            <label for="location" id="locationLabel" class="form-label">Sua localização (CEP):</label>
+            <input type="text" id="location" name="location" placeholder="Endereço será preenchido automaticamente" disabled class="form-input">
+                
+            <p id="cepInfo" class="form-info">Digite um novo CEP abaixo caso queira alterar sua localização</p>
+            
+            <div class="form-group">
+                <label for="cep" class="form-label">CEP:</label>
+                <div class="cep-container">
+                    <input type="text" id="cep" name="cep" placeholder="Digite um novo CEP" required class="form-input" pattern="\d{5}-\d{3}" title="O CEP deve seguir o formato 12345-678">
+                    <button type="button" id="buscarEndereco" class="btn">Buscar Endereço</button>
+                </div>
+            </div>
+            
+            <div id="addressOutput" class="address-output" style="display: none;">
+                <p><strong>Seu endereço:</strong> <span id="formattedAddress"></span></p>
+            </div>
             
 
 <div id="addressOutput" style="display: none;">
