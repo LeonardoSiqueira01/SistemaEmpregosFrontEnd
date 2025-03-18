@@ -142,10 +142,12 @@ button:hover {
 .texto {
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 10px;
+
 }
 
 .texto a {
-  color: #2e3b4e;
+  color: #466ea7;
   text-decoration: none;
 }
 
