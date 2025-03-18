@@ -1,33 +1,43 @@
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px; /* Tamanho de fonte base */
+    line-height: 1.5; /* Melhora o espaçamento entre as linhas */
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;}
+
 /* Estilos para o container */
 .container {
-    max-width: 600px;
-    margin: 0 auto;
+    width: 400px;
     padding: 20px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 2%;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Título */
-h1 {
+h2 {
     text-align: center;
-    color: #333;
-    font-size: 24px;
     margin-bottom: 20px;
+    color: #2e3b4e;
 }
 
 /* Estilos para o formulário */
 form {
     display: flex;
     flex-direction: column;
+    margin-right: 30px;
 }
 
 /* Estilos para os labels */
 label {
-    font-size: 14px;
+    font-size: 18px;
     margin-bottom: 8px;
-    color: #555;
-    font-weight: 600;
+  
 }
 
 /* Estilos para os inputs e textarea */
@@ -104,6 +114,62 @@ button[type="button"]:hover {
     color: green;
     background-color: #d4edda;
 }
+header {
+    background-color: #2e3b4e;
+    padding: 20px 0;
+}
+header .logo h1{
+  text-align: left;
+  padding-left: 7.5%;
+  color: white;
+  margin: 0px;
+}
+header a{
+    text-decoration: none; /* Remove o sublinhado */
+    color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
+  }
+  footer {
+    background-color: #2e3b4e;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    margin-top: auto; /* Empurra o footer para o final */
+}
+
+footer p {
+    margin: 0;
+}
+/* Estilos para o container dos botões */
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Cria um espaçamento entre os botões */
+    gap: 10px; /* Espaçamento entre os botões */
+    margin-top: 20px; /* Adiciona um espaçamento superior para os botões */
+}
+
+/* Estilos para os botões dentro do container */
+.button-container button {
+    flex: 1; /* Faz com que os botões ocupem o mesmo tamanho de espaço */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Estilos para os botões, inclusive o hover */
+.button-container button:hover {
+    background-color: #45a049;
+}
+
+.button-container button[type="button"] {
+    background-color: #f44336;
+}
+
+.button-container button[type="button"]:hover {
+    background-color: #e53935;
+}
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -126,7 +192,7 @@ button[type="button"]:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
-    font-size: 14px;
+    font-size: 18px;
     color: #333;
     font-family: Arial, sans-serif;
     transition: border-color 0.3s ease;

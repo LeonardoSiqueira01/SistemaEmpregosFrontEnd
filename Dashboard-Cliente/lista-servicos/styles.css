@@ -246,8 +246,58 @@ button:hover {
   .edit-btn:hover {
     background-color: #FFC107; /* Amarelo dourado mais escuro para o hover */
   }
+  header {
+    background-color: #2e3b4e;
+    padding: 20px 0;
+}
+header .logo h1{
+  text-align: left;
+  padding-left: 7.5%;
+}
+header a{
+    text-decoration: none; /* Remove o sublinhado */
+    color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
+  }
+  footer {
+    background-color: #2e3b4e;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    margin-top: auto; /* Empurra o footer para o final */
+}
 
+footer p {
+    margin: 0;
+}
 
+.no-services-message {
+  background-color: #f9f9f9;   /* Cor de fundo suave */
+  padding: 20px;                /* Espaçamento interno */
+  border: 1px solid #e0e0e0;    /* Borda fina cinza */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  text-align: center;           /* Centraliza o texto */
+  font-size: 1.2rem;            /* Tamanho da fonte */
+  color: #333;                  /* Cor do texto */
+  width: 80%;                   /* Largura de 80% da tela */
+  margin: 20px auto;            /* Centraliza a caixa */
+  white-space: nowrap;          /* Impede a quebra de linha */
+  overflow: hidden;             /* Impede que o texto transborde */
+  text-overflow: ellipsis;      /* Adiciona reticências se o texto for maior que o espaço disponível */
+  animation: fadeIn 0.5s ease-out; /* Efeito de fade-in */
+}
+
+/* Animação para aparecer suavemente */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 
 /* Inicialmente escondido */

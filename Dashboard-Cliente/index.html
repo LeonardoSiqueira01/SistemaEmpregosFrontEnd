@@ -7,14 +7,33 @@
         <link rel="stylesheet" href="../Dashboard-Cliente/styles.css">
     </head>
     <body>
+        
         <header>
-            <h1>Bem-vindo ao Dashboard Cliente</h1>
-            <div id="user-info">
-                <p id="welcome-message"></p>
-                <button id="logout">Sair</button>
-            </div>
+            <nav>
+                <div class="logo">
+                    <a href="../Tela inicial/index.html">
+                        <h1>Serviços Temporários </h1>
+                    </a>
+                </div>
+            </nav>
         </header>
+        
+        
+      <nav class="menu-opcoes">
+  <ul>
+    <li><a href="../Dashboard-Cliente/lista-servicos/index.html" id="list-services">Listar Serviços</a></li>
+    <li><a href="../Dashboard-Cliente/createServices/createService.html" id="create-service">Cadastrar Novo Serviço</a></li>
+    <li><a href="../Dashboard-Cliente/procurarProfissionais/index.html" id="search-professionals" aria-label="Encontrar profissionais">Encontrar Profissionais</a></li>
 
+</ul>
+<button id="logout">Deslogar</button>
+
+</nav>
+
+        <div id="user-info">
+            <h1>Seja bem-vindo, o que deseja fazer hoje?</h1>
+            <p id="welcome-message"></p>
+        </div>
         <section id="client-summary" class="client-summary">
             <h2>Olá, <span id="client-name">Nome do Cliente</span>!</h2>
             <div class="summary-stats">
@@ -25,14 +44,10 @@
         </section>
         
 
-        <nav>
-            <ul>
-                <li><a href="../Dashboard-Cliente/lista-servicos/index.html" id="list-services">Listar Serviços</a></li>
-                <li><a href="../Dashboard-Cliente/createServices/createService.html" id="create-service">Cadastrar Novo Serviço</a></li>
-                <li><a href="../Dashboard-Cliente/procurarProfissionais/index.html" id="search-professionals" aria-label="Encontrar profissionais">Encontrar Profissionais</a></li>
-            </ul>
-        </nav>
-
+     
+    <footer>
+        <p>&copy; 2025 Sistema de Serviços Temporários. Todos os direitos reservados.</p>
+    </footer>
         <script src="../Dashboard-Cliente/script.js"></script>
     </body>
     </html>

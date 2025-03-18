@@ -1,10 +1,12 @@
-/* Estilo básico para a página */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f9;
     margin: 0;
     padding: 0;
     color: #333;
+    display: flex; /* Usando flexbox */
+    flex-direction: column; /* Colocando elementos em coluna */
+    min-height: 100vh; /* Garantindo que o body ocupe pelo menos 100% da altura da tela */
 }
 
 /* Container principal */
@@ -12,9 +14,35 @@ body {
     width: 80%;
     margin: 30px auto;
 }
-
-/* Cabeçalho */
 header {
+    background-color: #2e3b4e;
+    padding: 20px 0;
+}
+header .logo a{
+  text-align: left;
+  padding-left: 7.5%;
+  color: white;
+  margin: 0px;
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
+}
+header h1{
+    color: white;
+  }
+  footer {
+    background-color: #2e3b4e;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    margin-top: auto; /* Empurra o footer para o final */
+}
+
+footer p {
+    margin: 0;
+}
+/* Cabeçalho */
+.head {
     display: flex;
     justify-content: space-between;
     align-items: center;

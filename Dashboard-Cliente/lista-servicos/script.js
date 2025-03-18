@@ -63,9 +63,13 @@ async function listServices(specialty = '') {
       const services = await response.json();
 
       if (services.length === 0) {
-        servicesContainer.innerHTML = "<p>Nenhum serviço encontrado.</p>";
+        const noServicesMessage = document.createElement('p');
+        noServicesMessage.classList.add('no-services-message'); // Aplica o estilo moderno com borda e sombra
+        noServicesMessage.textContent = "Nenhum serviço encontrado."; 
+        servicesContainer.appendChild(noServicesMessage);  // Adiciona a mensagem ao container
         return;
       }
+      
 
       
 // Renderizar os serviços na página

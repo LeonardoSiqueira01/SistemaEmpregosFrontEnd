@@ -1,418 +1,230 @@
-/* Estilos globais */
-body {
-  font-family: 'Roboto', sans-serif;
+/* Resetando alguns estilos padrões do navegador */
+* {
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f4f6f9;
+  box-sizing: border-box;
 }
 
-.container {
+/* Corpo da página */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  background: #fff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 800px; /* Aumenta a largura para telas maiores */
-  transition: transform 0.3s ease;
+  min-height: 100vh;
 }
 
-.container:hover {
-  transform: translateY(-5px);
+/* Header e navegação */
+header {
+  background-color: #2e3b4e;
+  padding: 20px 0;
 }
 
-.home {
+header a{
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
+}
+#cep-link{
   text-align: center;
-  display: block;  
+}
+nav {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h1 {
+  color: #fff;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.menu-bar {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.menu-bar li {
+  font-size: 16px;
+}
+
+.menu-bar li a {
+  color: #f1f1f1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.menu-bar li a:hover {
+  color: #ff7b00;
+}
+
+/* Container de cadastro */
+.container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+/* Tela inicial */
+.home {
+  margin-top: 50px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .home h1 {
-  font-size: 2.8rem; /* Ajuste para telas maiores */
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 1rem;
+  font-size: 36px;
+  color: #2e3b4e;
 }
 
 .home p {
-  font-size: 1.2rem;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 2rem;
+  font-size: 18px;
+  color: #555;
 }
 
-/* Estilos do formulário */
+/* Formulário de cadastro */
 .form-container {
-  padding: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  margin-left: 7%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
 }
 
 .form-container h2 {
-  margin-bottom: 1.5rem;
-  font-size: 2rem; /* Ajuste para telas maiores */
   text-align: center;
-  color: #333;
-  font-weight: 600;
+  margin-bottom: 20px;
+  color: #2e3b4e;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.form-container label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
 }
 
-form label {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #333;
-}
-
-form input,
-form select,
-form button {
-  padding: 1rem;
+.form-container select,
+.form-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1.1rem; /* Aumenta o tamanho da fonte */
-  outline: none;
-  transition: border-color 0.3s ease;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
-form input:focus,
-form select:focus,
-form button:focus {
-  border-color: #4caf50;
-}
-
-form button {
-  background: #4caf50;
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2e3b4e;
   color: white;
-  cursor: pointer;
   border: none;
-  font-size: 1.2rem; /* Aumenta o tamanho da fonte do botão */
-  padding: 1.2rem;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
-  border-radius: 8px;
 }
 
-form button:hover {
-  background: #45a049;
+button:hover {
+  background-color: #ff7b00;
 }
 
-#specialtiesLabel,
-#locationLabel {
-  font-size: 1.1rem;
-  color: #333;
-  font-weight: 500;
-  margin-top: 1rem;
-}
-
-#specialties,
-#location {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  color: #333;
-  transition: border-color 0.3s ease;
-}
-
-#specialties:focus,
-#location:focus {
-  border-color: #4caf50;
-}
-
-select[multiple] {
-  width: 100%;
-  height: 200px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  padding: 0.8rem;
-  font-size: 1.1rem; /* Aumenta a fonte do select */
-  background-color: #fff;
-  transition: border-color 0.3s ease;
-}
-
-select[multiple]:focus {
-  border-color: #4caf50;
-}
-
-#addressOutput {
-  display: none;
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: #f4f6f9;
-  border-radius: 8px;
-}
-
-#cep-link {
-  display: none;
+.texto {
   text-align: center;
+  margin-top: 10px;
 }
 
-#cep-link a {
-  font-size: 1rem;
-  color: #4caf50;
+.texto a {
+  color: #2e3b4e;
   text-decoration: none;
 }
 
-#cep-link a:hover {
+.texto a:hover {
   text-decoration: underline;
 }
 
-/* Estilos de verificação */
+/* Rodapé */
+footer {
+  background-color: #2e3b4e;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+}
+/* Tela de verificação */
 #verificationScreen {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
   text-align: center;
 }
 
 #verificationScreen h2 {
-  margin-bottom: 1rem;
-  font-size: 2rem;
-  color: #333;
+  font-size: 24px;
+  color: #2e3b4e;
+  margin-bottom: 20px;
 }
 
-#verificationScreen form {
-  margin-top: 1rem;
+#verificationScreen p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
 }
 
 #verificationScreen label {
-  font-size: 1.1rem;
-  color: #333;
-  margin-bottom: 1rem;
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
 }
 
 #verificationScreen input {
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  outline: none;
   width: 100%;
-  margin-bottom: 1rem;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 #verificationScreen button {
-  background: #4caf50;
+  width: 100%;
+  padding: 12px;
+  background-color: #2e3b4e;
   color: white;
-  cursor: pointer;
   border: none;
-  font-size: 1.2rem;
-  padding: 1rem;
-  border-radius: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 #verificationScreen button:hover {
-  background: #45a049;
+  background-color: #ff7b00;
 }
 
-/* Estilos responsivos para telas maiores que 600px até 1080px */
-@media (max-width: 1080px) {
-  .container {
-    padding: 2rem;
+/* Responsividade */
+@media (max-width: 768px) {
+  .menu-bar {
+      flex-direction: column;
+      gap: 10px;
   }
 
-
-  .home h1 {
-    font-size: 2.5rem;
+  .form-container {
+      width: 90%;
+      padding: 20px;
   }
-
-  .form-container h2 {
-    font-size: 1.8rem;
-  }
-
-  form label,
-  form input,
-  form select,
-  form button {
-    font-size: 1.1rem;
-  }
-
-  #specialties,
-  #location,
-  select[multiple] {
-    font-size: 1.1rem;
-  }
-  
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 500px; /* Largura maior para telas grandes */
-    padding: 2rem; /* Aumenta o espaçamento em torno do conteúdo */
-    height: auto;
-  }
-
-  .home h1 {
-    font-size: 0.9rem; /* Maior título */
-  }
-  .home p {
-    font-size: 0.5rem; /* Maior título */
-  }
-
-  .form-container h2 {
-    font-size: 1.5rem; /* Maior subtítulo */
-  }
-
-  form label,
-  form input,
-  form select,
-  form button {
-    font-size: 0.6rem; /* Aumenta o tamanho das fontes em geral */
-  }
-
-  #specialties,
-  #location,
-  select[multiple] {
-    font-size: 0.6rem; /* Aumenta o tamanho das fontes dos selects */
-  }
- 
-}
-
-/* Estilos responsivos para telas menores que 600px */
-@media (max-width: 600px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .home h1 {
-    font-size: 2rem;
-  }
-
-  .form-container h2 {
-    font-size: 1.5rem;
-  }
-
-  form label,
-  form input,
-  form select,
-  form button {
-    font-size: 1rem;
-  }
-
-  #specialties,
-  #location,
-  select[multiple] {
-    font-size: 0.9rem;
-  }
-}
-
-#cep-link {
-  display: none;
-  margin-top: 1rem;
-  text-align: center;
-}
-
-#cep-link a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-#cep-link a:hover {
-  text-decoration: underline;
-}
-
-/* Estilos gerais para a label */
-.specialties-label {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-  display: block;
-}
-
-/* Estilos para o campo de seleção múltipla */
-.specialties-select {
-  width: 100%;
-  height: 200px; /* Ajuste a altura conforme necessário */
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-  color: #333;
-  background-color: #f9f9f9;
-  box-sizing: border-box;
-  overflow-y: auto;
-  font-family: Arial, sans-serif;
-  transition: border-color 0.3s ease;
-}
-
-/* Quando o campo de seleção é focado, muda a cor da borda */
-.specialties-select:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-/* Estilo para as opções do select */
-.specialties-select option {
-  padding: 8px;
-  background-color: #fff;
-  color: #333;
-}
-
-/* Muda a cor de fundo das opções quando o mouse passa por cima */
-.specialties-select option:hover {
-  background-color: #f1f1f1;
-}
-
-/* Quando o usuário seleciona a opção */
-.specialties-select option:checked {
-  background-color: #007bff;
-  color: white;
-}
-
-/* Adiciona um pequeno espaçamento entre as opções */
-.specialties-select option {
-  margin-bottom: 5px;
-}
-/* Alinha o container de Endereço como flex */
-#locationContainer {
-  display: flex;
-  align-items: center; /* Alinha o conteúdo verticalmente no centro */
-  gap: 10px; /* Adiciona espaço entre o label e o input */
-}
-
-#locationLabel {
-  font-size: 1.1rem;
-  color: #333;
-  font-weight: 500;
-  margin: 0; /* Remove margens extras */
-}
-
-#location {
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1.1rem;
-  background-color: #fff;
-  color: #333;
-  width: auto; /* A largura do input pode ser automática para se ajustar ao conteúdo */
-  flex-grow: 1; /* Faz o input ocupar o restante do espaço disponível */
-}
- /* Contêiner de localização com flexbox */
-#locationContainer {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Adiciona um espaço entre o campo e o botão */
-}
-
-/* Se necessário, ajuste a largura dos elementos */
-#cep {
-  width: 150px; /* Ajuste conforme necessário */
-}
-
-#buscarEnderecoBtn {
-  padding: 1rem 1rem;
-}
-
-/* Efeito de destaque para o campo de localização */
-#location.highlight {
-  transition: background-color 0.5s ease-in-out; /* Transição suave */
-  background-color: #e0ffe0; /* Cor de fundo para destacar */
 }

@@ -1,75 +1,167 @@
- 
-body {
-    font-family: Arial, sans-serif;
+/* Resetando alguns estilos padrões do navegador */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
 }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Faz com que o corpo ocupe a altura total da tela */
+}
+
+/* Header e navegação */
 header {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
+    background-color: #2e3b4e; /* Cor mais escura para o cabeçalho */
+    padding: 20px 0;
 }
+
+nav {
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    color: #fff;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
 .menu-bar {
     list-style: none;
     display: flex;
-    justify-content: flex-end;
-    margin: 0;
-    padding: 0;
+    gap: 30px;
 }
 
 .menu-bar li {
-    margin: 0 10px;
+    font-size: 16px;
 }
-.menu-bar a {
-    color: #fff;
+
+.menu-bar li a {
+    color: #f1f1f1; /* Cor mais suave para o texto */
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.menu-bar li a:hover {
+    color: #ff7b00; /* Cor vibrante de hover */
+}
+
+/* Seção Hero */
+.hero {
+    background: linear-gradient(135deg, #ff4f58, #ff7b00); /* Gradiente vibrante */
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
     font-weight: bold;
 }
-.hero {
-    background: url('hero-image.jpg') no-repeat center center/cover;
-    color: #000000;
-    text-align: center;
-    padding: 50px 20px;
-    
-}
-.cta-buttons a {
-    text-decoration: none;
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 5px;
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 
-#services-section, #features {
-    padding: 20px;
-    text-align: center;
-}
-.services, .features-list {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-
-}
-.services p{
-    width: 280px;
-}
-
+/* Estilo para a imagem dentro da seção "Como Funciona" */
 .service {
     background-color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 250px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Espaçamento entre a imagem e o texto */
 }
+
+.service-image {
+    width: 100px; /* Tamanho fixo da imagem */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%; /* Tornar a imagem circular */
+    border: 3px solid #ff7b00; /* Borda vibrante */
+}
+
+.services {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 40px;
+}
+
+.service h3 {
+    font-size: 24px;
+    color: #2e3b4e; /* Cor mais sóbria para os títulos */
+    margin-bottom: 20px;
+}
+
+.service p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Vantagens */
+#features {
+    padding: 60px 20px;
+    background-color: #e8f1f5; /* Cor de fundo mais clara e suave */
+    text-align: center;
+}
+
+#features h2 {
+    font-size: 30px;
+    margin-bottom: 40px;
+    color: #2e3b4e;
+}
+
+.features-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.features-list li {
+    font-size: 16px;
+    color: #333;
+    padding: 15px 30px;
+    border: 2px solid #f1f1f1;
+    border-radius: 20px;
+    background-color: #fff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.features-list li:hover {
+    background-color: #ff7b00; /* Cor de destaque ao passar o mouse */
+    color: #fff;
+    transform: scale(1.05);
+}
+
 footer {
-    background-color: #343a40;
+    background-color: #2e3b4e;
     color: #fff;
     text-align: center;
-    padding: 10px;
-    margin-top: 150px;
-    margin-bottom: 0px;
+    padding: 20px 0;
+    font-size: 14px;
+    margin-top: auto; /* Empurra o footer para o final */
 }
 
-.features-list li{
-    list-style: none !important;
+footer p {
+    margin: 0;
+}
 
+#services-section h2{
+    text-align: center;
 }
