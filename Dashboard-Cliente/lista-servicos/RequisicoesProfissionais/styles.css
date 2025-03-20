@@ -5,6 +5,9 @@ body {
   padding: 0;
   background-color: #f4f6f9;
   color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que o corpo ocupe 100% da altura da tela */
 }
 
 h1 {
@@ -12,6 +15,50 @@ h1 {
   color: #007bff;
   text-align: center;
   margin-top: 30px;
+}
+header .logo h1{
+  text-align: left;
+  padding-left: 7.5%;
+}
+footer {
+  background-color: #2e3b4e;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  margin-top: auto; /* Empurra o footer para o final */
+}
+
+footer p {
+  margin: 0;
+}
+
+nav {
+  width: 85%;
+  margin: 0 auto;
+}
+
+header {
+  background-color: #2e3b4e;
+}
+
+header h1 {
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
+}
+
+header .logo h1 {
+  color: #fff;
+  font-size: 28px;
+  letter-spacing: 1px;
+  padding-left: 7.5%;
+  width: 100%;
+  text-decoration: none; /* Remove o sublinhado */
+}
+
+header a {
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
 }
 
 /* Container principal */
@@ -66,19 +113,10 @@ h1 {
   margin-top: 50px;
 }
 
-/* Estilo para o botão "Voltar" */
-button.voltar-btn {
-  background-color: #3498db;
-  color: white;
-  font-size: 16px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  display: block;
-  margin: 30px auto;
-  transition: background-color 0.3s ease;
-}
+
+  
+
+
 
 button.voltar-btn:hover {
   background-color: #2980b9;
@@ -101,10 +139,6 @@ button.voltar-btn:hover {
 
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
-  body {
-    padding: 15px;
-  }
-
   h1 {
     font-size: 26px;
   }
@@ -126,6 +160,7 @@ button.voltar-btn:hover {
     font-size: 14px;
   }
 }
+
 #voltar-btn {
   padding: 10px 20px;
   font-size: 16px;
@@ -134,11 +169,14 @@ button.voltar-btn:hover {
   color: white;
   border: none;
   border-radius: 5px;
+  width: 5%;
 }
 
 #voltar-btn:hover {
   background-color: #45a049;
-}/* Estilizando a div com o perfil do profissional */
+}
+
+/* Estilizando a div com o perfil do profissional */
 .profile-card {
   background-color: #fff; /* Fundo branco */
   padding: 20px;
@@ -169,8 +207,6 @@ button.voltar-btn:hover {
   padding: 10px 20px;
   border-radius: 5px;
 }
-
-
 
 /* Botão Aceitar */
 .aceitar-btn {
