@@ -10,7 +10,15 @@
 </head>
 <body>
     <header>
-        <h1>Bem-vindo ao Portal de Serviços</h1>
+        <nav>
+            <div class="logo">
+                <a href="../Tela inicial/index.html">
+                    <h1>Serviços Temporários </h1>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <div class="menu">
         <nav>
             <ul>
                 <li><a href="#filter-section">Filtrar Serviços</a></li>
@@ -19,18 +27,20 @@
 
             </ul>
         </nav>
-    </header>
-    
+    </div>
+    <h1>Bem-vindo ao Portal de Serviços</h1>
+
     <main>
         <section id="filter-section">
             <h2>Filtrar Serviços</h2>
             <form id="filter-form">
-                <label for="cep">CEP:</label>
-                <input type="text" id="cep" placeholder="Digite o CEP" maxlength="9" pattern="\d{5}-?\d{3}" title="Digite um CEP válido no formato 00000-000">
-                <button type="button" id="search-cep" aria-label="Buscar endereço pelo CEP">Buscar Endereço</button>
+                <label for="cep" style="display: none;">CEP:</label>
+                <input type="text" style="display: none;" id="cep" placeholder="Digite o CEP" maxlength="9" pattern="\d{5}-?\d{3}" title="Digite um CEP válido no formato 00000-000">
+                <button type="button" id="search-cep" style="display: none;" aria-label="Buscar endereço pelo CEP">Buscar Endereço</button>
                 
                 <label for="city">Cidade:</label>
-                <input type="text" id="city" placeholder="Digite a cidade">
+<input type="text" id="city" placeholder="Digite a cidade" autocomplete="off">
+<ul id="city-suggestions" style="display: none;"></ul> <!-- Lista de sugestões -->
 
                 <label for="specialty">Especialidade:</label>
                 <select id="specialty" class="specialty-select">
@@ -120,7 +130,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Portal de Serviços. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Sistema de Serviços Temporários. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>

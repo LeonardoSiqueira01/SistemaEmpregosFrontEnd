@@ -8,12 +8,16 @@
 </head>
 <body>
     <header>
-        <h1>Bem-vindo ao Dashboard Profissional</h1>
-        <div id="user-info">
-            <p id="welcome-message">Seja bem-vindo(a)</p>
-            <button id="logout">Sair</button>
-        </div>
+        <nav>
+            <div class="logo">
+                <a href="../Tela inicial/index.html">
+                    <h1>Serviços Temporários </h1>
+                </a>
+            </div>
+        </nav>
     </header>
+    
+ 
 
     <nav>
         <ul>
@@ -21,9 +25,14 @@
             <li><a href="#" id="linked-services">Meus Serviços Vinculados</a></li>
             <li><a href="../Dashboard-Profissional/EditarPerfil/index.html" id="edit-profile">Editar Perfil</a></li>
             <li><a href="../Dashboard-Profissional/aceitarRecusarServico/index.html" id="nav-requested-services">Serviços Solicitados</a></li>
+            <li><button id="logout">Deslogar</button></li>
         </ul>
     </nav>
-
+    <div>
+        <h1>Seja bem-vindo, o que deseja fazer hoje?</h1>
+        <div id="user-info">
+        </div>
+    </div>
     <section id="client-summary" class="client-summary">
         <h2>Olá, <span id="professional-name">Nome do Profissional</span>!</h2>
         <div class="summary-stats">
@@ -33,6 +42,9 @@
         </div>
     </section>
 
+    <footer>
+        <p>&copy; 2025 Sistema de Serviços Temporários. Todos os direitos reservados.</p>
+    </footer>
     <script src="../Dashboard-Profissional/script.js"></script>
 </body>
 </html>

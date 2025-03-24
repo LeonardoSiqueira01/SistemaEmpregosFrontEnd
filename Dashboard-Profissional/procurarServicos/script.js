@@ -14,42 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function getAuthToken() {
         return localStorage.getItem("authToken");
     }
-    // Função para buscar endereço pelo CEP
-    const fetchAddressByCEP = async (cep) => {
-        const cepInput = cep.replace(/\D/g, ""); // Remove caracteres não numéricos
-        if (cepInput.length !== 8) {
-            alert("Digite um CEP válido com 8 dígitos.");
-            return;
-        }
-
-        try {
-            const response = await fetch(`https://viacep.com.br/ws/${cepInput}/json/`);
-            if (!response.ok) throw new Error("Erro ao buscar endereço.");
-            const data = await response.json();
-
-            if (data.erro) {
-                alert("CEP não encontrado.");
-                return;
-            }
-
-            // Preencher os campos com os dados do endereço
-            document.getElementById("city").value = data.localidade || "";
-            document.getElementById("logradouro").textContent = data.logradouro || "N/A";
-            document.getElementById("bairro").textContent = data.bairro || "N/A";
-            document.getElementById("estado").textContent = data.uf || "N/A";
-            document.getElementById("address-info").style.display = "block";
-        } catch (error) {
-            console.error(error);
-            alert("Erro ao buscar o endereço. Tente novamente.");
-        }
-    };
-
-    // Adicionar evento ao botão de busca por CEP
-    cepButton.addEventListener("click", () => {
-        const cep = document.getElementById("cep").value;
-        fetchAddressByCEP(cep);
-    });
     
+    
+  
+
+ 
     // Função para buscar serviços com base em filtros (cidade e estado)
     const fetchServices = async (filters = {}) => {
         try {
@@ -58,7 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
     
             const url = new URL("http://localhost:8080/api/services");
     
-            if (filters.cidade) url.searchParams.append("cidades", filters.cidade); // Corrigir parâmetro para "cidades"
+            if (filters.cidade) url.searchParams.append("cidade", filters.cidade);
+            console.log("URL gerada:", url.toString());
+
             if (filters.especialidade) url.searchParams.append("especialidade", filters.especialidade);
     
             let response = await fetch(url, {
@@ -70,12 +41,17 @@ document.addEventListener("DOMContentLoaded", () => {
     
             let services = await response.json();
     
+            // Logando a cidade pesquisada e o número de serviços encontrados
+            console.log(`Cidade pesquisada: ${filters.cidade || "Nenhuma"}`);
+            console.log(`Serviços encontrados: ${services.length}`);
+    
             renderServices(services);
         } catch (error) {
             console.error("Erro ao buscar serviços:", error);
             serviceList.innerHTML = "<p>Erro ao carregar os serviços. Tente novamente mais tarde.</p>";
         }
     };
+    
     
     const renderServices = (services) => {
         serviceList.innerHTML = "";
@@ -152,9 +128,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     filterButton.addEventListener("click", async () => {
         try {
-            const cidade = document.getElementById("city").value.trim();
+            const cidade = document.getElementById("city").value.trim() || null;
             const especialidade = document.getElementById("specialty").value;  // Agora pega o valor do select
-        
+            console.log("Cidade selecionada:", cidade);
+
             console.log("Filtros de busca:", { cidade, especialidade });
         
             fetchServices({ cidade, especialidade });  // Envia a especialidade selecionada
@@ -166,4 +143,82 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     fetchServices(); // Carregar serviços ao carregar a página
+});
+
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const cityInput = document.getElementById('city');
+    const suggestionsList = document.getElementById('city-suggestions');
+    let allCities = [];
+    let debounceTimeout;
+
+    // Função para remover acentos e normalizar strings
+    function normalizeText(text) {
+        return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    }
+
+    // Função para carregar as cidades do backend
+    async function loadCities() {
+        try {
+            const response = await fetch("http://localhost:8080/api/cities");
+            if (!response.ok) throw new Error("Erro ao buscar cidades");
+
+            allCities = await response.json(); 
+        } catch (error) {
+            console.error("Erro ao carregar cidades:", error);
+        }
+    }
+
+    await loadCities(); // Carrega as cidades ao iniciar a página
+
+    // Evento de input para buscar cidades
+    cityInput.addEventListener('input', () => {
+        const query = normalizeText(cityInput.value.trim());
+
+        if (query.length >= 2) { 
+            clearTimeout(debounceTimeout);
+            debounceTimeout = setTimeout(() => {
+                const filteredCities = allCities.filter(city => 
+                    normalizeText(city.nome).includes(query)
+                );
+                displaySuggestions(filteredCities);
+            }, 50);
+        } else {
+            suggestionsList.style.display = 'none';
+        }
+    });
+
+    // Função para exibir sugestões
+    function displaySuggestions(cities) {
+        suggestionsList.innerHTML = '';
+    
+        if (cities.length > 0) {
+            suggestionsList.style.display = 'block';
+            cities.forEach(city => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${city.nome} - ${city.estado}`; // Mostra "Cidade - UF"
+    
+                listItem.addEventListener('click', () => {
+                    cityInput.value = city.nome.trim(); // Preenche apenas a cidade no input
+                    document.getElementById("estado").value = city.estado.trim(); // Preenche o estado no campo correto
+                    suggestionsList.innerHTML = "";
+                    suggestionsList.style.display = 'none';
+                    document.getElementById("apply-filters").click(); // Aplica automaticamente o filtro
+                });
+    
+                suggestionsList.appendChild(listItem);
+            });
+        } else {
+            suggestionsList.style.display = 'none';
+        }
+    }
+    
+
+    // Ocultar a lista de sugestões ao clicar fora
+    document.addEventListener("click", (event) => {
+        if (!cityInput.contains(event.target) && !suggestionsList.contains(event.target)) {
+            suggestionsList.style.display = "none";
+        }
+    });
 });

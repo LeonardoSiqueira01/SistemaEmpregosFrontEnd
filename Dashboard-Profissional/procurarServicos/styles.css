@@ -6,20 +6,42 @@
     font-family: Arial, sans-serif;
 }
 
-body {
-    background-color: #f4f4f4;
-    color: #333;
-    padding: 20px;
-}
-
-header {
-    background-color: #ff8c00;
-    color: #fff;
-    padding: 20px;
+/* Rodapé */
+footer {
+    background-color: #2e3b4e;
+    color: white;
     text-align: center;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
+    padding: 15px;
+    font-size: 14px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+  }
+  
+  footer p {
+    margin: 0;
+    padding: 10px;
+  }header {
+    background-color: #2e3b4e;
+    padding: 20px 0;
+  }
+  header a{
+    text-decoration: none; /* Remove o sublinhado */
+    color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
+  }
+  
+  
+  header .logo h1 {
+    color: #fff;
+    font-size: 28px;
+    letter-spacing: 1px;
+    padding-left: 7.5%;
+    margin-bottom: 0px;
+    text-align: left;
+    margin-top: 0px;
+    text-decoration: none; /* Remove o sublinhado */
+  }
 
 h1 {
     font-size: 28px;
@@ -51,40 +73,67 @@ h1 {
     color: #fff;
 }
 
-nav {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+
+
+/* Estilo para o menu */
+.menu {
+    background-color: orange; /* Cor de fundo azul */
+    padding: 20px 0;
+    text-align: center;
 }
 
-nav ul {
+.menu nav ul {
     list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
     padding: 0;
-    flex-wrap: wrap; /* Para suportar dispositivos menores */
+    margin: 0;
 }
 
-nav ul li {
-    margin: 0 10px;
+.menu nav ul li {
+    display: inline-block;
+    margin: 0 20px;
 }
 
-nav ul li a {
+.menu nav ul li a {
+    color: #fff;
+    font-size: 1.2rem;
     text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    font-weight: bold;
     padding: 10px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    display: inline-block;
+    transition: background-color 0.3s ease;
 }
+
+.menu nav ul li a:hover {
+        background-color: rgba(225, 152, 15, 0.909);
+        border-radius: 10px;
+    
+}
+
+/* Estilo para o título */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 40px;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Adicionando responsividade para o menu */
+@media screen and (max-width: 768px) {
+    .menu nav ul {
+        display: block; /* Empilha os itens do menu em dispositivos menores */
+        text-align: center;
+    }
+
+    .menu nav ul li {
+        margin: 10px 0;
+    }
+
+    h1 {
+        font-size: 2rem; /* Reduz o tamanho do título para dispositivos menores */
+    }
+}
+
 
 nav ul li a:hover {
     background-color: #ff8c00;
@@ -145,38 +194,153 @@ main {
     margin: 0 auto;
 }
 
+
 /* Seção de Filtro */
 #filter-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#filter-section:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Efeito de foco sutil na seção */
 }
 
 #filter-section h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#filter-form {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaçamento entre os elementos */
+    flex-wrap: wrap; /* Para ajustar em telas menores */
 }
 
 #filter-form label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 5px;
+    font-weight: bold;
 }
 
-#filter-form input[type="text"] {
-    width: 100%;
-    padding: 10px;
+#filter-form input,
+#filter-form select {
+    padding: 8px;
     font-size: 16px;
-    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    transition: border-color 0.3s ease;
 }
 
-#filter-form input[type="text"]:focus {
-    border-color: #ff8c00;
+#city {
+    width: 200px; /* Ajuste conforme necessário */
 }
+
+#specialty {
+    width: 250px; /* Ajuste conforme necessário */
+}
+
+
+#filter-form input[type="text"],
+#filter-form select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fafafa;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#filter-form input[type="text"]:focus,
+#filter-form select:focus {
+    border-color: #ff8c00;
+    background-color: #fff;
+    box-shadow: 0 0 6px rgba(255, 140, 0, 0.2); /* Efeito de foco suave */
+    outline: none;
+}
+
+#filter-form button {
+    background-color: #ff8c00;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+#city-suggestions {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 13.5%;
+    max-height: 200px; /* Evita que a lista fique gigante */
+    overflow-y: auto; /* Adiciona rolagem se houver muitas opções */
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    display: none; /* Esconde por padrão */
+}
+
+#city-suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.2s ease-in-out;
+}
+
+#city-suggestions li:hover {
+    background: #f0f0f0;
+}
+
+
+
+
+
+#filter-form button:hover {
+    background-color: #e67e00;
+    transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+}
+
+#filter-form button:active {
+    transform: translateY(0); /* Animação suave ao pressionar o botão */
+}
+
+#address-info {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#address-info p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+#address-info strong {
+    color: #333;
+}
+
 
 #search-cep {
     padding: 8px 16px;
@@ -553,27 +717,8 @@ button:disabled {
     background-color: #e2e2e2; /* Cor de fundo mais escura ao passar o mouse */
 }
 
-footer {
-    margin-top: 400px;
-    margin-left: 0;
-    margin-right: 0;
-    background-color: #c27a0d;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    font-size: 16px;
-    font-family: 'Arial', sans-serif;
-    border-top: 4px solid #28a745;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-}
 
 
-/* Estilizando o conteúdo dentro do footer */
-footer p {
-    margin: 0; /* Remove margem do parágrafo */
-}
 
 /* Responsividade */
 @media (max-width: 768px) {
