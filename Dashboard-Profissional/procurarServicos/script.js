@@ -143,25 +143,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
     
-
     filterButton.addEventListener("click", async () => {
         try {
-            const cidade = document.getElementById("city").value.trim() || null;
-            const estado = document.getElementById("estado").value.trim() || null;
-            const especialidade = document.getElementById("specialty").value; // Agora pega o valor do select
+            // Obtendo os elementos do DOM
+            const cidadeInput = document.getElementById("city");
+            const estadoInput = document.getElementById("estado");
+            const especialidadeInput = document.getElementById("specialty");
     
-            console.log("Cidade selecionada:", cidade);
-            console.log("Estado selecionado:", estado);
+            // Verificando se os elementos existem antes de acessar `.value`
+            const cidade = cidadeInput && cidadeInput.value ? cidadeInput.value.trim() : null;
+            const estado = estadoInput && estadoInput.value ? estadoInput.value.trim() : null;
+            const especialidade = especialidadeInput ? especialidadeInput.value : null;
     
             console.log("Filtros de busca:", { cidade, estado, especialidade });
-        
-            fetchServices({ cidade, estado, especialidade });  // Envia cidade, estado e especialidade
+    
+            // Criando objeto de filtros sem incluir chaves com valores `null`
+            const filtros = {};
+            if (cidade) filtros.cidade = cidade;
+            if (estado) filtros.estado = estado;
+            if (especialidade) filtros.especialidade = especialidade;
+    
+            fetchServices(filtros); // Envia apenas os filtros preenchidos
         } catch (error) {
             console.error(error);
             alert("Erro ao aplicar filtros. Tente novamente.");
         }
     });
-    
     
 
     fetchServices(); // Carregar serviços ao carregar a página
