@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Exibe as informações do usuário
                 const profileInfoDiv = document.getElementById("profile-info");
                 let ratingsHtml = '';
+                let specialtiesHtml = ''; // Variável para armazenar as especialidades
 
                 if (user.type === "CLIENT") {
                     // Exibe informações específicas do cliente
@@ -51,20 +52,22 @@ document.addEventListener("DOMContentLoaded", function() {
                             <p><strong>Avaliação:</strong> <span class="rating-value">${rating.ratedProfessional || 'N/A'}</span></p>
                         </div>
                     `).join('');
-                }
-                
 
+                    // Exibe as especialidades para profissionais
+                    specialtiesHtml = user.specialties ? `<p><strong>Especialidades:</strong> ${user.specialties}</p>` : '';
+                }
+
+                // Atualiza a seção do perfil com as informações
                 profileInfoDiv.innerHTML = `
-                <div class="profile-card">
-                    <p><strong>Nome:</strong> ${user.name}</p>
-                    <p><strong>Email:</strong> ${user.email}</p>
-                    <p><strong>Especialidades:</strong> ${user.specialties}</p>
-                    <p><strong>Total de Serviços Solicitados:</strong> ${user.totalServicesRequested}</p>
-                    <p><strong>Total de Serviços Completados:</strong> ${user.totalServicesCompleted}</p>
-                    <p><strong>Avaliação Média:</strong> ${user.averageRating}</p>
-                </div>
-            `;
-            
+                    <div class="profile-card">
+                        <p><strong>Nome:</strong> ${user.name}</p>
+                        <p><strong>Email:</strong> ${user.email}</p>
+                        ${specialtiesHtml} <!-- Exibe as especialidades apenas para profissionais -->
+                        <p><strong>Total de Serviços Solicitados:</strong> ${user.totalServicesRequested}</p>
+                        <p><strong>Total de Serviços Completados:</strong> ${user.totalServicesCompleted}</p>
+                        <p><strong>Avaliação Média:</strong> ${user.averageRating}</p>
+                    </div>
+                `;
 
                 // Insere os comentários na parte direita do perfil
                 const profileRatingsDiv = document.getElementById("profile-ratings");
