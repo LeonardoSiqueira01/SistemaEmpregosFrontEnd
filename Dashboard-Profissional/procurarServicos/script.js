@@ -5,7 +5,6 @@ function viewProfile(email) {
 document.addEventListener("DOMContentLoaded", () => {
     const serviceList = document.getElementById("service-list");
     const filterButton = document.getElementById("apply-filters");
-    const cepButton = document.getElementById("search-cep");
     function getProfessionalEmail() {
         return localStorage.getItem("email"); // Ajuste conforme onde armazena o email
     }
@@ -18,39 +17,41 @@ document.addEventListener("DOMContentLoaded", () => {
     
   
 
- 
-    // Função para buscar serviços com base em filtros (cidade e estado)
     const fetchServices = async (filters = {}) => {
         try {
             const token = getAuthToken();
             if (!token) throw new Error("Token não encontrado.");
-    
+        
             const url = new URL("http://localhost:8080/api/services");
-    
-            if (filters.cidade) url.searchParams.append("cidade", filters.cidade);
+        
+            // Incluindo cidade e estado
+            if (filters.cidade && filters.estado) {
+                const cidadeEstado = `${filters.cidade.trim()} - ${filters.estado.trim()}`;
+                url.searchParams.append("cidadeEstado", cidadeEstado);
+            }
             console.log("URL gerada:", url.toString());
-
-            if (filters.especialidade) url.searchParams.append("especialidade", filters.especialidade);
     
+            if (filters.especialidade) url.searchParams.append("especialidade", filters.especialidade);
+        
             let response = await fetch(url, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
                 }
             });
-    
+        
             let services = await response.json();
-    
-            // Logando a cidade pesquisada e o número de serviços encontrados
+        
             console.log(`Cidade pesquisada: ${filters.cidade || "Nenhuma"}`);
             console.log(`Serviços encontrados: ${services.length}`);
-    
+        
             renderServices(services);
         } catch (error) {
             console.error("Erro ao buscar serviços:", error);
             serviceList.innerHTML = "<p>Erro ao carregar os serviços. Tente novamente mais tarde.</p>";
         }
     };
+    
     
     
     const renderServices = (services) => {
@@ -129,17 +130,21 @@ document.addEventListener("DOMContentLoaded", () => {
     filterButton.addEventListener("click", async () => {
         try {
             const cidade = document.getElementById("city").value.trim() || null;
-            const especialidade = document.getElementById("specialty").value;  // Agora pega o valor do select
+            const estado = document.getElementById("estado").value.trim() || null;
+            const especialidade = document.getElementById("specialty").value; // Agora pega o valor do select
+    
             console.log("Cidade selecionada:", cidade);
-
-            console.log("Filtros de busca:", { cidade, especialidade });
+            console.log("Estado selecionado:", estado);
+    
+            console.log("Filtros de busca:", { cidade, estado, especialidade });
         
-            fetchServices({ cidade, especialidade });  // Envia a especialidade selecionada
+            fetchServices({ cidade, estado, especialidade });  // Envia cidade, estado e especialidade
         } catch (error) {
             console.error(error);
             alert("Erro ao aplicar filtros. Tente novamente.");
         }
     });
+    
     
 
     fetchServices(); // Carregar serviços ao carregar a página
@@ -172,10 +177,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     await loadCities(); // Carrega as cidades ao iniciar a página
 
-    // Evento de input para buscar cidades
     cityInput.addEventListener('input', () => {
         const query = normalizeText(cityInput.value.trim());
-
+    
         if (query.length >= 2) { 
             clearTimeout(debounceTimeout);
             debounceTimeout = setTimeout(() => {
@@ -188,31 +192,31 @@ document.addEventListener('DOMContentLoaded', async () => {
             suggestionsList.style.display = 'none';
         }
     });
-
-    // Função para exibir sugestões
+    
+    // Função para exibir sugestões com cidade e estado
     function displaySuggestions(cities) {
         suggestionsList.innerHTML = '';
-    
         if (cities.length > 0) {
             suggestionsList.style.display = 'block';
             cities.forEach(city => {
                 const listItem = document.createElement('li');
-                listItem.textContent = `${city.nome} - ${city.estado}`; // Mostra "Cidade - UF"
-    
+                listItem.textContent = `${city.nome} - ${city.estado}`; // Mostra "Cidade - Estado"
+        
                 listItem.addEventListener('click', () => {
-                    cityInput.value = city.nome.trim(); // Preenche apenas a cidade no input
-                    document.getElementById("estado").value = city.estado.trim(); // Preenche o estado no campo correto
+                    cityInput.value = city.nome.trim(); // Preenche a cidade
+                    document.getElementById("estado").value = city.estado.trim(); // Preenche o estado
                     suggestionsList.innerHTML = "";
                     suggestionsList.style.display = 'none';
                     document.getElementById("apply-filters").click(); // Aplica automaticamente o filtro
                 });
-    
+        
                 suggestionsList.appendChild(listItem);
             });
         } else {
             suggestionsList.style.display = 'none';
         }
     }
+    
     
 
     // Ocultar a lista de sugestões ao clicar fora
