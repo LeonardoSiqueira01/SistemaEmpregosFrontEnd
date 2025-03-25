@@ -150,8 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchServices(); // Carregar serviços ao carregar a página
 });
 
-
-
 document.addEventListener('DOMContentLoaded', async () => {
     const cityInput = document.getElementById('city');
     const suggestionsList = document.getElementById('city-suggestions');
@@ -196,28 +194,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Função para exibir sugestões com cidade e estado
     function displaySuggestions(cities) {
         suggestionsList.innerHTML = '';
-        if (cities.length > 0) {
+        if (cities.length > 1) {
             suggestionsList.style.display = 'block';
             cities.forEach(city => {
                 const listItem = document.createElement('li');
                 listItem.textContent = `${city.nome} - ${city.estado}`; // Mostra "Cidade - Estado"
         
                 listItem.addEventListener('click', () => {
-                    cityInput.value = city.nome.trim(); // Preenche a cidade
-                    document.getElementById("estado").value = city.estado.trim(); // Preenche o estado
+                    // Preenche o campo cidade com "Cidade" (sem o estado)
+                    cityInput.value = `${city.nome.trim()} - ${city.estado.trim()}`; 
+                
+                    // Preenche o estado separadamente
+                    document.getElementById("estado").value = city.estado.trim(); 
+                    
+                    // Exibe o estado ao lado da cidade no campo
+                    cityInput.setAttribute('data-state', city.estado.trim());  // Armazena o estado no atributo data-state
+                    
+                    // Oculta sugestões
                     suggestionsList.innerHTML = "";
                     suggestionsList.style.display = 'none';
-                    document.getElementById("apply-filters").click(); // Aplica automaticamente o filtro
+                    
+                    // Aplica o filtro automaticamente
+                    document.getElementById("apply-filters").click();
                 });
-        
+                
                 suggestionsList.appendChild(listItem);
             });
         } else {
             suggestionsList.style.display = 'none';
         }
     }
-    
-    
 
     // Ocultar a lista de sugestões ao clicar fora
     document.addEventListener("click", (event) => {
