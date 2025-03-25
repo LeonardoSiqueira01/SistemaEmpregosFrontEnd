@@ -6,6 +6,7 @@
     font-family: Arial, sans-serif;
 }
 
+
 /* Rodapé */
 footer {
     background-color: #2e3b4e;
@@ -22,7 +23,17 @@ footer {
   footer p {
     margin: 0;
     padding: 10px;
-  }header {
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o corpo tenha uma altura mínima de 100% da tela */
+}
+  
+main {
+    flex: 1;
+}
+  header {
     background-color: #2e3b4e;
     padding: 20px 0;
   }
@@ -198,7 +209,7 @@ main {
 /* Seção de Filtro */
 #filter-section {
     background-color: #ffffff;
-    padding: 30px;
+    padding: 1px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     margin-top: 30px;
@@ -230,6 +241,8 @@ main {
     align-items: center;
     gap: 15px; /* Espaçamento entre os elementos */
     flex-wrap: wrap; /* Para ajustar em telas menores */
+    width: 100%;
+    margin-left: 30px;
 }
 
 #filter-form label {
@@ -285,8 +298,9 @@ main {
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 10px;
-    width: 100%;
+    margin-bottom: 10px;
+    width: auto; /* Tira a largura de 100% para que o botão ocupe apenas o espaço necessário */
+    margin-left: 10px; /* Espaçamento entre o campo de especialidade e o botão */
 }
 #city-suggestions {
     position: absolute;
@@ -355,9 +369,7 @@ main {
     transition: background-color 0.3s ease;
 }
 
-#search-cep:hover {
-    background-color: #e07b00;
-}
+
 
 #apply-filters {
     background-color: #ff8c00;
@@ -723,63 +735,3 @@ button:disabled {
 
 
 
-/* Responsividade */
-@media (max-width: 768px) {
-    footer {
-        font-size: 14px; /* Ajusta o tamanho da fonte para telas pequenas */
-        padding: 15px 0; /* Diminui o padding em telas pequenas */
-    }
-}
-#filter-section {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-}
-
-.filter-bar {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background-color: #f8f9fa;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-}
-
-.filter-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
-}
-
-.filter-group input,
-.filter-group select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#apply-filters {
-    padding: 8px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-#apply-filters:hover {
-    background-color: #0056b3;
-}
-
-i {
-    color: #555;
-}
