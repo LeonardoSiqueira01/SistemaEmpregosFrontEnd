@@ -255,9 +255,10 @@ main {
 
 #filter-form input[type="text"],
 #filter-form select {
-    width: 100%;
+    width: 300px;
     padding: 12px 16px;
     font-size: 16px;
+    margin-top: 10px;
     margin-bottom: 18px;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -270,6 +271,7 @@ main {
 #filter-form select:focus {
     border-color: #ff8c00;
     background-color: #fff;
+    margin-bottom: 10px;
     box-shadow: 0 0 6px rgba(255, 140, 0, 0.2); /* Efeito de foco suave */
     outline: none;
 }
@@ -291,9 +293,10 @@ main {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    width: 100%;
-    margin-top: 13.5%;
-    max-height: 200px; /* Evita que a lista fique gigante */
+    width: 500px;
+    margin-left: 44px;
+    margin-top:340px;
+    max-height: 300px; /* Evita que a lista fique gigante */
     overflow-y: auto; /* Adiciona rolagem se houver muitas opções */
     z-index: 1000; /* Garante que fique acima de outros elementos */
     display: none; /* Esconde por padrão */
@@ -726,4 +729,57 @@ button:disabled {
         font-size: 14px; /* Ajusta o tamanho da fonte para telas pequenas */
         padding: 15px 0; /* Diminui o padding em telas pequenas */
     }
+}
+#filter-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#apply-filters {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#apply-filters:hover {
+    background-color: #0056b3;
+}
+
+i {
+    color: #555;
 }

@@ -7,6 +7,7 @@
     <title>Filtrar e Listar Serviços</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -29,20 +30,19 @@
         </nav>
     </div>
     <h1>Bem-vindo ao Portal de Serviços</h1>
-
+        
     <main>
         <section id="filter-section">
-            <h2>Filtrar Serviços</h2>
             <form id="filter-form">
                 <label for="cep" style="display: none;">CEP:</label>
                 <input type="text" style="display: none;" id="cep" placeholder="Digite o CEP" maxlength="9" pattern="\d{5}-?\d{3}" title="Digite um CEP válido no formato 00000-000">
                 <button type="button" id="search-cep" style="display: none;" aria-label="Buscar endereço pelo CEP">Buscar Endereço</button>
                 
-                <label for="city">Cidade:</label>
+                <label for="city"><i class="fas fa-search"></i></label>
 <input type="text" id="city" placeholder="Digite a cidade" autocomplete="off">
 <ul id="city-suggestions" style="display: none;"></ul> <!-- Lista de sugestões -->
 
-                <label for="specialty">Especialidade:</label>
+                <label for="specialty"><i class="fas fa-hard-hat"></i></label>
                 <select id="specialty" class="specialty-select">
                     <option value="">Selecione uma especialidade</option>
                     <option value="Ajudante de Mestre de Obras">Ajudante de Mestre de Obras</option>

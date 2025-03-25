@@ -1,6 +1,23 @@
 function viewProfile(email) {
     window.open('http://127.0.0.1:5500/dashboard-cliente/visualizarPerfis/index.html?email=' + encodeURIComponent(email), '_blank');
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const button = document.getElementById("apply-filters");
+    
+    if (button) {
+        button.addEventListener("click", function () {
+            const cityInput = document.getElementById("city");
+            
+            if (cityInput) {
+                console.log("Cidade pesquisada: " + cityInput.value);
+            } else {
+                console.error("Campo de cidade não encontrado!");
+            }
+        });
+    } else {
+        console.error("Botão de filtro não encontrado!");
+    }
+});
 
 document.addEventListener("DOMContentLoaded", () => {
     const serviceList = document.getElementById("service-list");
