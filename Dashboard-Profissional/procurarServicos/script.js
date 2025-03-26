@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
             renderServices(services);
         } catch (error) {
             console.error("Erro ao buscar serviços:", error);
-            serviceList.innerHTML = "<p>Erro ao carregar os serviços. Tente novamente mais tarde.</p>";
+            serviceList.innerHTML = "<p class='no-service'>Erro ao carregar os serviços. Tente novamente mais tarde.</p>";
         }
     };
     
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const renderServices = (services) => {
         serviceList.innerHTML = "";
         if (services.length === 0) {
-            serviceList.innerHTML = "<p style='margin-top: 20px;'>Nenhum serviço encontrado.</p>";
+            serviceList.innerHTML = "<p class='no-service'>Nenhum serviço encontrado.</p>";
             return;
         }
         services.forEach(service => {

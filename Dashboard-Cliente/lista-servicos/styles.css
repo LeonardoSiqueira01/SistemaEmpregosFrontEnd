@@ -266,7 +266,9 @@ header a{
     font-size: 14px;
     margin-top: auto; /* Empurra o footer para o final */
 }
-
+.submenu{
+  background-color: #007bff;
+}
 footer p {
     margin: 0;
 }

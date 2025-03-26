@@ -29,7 +29,7 @@ footer {
     flex-direction: column;
     min-height: 100vh; /* Garante que o corpo tenha uma altura mínima de 100% da tela */
 }
-  
+
 main {
     flex: 1;
 }
@@ -401,16 +401,36 @@ main {
 
 #service-list-container {
     margin-top: 40px;
+    margin-left:200px;
 }
 
 /* Estilo para os itens de serviço */
 .service-item {
     background-color: #fff;
-    padding: 15px;
+    padding: 25px;
     margin-bottom: 15px;
+    width: 80%;
+    margin-top: 30px;
+    line-height: 1.5;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
+.no-service {
+    margin-top: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    color: #0e0d0d;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    height: 600px;
+    text-align: left;
+    font-weight: bold;
+    padding: 50px;
+    margin-left: -102px;
+}
+
 
 .service-header {
     display: flex;
@@ -475,6 +495,7 @@ button.edit-btn:hover {
 
 .service-item p {
     font-size: 16px;
+    margin-top: 5px;
     margin-bottom: 8px;
 }
 * Estilos do container da especialidade */

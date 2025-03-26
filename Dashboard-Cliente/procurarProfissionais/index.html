@@ -18,17 +18,89 @@
         </header>
     <div class="container">
         <div class="head">
-            <button class="back-btn" onclick="cancelEdit()">Voltar</button>
             <h1>Buscar Profissionais</h1>
         </div>
-        <nav>
-            <a href="#" id="search-professionals">Buscar Profissionais</a>
-        </nav>
+        <div class="containerclass">
+        <div id="specialty-container" class="specialty-container">
+            <label for="specialty">Escolha a especialidade:</label>
+            <select id="specialty" class="specialty-select">
+                <option value="">Selecione uma especialidade</option>
+                <option value="Ajudante de Mestre de Obras">Ajudante de Mestre de Obras</option>
+                <option value="Aulas particulares">Aulas particulares</option>
+                <option value="Arquitetura e urbanismo">Arquitetura e urbanismo</option>
+                <option value="Assistente virtual">Assistente virtual</option>
+                <option value="Babá">Babá</option>
+                <option value="Babysitter (cuidador de crianças)">Babysitter (cuidador de crianças)</option>
+                <option value="Barbeiro">Barbeiro</option>
+                <option value="Carpinteiro">Carpinteiro</option>
+                <option value="Cabeleireiro">Cabeleireiro</option>
+                <option value="Consultoria de imagem">Consultoria de imagem</option>
+                <option value="Consultoria de inovação e transformação digital">Consultoria de inovação e transformação digital</option>
+                <option value="Consultoria de marketing">Consultoria de marketing</option>
+                <option value="Consultoria em finanças pessoais">Consultoria em finanças pessoais</option>
+                <option value="Consultoria em produtividade">Consultoria em produtividade</option>
+                <option value="Consultoria jurídica">Consultoria jurídica</option>
+                <option value="Contador">Contador</option>
+                <option value="Cozinheiro">Cozinheiro</option>
+                <option value="Cuidador de idosos">Cuidador de idosos</option>
+                <option value="Dentista">Dentista</option>
+                <option value="Desentupidora">Desentupidora</option>
+                <option value="Design gráfico">Design gráfico</option>
+                <option value="Diarista">Diarista</option>
+                <option value="Eletricista">Eletricista</option>
+                <option value="Encanador">Encanador</option>
+                <option value="Engenheiro">Engenheiro</option>
+                <option value="Estética (depilação, manicure, pedicure)">Estética (depilação, manicure, pedicure)</option>
+                <option value="Fisioterapeuta">Fisioterapeuta</option>
+                <option value="Freelancer (diversas áreas)">Freelancer (diversas áreas)</option>
+                <option value="Free Lancer de Designer">Free Lancer de Designer</option>
+                <option value="Fotógrafo">Fotógrafo</option>
+                <option value="Gestão de eventos">Gestão de eventos</option>
+                <option value="Gestão de redes sociais">Gestão de redes sociais</option>
+                <option value="Gerente de projetos">Gerente de projetos</option>
+                <option value="Jardinagem">Jardinagem</option>
+                <option value="Limpeza residencial">Limpeza residencial</option>
+                <option value="Mestre de Obras">Mestre de Obras</option>
+                <option value="Marceneiro">Marceneiro</option>
+                <option value="Manutenção de computadores">Manutenção de computadores</option>
+                <option value="Manutenção de eletrodomésticos">Manutenção de eletrodomésticos</option>
+                <option value="Maquiador">Maquiador</option>
+                <option value="Médico (atendimentos particulares)">Médico (atendimentos particulares)</option>
+                <option value="Nutricionista">Nutricionista</option>
+                <option value="Organização de ambientes e espaços">Organização de ambientes e espaços</option>
+                <option value="Padeiro">Padeiro</option>
+                <option value="Personal trainer">Personal trainer</option>
+                <option value="Pintor">Pintor</option>
+                <option value="Produção de conteúdo para blogs e mídias sociais">Produção de conteúdo para blogs e mídias sociais</option>
+                <option value="Reformas e reparos (gerais)">Reformas e reparos (gerais)</option>
+                <option value="Recepcionista">Recepcionista</option>
+                <option value="Recrutamento e seleção">Recrutamento e seleção</option>
+                <option value="Redator">Redator</option>
+                <option value="Segurança privada">Segurança privada</option>
+                <option value="Serviços de TI (tecnologia da informação)">Serviços de TI (tecnologia da informação)</option>
+                <option value="Serviços de comida (chef particular)">Serviços de comida (chef particular)</option>
+                <option value="Serviços de transporte (motoboy, fretes)">Serviços de transporte (motoboy, fretes)</option>
+                <option value="Serviços Gerais">Serviços Gerais</option>
+                <option value="Terapeuta">Terapeuta</option>
+                <option value="Translator (tradução)">Translator (tradução)</option>
+                <option value="Veterinário">Veterinário</option>
+                <option value="Web designer">Web designer</option>
+                <option value="Web developer (desenvolvedor de sites)">Web developer (desenvolvedor de sites)</option>
+                <option value="Zelador">Zelador</option>
+            </select>
+            <button id="filter-btn"class="button">Filtrar</button>
+        </div>
+        <div class="container">
+                <nav class="opcoes-nav">
+                    <button class="button" id="specialty-services">Encontrar profissionais</button>
+                    <button class="button2" onclick="cancelEdit()">Voltar</button>
+                </nav>
+    
         <div id="service-list-container" class="service-list-container" style="display:none;">
             <ul id="service-list" class="service-list"></ul>
         </div>
     </div>
-
+</div>
     <footer>
         <p>&copy; 2025 Sistema de Serviços Temporários. Todos os direitos reservados.</p>
     </footer>

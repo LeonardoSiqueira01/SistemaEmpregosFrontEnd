@@ -5,11 +5,7 @@ body {
 }
   
 
-/* Container principal */
-.container {
-    width: 80%;
-    margin: 30px auto;
-}
+
 header {
     background-color: #2e3b4e;
 }
@@ -42,27 +38,73 @@ footer p {
 }
 /* Cabeçalho */
 .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
     margin-bottom: 25px;
 }
+.containerclass{
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ajusta para 100% da largura disponível */
+  
+}
 
-/* Estilo do botão de voltar */
-.back-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    cursor: pointer;
-    border-radius: 5px;
+
+
+  
+  /* Quando a classe 'show' for adicionada, o container será exibido */
+  .specialty-container.show {
+    display: block;
+  }
+  
+  
+  /* Outros estilos para o select e label */
+  .specialty-container label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+  }
+/* Estilo do botão */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
     font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.back-btn:hover {
-    background-color: #0056b3;
-}
+    text-align: center;
+    text-decoration: none;
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border-radius: 5px; /* Cantos arredondados */
+    border: none; /* Sem borda */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Cor de fundo quando o mouse passa em cima */
+  }
+/* Estilo do botão */
+.button2 {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #dc3545; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border-radius: 5px; /* Cantos arredondados */
+    border: none; /* Sem borda */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button2:hover {
+    background-color: #a02834; /* Cor de fundo quando o mouse passa em cima */
+  }
 
 /* Estilo para o link de busca */
 nav a {
@@ -75,7 +117,25 @@ nav a {
     transition: color 0.3s;
 }
 
-
+.opcoes-nav {
+    display: flex;
+    justify-content: space-between; /* Distribui os itens para os cantos */
+    align-items: center; /* Alinha verticalmente */
+    padding: 0px; /* Espaçamento interno */
+    margin: 0px!important;
+    width: 100%;
+  
+  }
+  
+  .opcoes-nav button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 200px;
+    font-size: 16px;
+    border-radius: 5px;
+  
+  }
 /* Estilos para a lista de profissionais */
 .service-list-container {
     display: none;
@@ -236,11 +296,7 @@ body {
     color: #333;
 }
 
-/* Container principal */
-.container {
-    width: 80%;
-    margin: 30px auto;
-}
+
 
 /* Estilos para a lista de profissionais */
 .service-list-container {
@@ -257,6 +313,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
+    max-height: 350px;
     margin-bottom: 20px;
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -347,3 +404,86 @@ body {
         font-size: 14px;
     }
 }
+
+.specialty-container {
+    position: absolute; /* Permite que o container sobreponha outros elementos */
+    top: 30%; /* Posiciona no meio da tela */
+    left: 36.2%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta o posicionamento exato */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para destaque */
+    z-index: 1000; /* Garante que fique acima dos outros elementos */
+    max-width: 400px;
+    width: 80%;
+  }
+  
+  /* Quando a classe 'show' for adicionada, o container será exibido */
+  .specialty-container.show {
+    display: block;
+  }
+  
+  
+  /* Outros estilos para o select e label */
+  .specialty-container label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .specialty-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  .specialty-select:focus {
+    border-color: #007bff;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 5px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border-radius: 5px; /* Cantos arredondados */
+    border: none; /* Sem borda */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Cor de fundo quando o mouse passa em cima */
+  }
+  /* Estilo do botão */
+  .button2 {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #dc3545; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border-radius: 5px; /* Cantos arredondados */
+    border: none; /* Sem borda */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button2:hover {
+    background-color: #a02834; /* Cor de fundo quando o mouse passa em cima */
+  }
