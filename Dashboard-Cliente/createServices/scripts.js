@@ -3,6 +3,22 @@ function getAuthToken() {
     return localStorage.getItem("authToken");
 }
 
+document.getElementById('description').addEventListener('input', function() {
+    var charCount = document.getElementById('description').value.length;
+    var maxLength = 1000;
+    var remainingChars = maxLength - charCount;
+    
+    var charCountDisplay = document.getElementById('charCount');
+    charCountDisplay.textContent = `Restam ${remainingChars} caracteres.`;
+    
+    if (remainingChars <= 0) {
+        charCountDisplay.style.color = 'red'; // Cor vermelha quando o limite for atingido
+    } else {
+        charCountDisplay.style.color = ''; // Cor normal quando estiver dentro do limite
+    }
+});
+
+
 // Função para decodificar o token JWT e obter o payload
 function decodeJWT(token) {
     const payloadBase64 = token.split('.')[1];

@@ -9,6 +9,20 @@ function formatCEP(cep) {
 
   return cep;
 }
+document.getElementById('service-description').addEventListener('input', function() {
+  var charCount = document.getElementById('service-description').value.length;
+  var maxLength = 1000;
+  var remainingChars = maxLength - charCount;
+  
+  var charCountDisplay = document.getElementById('service-charCount');
+  charCountDisplay.textContent = `Restam ${remainingChars} caracteres.`;
+  
+  if (remainingChars <= 0) {
+      charCountDisplay.style.color = 'red'; // Cor vermelha quando o limite for atingido
+  } else {
+      charCountDisplay.style.color = ''; // Cor normal quando estiver dentro do limite
+  }
+});
 
 document.getElementById("service-cep").addEventListener("input", (e) => {
   const cepInput = e.target;

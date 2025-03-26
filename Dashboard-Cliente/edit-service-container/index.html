@@ -28,11 +28,13 @@
         <input type="text" id="service-name" name="name" required placeholder="Digite o nome do serviço" />
       </div>
 
-      <!-- Descrição do Serviço -->
-      <div class="form-group">
-        <label for="service-description">Descrição</label>
-        <textarea id="service-description" name="description" required placeholder="Digite a descrição do serviço"></textarea>
-      </div>
+<!-- Descrição do Serviço -->
+<div class="form-group">
+  <label for="service-description">Descrição</label>
+  <textarea id="service-description" name="description" required placeholder="Digite a descrição do serviço" maxlength="1000"></textarea>
+  <p id="service-charCount">Restam 1000 caracteres.</p>
+</div>
+
 
    <!-- Localização do Serviço -->
 <div class="form-group">
