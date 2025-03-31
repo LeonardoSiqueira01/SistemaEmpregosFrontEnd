@@ -56,12 +56,9 @@ body {
 #specialty-services {
   background-color: #007bff;
   color: white;
+  display: none;
 }
 
-.button2 {
-  background-color: #dc3545;
-  color: white;
-}
 
 /* Garante que os elementos fiquem empilhados verticalmente */
 .assign-professional-container {
@@ -70,19 +67,7 @@ body {
   align-items: center;
 }
 
-.specialty-container {
-  position: absolute; /* Permite que o container sobreponha outros elementos */
-  top: 24.5%; /* Posiciona no meio da tela */
-  left: 41%; /* Centraliza horizontalmente */
-  transform: translate(-50%, -50%); /* Ajusta o posicionamento exato */
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para destaque */
-  z-index: 1000; /* Garante que fique acima dos outros elementos */
-  max-width: 400px;
-  width: 80%;
-}
+
 
 /* Quando a classe 'show' for adicionada, o container será exibido */
 .specialty-container.show {
@@ -133,17 +118,17 @@ body {
 .button:hover {
   background-color: #0056b3; /* Cor de fundo quando o mouse passa em cima */
 }
-/* Estilo do botão */
+
+
 .button2 {
-  display: inline-block;
+  margin-left: auto; /* Move o botão para a direita */
   padding: 10px 20px;
   font-size: 16px;
-  text-align: center;
   text-decoration: none;
-  background-color: #dc3545; /* Cor de fundo do botão */
-  color: white; /* Cor do texto */
-  border-radius: 5px; /* Cantos arredondados */
-  border: none; /* Sem borda */
+  background-color: #dc3545;
+  color: white;
+  border-radius: 5px;
+  border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -320,7 +305,6 @@ nav a {
 .service-list {
   list-style-type: none;
   padding: 0;
-  margin-top: 200px;
   height: 100%;
 }
 
@@ -514,4 +498,184 @@ input[type="text"] {
 
 .assign-professional-container{
   display: none;
+}
+
+
+/* Seção de Filtro */
+#filter-section {
+  background-color: #ffffff;
+  padding: 1px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#filter-section:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Efeito de foco sutil na seção */
+}
+
+#filter-section h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#filter-form {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaçamento entre os elementos */
+  flex-wrap: wrap; /* Para ajustar em telas menores */
+  width: 100%;
+  margin-left: 10px;
+}
+
+#filter-form label {
+  font-weight: bold;
+}
+
+#filter-form input,
+#filter-form select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#city {
+  width: 200px; /* Ajuste conforme necessário */
+}
+
+#specialty {
+  width: 250px; /* Ajuste conforme necessário */
+}
+
+
+#filter-form input[type="text"],
+#filter-form select {
+  width: 300px;
+  padding: 12px 16px;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 18px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fafafa;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#filter-form input[type="text"]:focus,
+#filter-form select:focus {
+  border-color: #3498db;;
+  background-color: #fff;
+  margin-bottom: 10px;
+  box-shadow: 0 0 6px rgba(255, 140, 0, 0.2); /* Efeito de foco suave */
+  outline: none;
+}
+
+#filter-form button {
+  background-color: #3498db;;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 18px;
+  border: none;
+  margin-right: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 10px;
+  width: auto; /* Tira a largura de 100% para que o botão ocupe apenas o espaço necessário */
+  margin-left: 10px; /* Espaçamento entre o campo de especialidade e o botão */
+}
+#city-suggestions {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 500px;
+  margin-left: 44px;
+  margin-top:340px;
+  max-height: 300px; /* Evita que a lista fique gigante */
+  overflow-y: auto; /* Adiciona rolagem se houver muitas opções */
+  z-index: 1000; /* Garante que fique acima de outros elementos */
+  display: none; /* Esconde por padrão */
+}
+
+#city-suggestions li {
+  padding: 10px;
+  cursor: pointer;
+  list-style: none;
+  transition: background 0.2s ease-in-out;
+}
+
+#city-suggestions li:hover {
+  background: #f0f0f0;
+}
+
+
+
+/* Estilo para o menu */
+.menu {
+  background-color: #3498db;; /* Cor de fundo azul */
+  padding: 20px 0;
+  text-align: center;
+  text-align: right;
+}
+
+.menu nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu nav ul li {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.menu nav ul li a {
+  color: #fff;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.menu nav ul li a:hover {
+      background-color: rgba(225, 152, 15, 0.909);
+      border-radius: 10px;
+  
+}#city-suggestions {
+  list-style-type: none;
+  padding: 0;
+  margin: 5px 0;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: absolute;
+  background-color: white;
+  display: none;
+  z-index: 1000;
+}
+
+#city-suggestions li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+#city-suggestions li:hover {
+  background-color: #f0f0f0;
 }

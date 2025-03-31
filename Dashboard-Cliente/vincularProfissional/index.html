@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vincular Profissional ao Serviço</title>
@@ -16,26 +17,46 @@
             </div>
         </nav>
     </header>
-    <!-- Formulário para vincular um profissional -->
-    <div class="assign-professional-container">
-        <h2>Solicitar ao Profissional o vínculo ao Serviço</h2>
-        <form id="assign-professional-form">
-            <div class="form-group">
-                <label for="professional-id">ID do Profissional</label>
-                <input type="text" id="professional-id" name="professionalId" required />
-            </div>
-            <div class="form-group">
-                <button type="submit">Vincular Profissional</button>
-                <button type="button" onclick="cancelEdit()">Cancelar</button>
-                <button type="button" onclick="voltar()">Voltar</button>
-            </div>
-        </form>
-        <p id="confirmation-message" style="display:none;"></p> <!-- Mensagem de confirmação -->
+   
+    <div class="menu">
+        <nav>
+            <ul>
+                <button class="button2" onclick="cancelEdit()">Voltar</button>
+
+            </ul>
+        </nav>
     </div>
-    <div id="specialty-container" class="specialty-container">
-        <label for="specialty">Escolha a especialidade:</label>
-        <select id="specialty" class="specialty-select">
-            <option value="">Selecione uma especialidade</option>
+    <h1>Procurar Profissionais</h1>
+        
+    <div>
+
+    </div>
+
+    <section id="filter-section">
+        <div class="classe">
+        <form id="filter-form">
+            <div class="assign-professional-container">
+                <h2>Solicitar ao Profissional o vínculo ao Serviço</h2>
+                <div class="form-group">
+                    <label for="professional-id">ID do Profissional</label>
+                    <input type="text" id="professional-id" name="professionalId" required />
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="assign-btn">Vincular Profissional</button>
+                    <button type="button" onclick="cancelEdit()">Cancelar</button>
+                    <button type="button" onclick="voltar()">Voltar</button>
+                </div>
+                <p id="confirmation-message" style="display:none;"></p>
+            </div>
+
+            <label for="city"><i class="fas fa-search"></i></label>
+            <input type="text" id="city" placeholder="Digite a cidade" autocomplete="off">
+            <ul id="city-suggestions"></ul> <!-- Lista de sugestões -->
+            
+  
+<label for="specialty"><i class="fas fa-hard-hat"></i></label>
+                <select id="specialty" class="specialty-select">
+                    <option value="">Selecione uma especialidade</option>
             <option value="Ajudante de Mestre de Obras">Ajudante de Mestre de Obras</option>
             <option value="Aulas particulares">Aulas particulares</option>
             <option value="Arquitetura e urbanismo">Arquitetura e urbanismo</option>
@@ -99,21 +120,28 @@
             <option value="Web developer (desenvolvedor de sites)">Web developer (desenvolvedor de sites)</option>
             <option value="Zelador">Zelador</option>
         </select>
-        <button id="filter-btn">Filtrar</button>
-    </div>
-    <div class="container">
-            <nav class="opcoes-nav">
-                <button id="specialty-services">Encontrar profissionais</button>
-                <button class="button2" onclick="cancelEdit()">Voltar</button>
-            </nav>
-      
-        <div id="service-list-container" class="service-list-container" style="display:none;">
-            <ul id="service-list" class="service-list"></ul>
+                
+
+            <button type="button" id="apply-filters" aria-label="Aplicar filtros para listar serviços">Aplicar Filtros</button>
+        </form>
+        <div id="address-info" style="margin-top: 10px; display: none;">
+            <p><strong>Logradouro:</strong> <span id="logradouro">N/A</span></p>
+            <p><strong>Bairro:</strong> <span id="bairro">N/A</span></p>
+            <p><strong>Estado:</strong> <span id="estado">N/A</span></p>
         </div>
-    </div>
-    <footer>
-        <p>&copy; 2025 Sistema de Serviços Temporários. Todos os direitos reservados.</p>
-    </footer>
-    <script src="script.js"></script>
+    </section>
+    <div class="container">
+<nav class="opcoes-nav">
+    <button id="specialty-services">Encontrar profissionais</button>
+</nav>
+<div id="service-list-container" class="service-list-container" style="display:none;">
+    <ul id="service-list" class="service-list"></ul>
+</div>
+</div>
+
+<footer>
+<p>&copy; 2025 Sistema de Serviços Temporários. Todos os direitos reservados.</p>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>
