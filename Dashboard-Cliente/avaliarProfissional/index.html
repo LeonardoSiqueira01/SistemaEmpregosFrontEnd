@@ -7,21 +7,36 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Finalizar Serviço</h1>
-        <form id="finalizarForm">
-      
-            <label for="rating">Nota de Avaliação:</label>
-            <input type="number" id="rating" min="1" max="5" required><br><br>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="../Tela inicial/index.html">
+                    <h1>Serviços Temporários</h1>
+                </a>
+            </div>
+        </nav>
+    </header>
 
-            <label for="comment">Comentário:</label>
-            <textarea id="comment" rows="4" cols="50" required></textarea><br><br>
+    <!-- Adicionando a classe main-content para ocupar o espaço necessário -->
+    <div class="main-content">
+        <div class="container">
+            <h1>Finalizar Serviço</h1>
+            <form id="finalizarForm">
+                <label for="rating">Nota de Avaliação:</label>
+                <input type="number" id="rating" min="1" max="5" required><br><br>
 
-            <button type="submit">Finalizar e Avaliar</button>
-        </form>
+                <label for="comment">Comentário:</label>
+                <textarea id="comment" rows="4" cols="50" required></textarea><br><br>
 
-        <div id="responseMessage"></div>
+                <button type="submit">Finalizar e Avaliar</button>
+            </form>
+            <div id="responseMessage"></div>
+        </div>
     </div>
+
+    <footer>
+        <p>&copy; 2025 Sistema de Serviços Temporários. Todos os direitos reservados.</p>
+    </footer>
 
     <script src="../avaliarProfissional/script.js"></script>
 </body>

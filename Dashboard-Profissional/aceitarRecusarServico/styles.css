@@ -31,11 +31,7 @@ body {
   height: 100vh;
   margin: 0;
 }
-html, body {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
+
 .botoes {
   display: flex;
   justify-content: space-between; /* Ou 'center' para alinhar no centro */
@@ -249,4 +245,156 @@ button.edit-btn:hover {
 .service-item p {
   font-size: 16px;
   margin-bottom: 8px;
+}
+
+.specialty-container {
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.specialty-container:hover {
+  transform: scale(1.02);
+}
+.button2{
+  margin-bottom: 0px;
+}
+/* Título da seção de especialidade */
+.specialty-container label {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 8px;
+  display: block;
+  font-weight: bold;
+}
+.barramenu{
+  background-color: orange;
+  padding: 0px 0;
+  margin-bottom: -10px;
+  text-align: end;
+}
+.barramenu button{
+  margin-top: 10px;
+  margin-right: 10%;
+}
+/* Estilos para o select da especialidade */
+.specialty-select {
+    padding: 12px 16px;
+  margin: 10px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse sobre o select */
+.specialty-select:hover {
+  border-color: #007bff;
+}
+
+/* Estilo quando o select está em foco */
+.specialty-select:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #fff;
+}
+
+/* Botão de filtro */
+#filter-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+#filter-btn:hover {
+  background-color: #0056b3;
+}
+#city-suggestions {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 500px;
+    margin-left: 44px;
+    margin-top:340px;
+    max-height: 300px; /* Evita que a lista fique gigante */
+    overflow-y: auto; /* Adiciona rolagem se houver muitas opções */
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    display: none; /* Esconde por padrão */
+}
+
+#city-suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.2s ease-in-out;
+}
+
+#city-suggestions li:hover {
+    background: #f0f0f0;
+}
+/* Seção de Filtro */
+#filter-section {
+    background-color: #ffffff;
+    padding: 1px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#filter-section:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Efeito de foco sutil na seção */
+}
+
+#filter-section h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#filter-form {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaçamento entre os elementos */
+    flex-wrap: wrap; /* Para ajustar em telas menores */
+    width: 100%;
+    margin-left: 30px;
+}
+
+#filter-form label {
+    font-weight: bold;
+}
+
+#filter-form input,
+#filter-form select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }

@@ -1,25 +1,41 @@
+/* Corpo da página */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0px;
 }
 
 .container {
   background-color: white;
-  padding: 20px;
+  padding: 26px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 400px;
+  margin: 50px auto;
 }
 
 h1 {
   text-align: center;
 }
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}footer {
+  background-color: #2e3b4e;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+}.main-content {
+  flex: 1;
+}
+.logo h1{
 
+color: white;}
 label {
   font-weight: bold;
 }
@@ -49,4 +65,27 @@ button:hover {
 #responseMessage {
   margin-top: 20px;
   text-align: center;
+}
+/* Header e navegação */
+header {
+  background-color: #2e3b4e;
+}
+
+header h1{
+  text-align: left;
+  margin-left: 7.5%;
+}
+header a{
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
+}
+
+
+/* Rodapé */
+footer {
+  background-color: #2e3b4e;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
 }
