@@ -128,17 +128,19 @@ document.addEventListener("DOMContentLoaded", () => {
                             'Content-Type': 'application/json'
                         }
                     });
-    
+                
                     if (!response.ok) {
-                        throw new Error("Erro ao solicitar o vínculo.");
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || "Erro ao solicitar o vínculo.");
                     }
-    
+                
                     const data = await response.json();
                     alert("Solicitação de vínculo enviada com sucesso.");
                 } catch (error) {
-                    console.error(error);
-                    alert("Você já esta realizando um serviço. Não pode iniciar outro sem finalizar o anterior!");
+                    console.error("Erro detalhado:", error);
+                    alert(error.message || "Erro ao solicitar vínculo.");
                 }
+                
             });
         });
     };
