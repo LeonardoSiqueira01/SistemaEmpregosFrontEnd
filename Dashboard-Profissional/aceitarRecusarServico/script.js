@@ -3,7 +3,8 @@ const state = {
     allCities: [],
     selectedCity: "",
     selectedState: "",
-    selectedSpecialty: ""
+    selectedSpecialty: "",
+    selectedStatus: "" 
 };
 
 // Obtendo elementos da interface
@@ -30,6 +31,7 @@ async function carregarServicosSolicitados() {
 
         if (state.selectedCity) params.push(`cidadeEstado=${encodeURIComponent(state.selectedCity + " - " + state.selectedState)}`);
         if (state.selectedSpecialty) params.push(`especialidade=${encodeURIComponent(state.selectedSpecialty)}`);
+        if (state.selectedStatus) params.push(`status=${encodeURIComponent(state.selectedStatus)}`);
         if (params.length) url += "?" + params.join("&");
 
         // Realizando a requisição
@@ -211,6 +213,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     const suggestionsList = document.getElementById("city-suggestions");
     const specialtySelect = document.getElementById("specialty");
     const filterButton = document.getElementById("apply-filters");
+    const statusSelect = document.getElementById("status");
+
+
+    statusSelect.addEventListener("change", () => {
+        state.selectedStatus = statusSelect.value;
+    });
+    
 
     if (!localStorage.getItem("authToken")) {
         alert("Usuário não autenticado. Faça login novamente.");
