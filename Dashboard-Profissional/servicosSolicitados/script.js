@@ -19,53 +19,45 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(data => {
         lista.innerHTML = "";
-
-        if (data.length === 0) {
+    
+        // Filtra os serviços que não estão finalizados
+        const servicosNaoFinalizados = data.filter(servico => servico.status.toLowerCase() !== "finalizado");
+    
+        if (servicosNaoFinalizados.length === 0) {
             lista.innerHTML = "<li>Nenhum serviço solicitado encontrado.</li>";
             return;
         }
-
-        data.forEach(servico => {
-            if (servico.status.toLowerCase() === "finalizado") {
-                return; // pula para o próximo serviço
-            }
-        
+    
+        servicosNaoFinalizados.forEach(servico => {
             const item = document.createElement("li");
             const statusClass = servico.status.toLowerCase(); 
             const formattedDate = formatarData(servico.inicioServico);
-        
+    
             item.classList.add("service-item");
-        
+    
             let botoesHTML = "";
-        
+    
             if (!servico.professionalEmail) {
-                // Caso o serviço não tenha profissional ou seja do próprio profissional logado
                 botoesHTML = `
-                 <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id})" style="width: 40%; background-color: #ff4d4d; color: white;">Cancelar solicitação</button>
-                <button onclick="viewProfile('${servico.clientEmail}')">Visualizar Perfil do Cliente</button>
-            `;
-            
-            
+                    <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id}, '${servico.professionalEmail}')" style="width: 40%; background-color: #ff4d4d; color: white;">Cancelar solicitação</button>
+                    <button onclick="viewProfile('${servico.clientEmail}')">Visualizar Perfil do Cliente</button>
+                `;
             } else if (servico.professionalEmail === email) {
-                // Caso o serviço tenha sido aceito por este profissional
                 botoesHTML = `
-                    <p class="teste";>
+                    <p class="teste" style="background-color: rgba(137, 191, 116, 0.3); color: green; font-weight: bold; padding: 10px; margin: 10px 0; border-radius: 5px;">
                         O cliente aceitou sua solicitação de serviço.
                     </p>
                     <button onclick="viewProfile('${servico.clientEmail}')">Visualizar Perfil do Cliente</button>
-                    <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id})" style="width: 40%; background-color: #ff4d4d; color: white;">Ocultar solicitação</button>
-
+                    <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id}, '${servico.professionalEmail}')" style="width: 40%; background-color: #ff4d4d; color: white;">Ocultar solicitação</button>
                 `;
-            }
-            else {
-                // Caso o serviço tenha sido assumido por outro profissional
+            } else {
                 botoesHTML = `
-                    <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id})" style="width: 100%; background-color: #ff4d4d; color: white; padding: 10px; margin-top: 10px;">
+                    <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id}, '${servico.professionalEmail}')" style="width: 100%; background-color: #ff4d4d; color: white; padding: 10px; margin-top: 10px;">
                         Serviço iniciado por outro profissional. Clique aqui para remover essa solicitação.
                     </button>
                 `;
             }
-        
+    
             item.innerHTML = `
                 <div class="service-header">
                     <h3 class="service-name">${servico.name}</h3>
@@ -81,11 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 ${botoesHTML}
             `;
-        
+    
             lista.appendChild(item);
         });
-        
     })
+    
     .catch(error => {
         console.error(error);
         lista.innerHTML = "<li>Erro ao carregar os serviços.</li>";
@@ -97,11 +89,19 @@ function formatarData(dataISO) {
     const data = new Date(dataISO);
     return data.toLocaleDateString("pt-BR");
 }
-
-function cancelarSolicitacao(idServico) {
+function cancelarSolicitacao(idServico, professionalEmail) {
     const token = localStorage.getItem("authToken");
+    const email = localStorage.getItem("email");
 
-    if (confirm("Tem certeza que deseja cancelar a solicitação deste serviço?")) {
+    const isMesmoProfissional = professionalEmail === email;
+    const mensagemConfirmacao = isMesmoProfissional
+        ? "Tem certeza que deseja ocultar a solicitação deste serviço?"
+        : "Tem certeza que deseja cancelar a solicitação deste serviço?";
+        console.log("[" + professionalEmail + "]");
+        console.log("[" + email + "]");
+        
+
+    if (confirm(mensagemConfirmacao)) {
         fetch(`http://localhost:8080/api/professionals/me/remover-solicitacao/${idServico}`, {
             method: "DELETE",
             headers: {
@@ -112,8 +112,13 @@ function cancelarSolicitacao(idServico) {
             if (!response.ok) {
                 return response.text().then(text => { throw new Error(text) });
             }
-            alert("Solicitação cancelada com sucesso.");
-            location.reload(); // Recarrega a lista de serviços
+
+            const mensagemSucesso = isMesmoProfissional
+                ? "Solicitação ocultada com sucesso."
+                : "Solicitação cancelada com sucesso.";
+
+            alert(mensagemSucesso);
+            location.reload();
         })
         .catch(error => {
             console.error("Erro ao cancelar solicitação:", error);
@@ -121,6 +126,9 @@ function cancelarSolicitacao(idServico) {
         });
     }
 }
+
+
+
 function cancelEdit() {
     window.location.href = "../index.html";
 }
