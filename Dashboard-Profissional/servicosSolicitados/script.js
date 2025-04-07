@@ -1,3 +1,5 @@
+const email = localStorage.getItem("email");
+
 document.addEventListener("DOMContentLoaded", () => {
     const lista = document.getElementById("servicos-lista");
     const token = localStorage.getItem("authToken");
@@ -24,12 +26,46 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         data.forEach(servico => {
+            if (servico.status.toLowerCase() === "finalizado") {
+                return; // pula para o próximo serviço
+            }
+        
             const item = document.createElement("li");
-            const statusClass = servico.status.toLowerCase(); // Ex: "aberto", "iniciado", etc.
+            const statusClass = servico.status.toLowerCase(); 
             const formattedDate = formatarData(servico.inicioServico);
-            
+        
             item.classList.add("service-item");
+        
+            let botoesHTML = "";
+        
+            if (!servico.professionalEmail) {
+                // Caso o serviço não tenha profissional ou seja do próprio profissional logado
+                botoesHTML = `
+                 <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id})" style="width: 40%; background-color: #ff4d4d; color: white;">Cancelar solicitação</button>
+                <button onclick="viewProfile('${servico.clientEmail}')">Visualizar Perfil do Cliente</button>
+            `;
             
+            
+            } else if (servico.professionalEmail === email) {
+                // Caso o serviço tenha sido aceito por este profissional
+                botoesHTML = `
+                    <p class="teste";>
+                        O cliente aceitou sua solicitação de serviço.
+                    </p>
+                    <button onclick="viewProfile('${servico.clientEmail}')">Visualizar Perfil do Cliente</button>
+                    <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id})" style="width: 40%; background-color: #ff4d4d; color: white;">Ocultar solicitação</button>
+
+                `;
+            }
+            else {
+                // Caso o serviço tenha sido assumido por outro profissional
+                botoesHTML = `
+                    <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id})" style="width: 100%; background-color: #ff4d4d; color: white; padding: 10px; margin-top: 10px;">
+                        Serviço iniciado por outro profissional. Clique aqui para remover essa solicitação.
+                    </button>
+                `;
+            }
+        
             item.innerHTML = `
                 <div class="service-header">
                     <h3 class="service-name">${servico.name}</h3>
@@ -43,12 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p><strong>Nome do Cliente:</strong> ${servico.clientName}</p>
                     <p><strong>Email do Cliente:</strong> ${servico.clientEmail}</p>
                 </div>
-                <button class="btn-cancelar" onclick="cancelarSolicitacao(${servico.id})">Cancelar Solicitação</button>
-                <button onclick="viewProfile('${servico.clientEmail}')">Visualizar Perfil do Cliente</button>
+                ${botoesHTML}
             `;
-            
+        
             lista.appendChild(item);
         });
+        
     })
     .catch(error => {
         console.error(error);

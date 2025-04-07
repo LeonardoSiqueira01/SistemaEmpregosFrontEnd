@@ -249,3 +249,11 @@ button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
 }
+.teste{
+  background-color: rgba(137, 191, 116, 0.4);
+  border-radius: 7px;
+     font-weight: bold;
+    padding: 10px;
+     color:green;
+      margin: 10px 0;
+}
