@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard do Cliente</title>
     <link rel="stylesheet" href="../lista-servicos/styles.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
     <header>
@@ -18,15 +20,31 @@
     </header>
  <!-- Menu de navegação -->
 <nav class="submenu">
-    <button id="list-services">Listar Serviços</button>
-    <button id="specialty-services">Serviços por Especialidade</button>
-    <button id="cancelEdit" onclick="cancelEdit()">Voltar</button>
+ 
+    <button id="cancelEdit" class="filter2" onclick="cancelEdit()">Voltar</button>
 </nav>
+<h1 class="aba">Meus Serviços</h1>
+
+<form id="filter-form" onsubmit="event.preventDefault();">
+    <div class="form-row">
+
+ <!-- Cidade -->
+ <div class="filter-group">
+    <form id="filter-form" onsubmit="event.preventDefault();">
+      <label for="city"><i class="fas fa-search"></i></label>
+      <input type="text" id="city" placeholder="Digite a cidade" autocomplete="off">
+      <input type="text" id="estado" style="display:none;" />
+      <ul id="city-suggestions"></ul>
+    </form>
+  </div>
+  <button class="list-services" id="list-services">Listar Serviços</button>
+  <button class="list-services" id="specialty-services">Serviços por Especialidade</button>
 <!-- Container para selecionar a especialidade -->
 <div id="specialty-container" class="specialty-container">
-    <label for="specialty">Escolha a especialidade:</label>
-    <select id="specialty" class="specialty-select">
-        <option value="">Selecione uma especialidade</option>
+    <div class="filter-group">
+    <label for="specialty"><i class="fas fa-hard-hat"></i></label>
+                <select id="specialty" class="specialty-select">
+                    <option value="">Selecione uma especialidade</option>
         <option value="Ajudante de Mestre de Obras">Ajudante de Mestre de Obras</option>
         <option value="Aulas particulares">Aulas particulares</option>
         <option value="Arquitetura e urbanismo">Arquitetura e urbanismo</option>
@@ -90,13 +108,30 @@
         <option value="Web developer (desenvolvedor de sites)">Web developer (desenvolvedor de sites)</option>
         <option value="Zelador">Zelador</option>
     </select>
-    <button id="filter-btn">Filtrar</button>
+</div>
+</div>
+<div class="filter-group">
+    <label for="status"><i class="fas fa-tasks"></i></label>
+    <select id="status">
+      <option value="">Todos os Status</option>
+      <option value="ABERTO">Aberto</option>
+      <option value="INICIADO">Iniciado</option>
+      <option value="FINALIZADO">Finalizado</option>
+    </select>
+  </div>
+  
+  <div class="filter-group buttons-group">
+  <button class="list-services" id="list-services">Listar Serviços</button>
+  <button class="list-services" id="specialty-services">Serviços por Especialidade</button>
+  <button class="filter2" id="filter-btn">Filtrar</button>
+</div>
 </div>
 
+</form>
 <!-- Container para listar os serviços -->
+ 
 <main>
     <div id="service-list-container">
-        <h2>Meus Serviços</h2>
         <div id="service-list"></div>
     </div>
 </main>

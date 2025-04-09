@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                     if (!response.ok) {
                         const errorData = await response.json();
-                        throw new Error(errorData.message || "Erro ao solicitar o vínculo.");
+                        throw new Error(errorData.mensagem || "Erro ao solicitar o vínculo."); // <-- .mensagem
                     }
                 
                     const data = await response.json();
@@ -140,6 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.error("Erro detalhado:", error);
                     alert(error.message || "Erro ao solicitar vínculo.");
                 }
+                
+                
                 
             });
         });

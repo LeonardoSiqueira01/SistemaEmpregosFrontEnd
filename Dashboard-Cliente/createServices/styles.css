@@ -215,3 +215,12 @@ footer p {
 #specialty option:hover {
     background-color: #f1f1f1;
 }
+.submenu{
+    background-color: #3498db;
+   text-align: end;
+   padding: 10px;
+  }
+  .submenu button{
+    margin-right: 10%;
+    background-color: #28a745;
+  }
