@@ -426,7 +426,7 @@ margin-left: 15px;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  width: 500px;
+  width: 270px;
   margin-left: 44px;
   margin-top:340px;
   max-height: 300px; /* Evita que a lista fique gigante */
@@ -457,8 +457,7 @@ margin-left: 15px;
 
 #city-suggestions {
   position: absolute;
-  left: 20;
-  width: 500px;
+  width: 270px;
   margin: 56px 0 0 0;
 }
 #city-suggestions::-webkit-scrollbar {

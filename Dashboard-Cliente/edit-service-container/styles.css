@@ -38,7 +38,7 @@ footer p {
 
 .edit-service-container {
   width: 100%;
-  max-width: 600px;
+  max-width: 530px;
   margin: 30px auto;
   padding: 30px;
   background-color: #fff;
@@ -94,35 +94,37 @@ footer p {
   resize: vertical;
   min-height: 120px;
 }
-
-/* Estilo para os botões */
 .form-group button {
   padding: 12px 24px;
   font-size: 16px;
   font-weight: 600;
   background-color: #4CAF50;
-  color: #fff;
+  color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-right: 15px;
-  width: 150px;
+  width: 190px;
   display: inline-block;
   text-align: center;
+}
+
+.form-group button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
 }
 
 .form-group button[type="button"] {
   background-color: #f44336;
 }
 
-.form-group button:hover {
-  background-color: #45a049;
-}
-
 .form-group button[type="button"]:hover {
   background-color: #e53935;
+  transform: scale(1.05);
 }
+
 
 /* Estilo para alinhar os botões lado a lado */
 .form-group.buttons {
@@ -201,4 +203,31 @@ footer p {
       padding: 12px;
       font-size: 16px;
   }
+}
+
+.submenu {
+  background-color: #3498db;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px 5%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submenu button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submenu button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
 }

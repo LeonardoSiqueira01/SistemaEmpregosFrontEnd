@@ -1,4 +1,4 @@
-/* Estilos gerais */
+/* =================== Estilos Gerais =================== */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -7,64 +7,53 @@ body {
   color: #333;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Garante que o corpo ocupe 100% da altura da tela */
+  min-height: 100vh;
 }
 
 h1 {
   font-size: 30px;
-  color: #007bff;
+  color: #000;
   text-align: center;
   margin-top: 30px;
 }
-header .logo h1{
-  text-align: left;
-  padding-left: 7.5%;
-}
-footer {
-  background-color: #2e3b4e;
-  color: #fff;
-  text-align: center;
-  padding: 20px 0;
-  font-size: 14px;
-  margin-top: auto; /* Empurra o footer para o final */
-}
 
-footer p {
-  margin: 0;
-}
-
-nav {
-  width: 85%;
-  margin: 0 auto;
-}
-
+/* =================== Header =================== */
 header {
   background-color: #2e3b4e;
-}
-
-header h1 {
-  text-decoration: none; /* Remove o sublinhado */
-  color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
 }
 
 header .logo h1 {
   color: #fff;
   font-size: 28px;
   letter-spacing: 1px;
+  text-align: left;
   padding-left: 7.5%;
-  width: 100%;
-  text-decoration: none; /* Remove o sublinhado */
+  text-decoration: none;
 }
 
 header a {
-  text-decoration: none; /* Remove o sublinhado */
-  color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
+  text-decoration: none;
+  color: inherit;
 }
 
-/* Container principal */
+/* =================== Footer =================== */
+footer {
+  background-color: #2e3b4e;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* =================== Container Principal =================== */
 #professional-requests-container {
-  width: 100%;
   max-width: 1000px;
+  width: 100%;
   margin: 30px auto;
   padding: 20px;
   background-color: #fff;
@@ -72,22 +61,21 @@ header a {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para cada solicitação de profissional */
+/* =================== Cartões de Solicitação =================== */
 .professional-request {
-  background-color: #ffffff;
+  background-color: #fff;
   border: 1px solid #ddd;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .professional-request:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Títulos e informações dentro de cada solicitação */
 .professional-request h3 {
   font-size: 22px;
   color: #2c3e50;
@@ -101,11 +89,11 @@ header a {
 }
 
 .professional-request p strong {
-  color: #333;
   font-weight: bold;
+  color: #333;
 }
 
-/* Estilo para a mensagem de erro quando não há profissionais */
+/* =================== Mensagem Vazia =================== */
 .professional-request.empty-message {
   font-size: 18px;
   color: #e74c3c;
@@ -113,37 +101,109 @@ header a {
   margin-top: 50px;
 }
 
-
-  
-
-
-
-button.voltar-btn:hover {
-  background-color: #2980b9;
+/* =================== Cartão de Perfil =================== */
+.profile-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 20px auto;
+  color: #333;
 }
 
-/* Estilo de mensagens gerais */
-.error-message {
-  color: #e74c3c;
+/* =================== Submenu =================== */
+.submenu {
+  background-color: #3498db;
+  text-align: right;
+  padding: 10px;
+}
+
+.submenu button {
+  margin-right: 10%;
+  background-color: #28a745;
+  color: white;
+}
+
+/* =================== Botões =================== */
+button {
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#voltar-btn {
+  background-color: #4CAF50;
+  color: white;
+  width: auto;
+  margin: 10px 0;
+}
+
+#voltar-btn:hover {
+  background-color: #45a049;
+}
+
+.view-profile-btn {
+  background-color: #4A90E2;
+  color: white;
+  margin-bottom: 20px;
+  width: 20%;
+}
+
+.view-profile-btn:hover {
+  background-color: #357ABD;
+}
+
+.aceitar-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.aceitar-btn:hover {
+  background-color: #218838;
+}
+
+.recusar-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.recusar-btn:hover {
+  background-color: #c82333;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* =================== Mensagens =================== */
+.error-message,
+.success-message {
   font-size: 14px;
   margin-top: 10px;
   text-align: center;
+}
+
+.error-message {
+  color: #e74c3c;
 }
 
 .success-message {
   color: #2ecc71;
-  font-size: 14px;
-  margin-top: 10px;
-  text-align: center;
 }
 
-/* Responsividade para telas menores */
+/* =================== Responsividade =================== */
 @media (max-width: 768px) {
   h1 {
     font-size: 26px;
   }
 
-  .professional-request {
+  .professional-request,
+  .profile-card {
     padding: 15px;
   }
 
@@ -155,93 +215,13 @@ button.voltar-btn:hover {
     font-size: 14px;
   }
 
-  button.voltar-btn {
-    padding: 10px 15px;
+  button {
     font-size: 14px;
+    padding: 10px 15px;
   }
-}
 
-#voltar-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #4CAF50; /* Cor verde */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  width: 5%;
-}
-
-#voltar-btn:hover {
-  background-color: #45a049;
-}
-
-/* Estilizando a div com o perfil do profissional */
-.profile-card {
-  background-color: #fff; /* Fundo branco */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 20px auto;
-  font-family: Arial, sans-serif;
-  color: #333;
-}
-
-/* Estilização do botão "Visualizar Perfil" */
-.view-profile-btn {
-  background-color: #4A90E2; /* Cor de fundo azul */
-  color: white; /* Texto branco */
-  border: none; /* Remove borda */
-  padding: 10px 20px; /* Espaçamento interno */
-  border-radius: 5px; /* Bordas arredondadas */
-  cursor: pointer; /* Muda o cursor ao passar por cima */
-  font-size: 16px; /* Tamanho de fonte */
-  margin-bottom: 20px; /* Margem inferior */
-  width: 20%; /* Faz com que ocupe toda a largura */
-  transition: background-color 0.3s ease; /* Animação suave para a cor */
-}
-
-.view-profile-btn:hover {
-  background-color: #357ABD; /* Cor do botão ao passar o mouse */
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-
-/* Botão Aceitar */
-.aceitar-btn {
-  background-color: #28a745; /* Cor verde */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-.aceitar-btn:hover {
-  background-color: #218838; /* Cor do botão Aceitar ao passar o mouse */
-}
-
-/* Botão Recusar */
-.recusar-btn {
-  background-color: #dc3545; /* Cor vermelha */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-.recusar-btn:hover {
-  background-color: #c82333; /* Cor do botão Recusar ao passar o mouse */
-}
-
-/* Estilo para os botões quando desabilitados */
-button:disabled {
-  background-color: #ddd; /* Cor de fundo quando desabilitado */
-  cursor: not-allowed; /* Cursor de "não permitido" */
+  #voltar-btn,
+  .view-profile-btn {
+    width: 100%;
+  }
 }

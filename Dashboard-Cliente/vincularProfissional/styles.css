@@ -309,7 +309,7 @@ nav a {
 }
 
 .service-item {
-  background-color: #fff;
+  background-color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
@@ -451,9 +451,10 @@ input[type="text"] {
 }
 
 .service-item {
-  background: #e9ecef;
-  margin: 10px 0;
+  background: #fcfcfc;
+  margin: 20px 0;
   padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
@@ -493,6 +494,20 @@ input[type="text"] {
 
 .assign-button:hover {
   background-color: #0056b3;
+}
+.assign-button2 {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.assign-button2:hover {
+  background-color: green;
 }
 
 
@@ -603,7 +618,7 @@ input[type="text"] {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  width: 500px;
+  width: 270px;
   margin-left: 44px;
   margin-top:340px;
   max-height: 300px; /* Evita que a lista fique gigante */
@@ -628,7 +643,8 @@ input[type="text"] {
 /* Estilo para o menu */
 .menu {
   background-color: #3498db;; /* Cor de fundo azul */
-  padding: 20px 0;
+  padding: 5px 0;
+  padding-bottom: 12px;
   text-align: center;
   text-align: right;
 }
@@ -660,10 +676,11 @@ input[type="text"] {
 }#city-suggestions {
   list-style-type: none;
   padding: 0;
-  margin: 5px 0;
-  width: 250px;
+  width: 270px;
+  top: -29px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-left: 29px;
   position: absolute;
   background-color: white;
   display: none;
@@ -678,4 +695,8 @@ input[type="text"] {
 
 #city-suggestions li:hover {
   background-color: #f0f0f0;
+}
+
+.botaovinculo{
+  background-color: green;
 }

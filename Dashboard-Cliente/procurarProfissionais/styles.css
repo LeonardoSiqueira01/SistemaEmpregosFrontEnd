@@ -338,7 +338,7 @@ body {
   
   /* Informações sobre o profissional */
   .service-item p {
-    margin: 10px 0;
+    margin: 18px 0;
     font-size: 16px;
   }
   
@@ -452,9 +452,12 @@ body {
   
   .service-item {
     background: #e9ecef;
-    margin: 10px 0;
     padding: 15px;
+    padding-left: 25px;
+    padding-top: 25px;
     border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
   
   .service-item h3 {
@@ -598,19 +601,7 @@ body {
     width: auto; /* Tira a largura de 100% para que o botão ocupe apenas o espaço necessário */
     margin-left: 10px; /* Espaçamento entre o campo de especialidade e o botão */
   }
-  #city-suggestions {
-    position: absolute;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 500px;
-    margin-left: 44px;
-    margin-top:340px;
-    max-height: 300px; /* Evita que a lista fique gigante */
-    overflow-y: auto; /* Adiciona rolagem se houver muitas opções */
-    z-index: 1000; /* Garante que fique acima de outros elementos */
-    display: none; /* Esconde por padrão */
-  }
+
   
   #city-suggestions li {
     padding: 10px;
@@ -660,12 +651,15 @@ body {
   }#city-suggestions {
     list-style-type: none;
     padding: 0;
-    margin: 5px 0;
-    width: 250px;
+    margin-left: 30px;
+    width: 270px;
     border: 1px solid #ccc;
     border-radius: 5px;
     position: absolute;
     background-color: white;
+    top: 318px;
+    overflow-y: auto;
+    max-height: 400px;
     display: none;
     z-index: 1000;
   }

@@ -62,7 +62,7 @@ class ProfessionalServiceManager {
                             <strong>Disponível:</strong>
                             <span class="${professional.available ? 'available' : 'not-available'}"> ${professional.available ? "Sim" : "Não"} </span>
                         </div>
-                        <button class="assign-button" onclick="professionalServiceManager.assignProfessional('${professional.id}')">Vincular Profissional</button>
+                        <button class="assign-button2" onclick="professionalServiceManager.assignProfessional('${professional.id}')">Vincular Profissional</button>
                         <button onclick="professionalServiceManager.viewProfile('${professional.email}')">Visualizar Perfil</button>
                     `;
                     this.serviceList.appendChild(listItem);

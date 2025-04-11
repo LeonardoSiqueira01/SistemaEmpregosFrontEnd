@@ -13,12 +13,19 @@ body {
     height: 100vh;
     margin: 0;
 }
-html, body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+
+.barramenu {
+    background-color: orange;
+    padding: 10px;
+    text-align: end;
+    margin-top: 70px; /* Espaço para não ficar atrás do header */
 }
 
+  .barramenu button{
+    margin-top: 10px;
+    margin-right: 10%;
+    width: 120px;
+  }
 
 /* Container do formulário */
 .container {
@@ -27,10 +34,10 @@ html, body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-top: 400px;   
- margin: 0 auto;
+    top: 400px;   
+    margin: 0 auto;
     max-width: 500px;
-    max-height: 840px;
+    max-height: 925px;
     box-sizing: border-box;
 }
 
@@ -93,8 +100,7 @@ header {
   }
 
 /* Garante que o body ocupe toda a altura da tela */
-html, body {
-    height: 100%;
+ body {
     display: flex;
     flex-direction: column;
 }
@@ -309,6 +315,7 @@ button {
     text-align: center;
     margin-top: 10px;
     font-size: 0.9em;
+    padding-bottom: 15px;
 }
 
 #cep-link a {

@@ -1,128 +1,142 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Serviço</title>
-    <link rel="stylesheet" href="../createServices/styles.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="../Tela inicial/index.html">
-                    <h1>Serviços Temporários</h1>
-                </a>
-            </div>
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Criar Serviço</title>
+        <link rel="stylesheet" href="../createServices/styles.css">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="logo">
+                    <a href="../Tela inicial/index.html">
+                        <h1>Serviços Temporários</h1>
+                    </a>
+                </div>
+            </nav>
+        </header>
+        <nav class="submenu">
+    
+            <button id="cancelEdit" class="filter2" onclick="cancelEdit()">Voltar</button>
         </nav>
-    </header>
-    <nav class="submenu">
- 
-        <button id="cancelEdit" class="filter2" onclick="cancelEdit()">Voltar</button>
-    </nav>
-    <div class="container">
-        <h2>Criar Serviço</h2>
-        
-        <form id="serviceForm">
-            <label for="name">Nome do Serviço:</label>
-            <input type="text" id="name" required placeholder="Nome do serviço">
+        <div class="container">
+            <h2>Criar Serviço</h2>
             
-            <input type="hidden" id="client" name="client">
+            <form id="serviceForm">
+                <label for="name">Nome do Serviço:</label>
+                <input type="text" id="name" required placeholder="Nome do serviço">
+                
+                <input type="hidden" id="client" name="client">
+
+                
+                <label for="description">Descrição:</label>
+            <textarea id="description" required placeholder="Descrição do serviço" maxlength="1000"></textarea>
+            <p id="charCount">Restam 1000 caracteres.</p>
 
             
-            <label for="description">Descrição:</label>
-<textarea id="description" required placeholder="Descrição do serviço" maxlength="1000"></textarea>
-<p id="charCount">Restam 1000 caracteres.</p>
-
-            
-            <label for="location">CEP:</label>
-            <input type="text" id="location" required placeholder="Digite o CEP">
-            
-            <div id="formattedAddress" style="display: none; margin-top: 10px;">
-                <strong>Endereço:</strong> <span id="addressOutput"></span>
+                
+            <div id="locationContainer" style="justify-content: flex-start; align-items: center; width: 100%; flex-wrap: wrap;">
+                <label for="location" id="locationLabel" style="margin-right: 10px; display: inline-block;">Endereço:</label>
+                <input type="text" id="location" name="location" placeholder="Digite o CEP abaixo para preencher este campo" style="display: inline-block; flex-grow: 1; border: none; background: none; outline: none;" readonly>
             </div>
             
-            <label for="serviceDate">Data do Serviço:</label>
-            <input type="date" id="serviceDate" required>
-            <label for="specialty">Especialidade:</label>
-            <select id="specialty" required>
-                <option value="">Selecione uma especialidade</option>
-                <option value="Ajudante de Mestre de Obras">Ajudante de Mestre de Obras</option>
-                <option value="Aulas particulares">Aulas particulares</option>
-                <option value="Arquitetura e urbanismo">Arquitetura e urbanismo</option>
-                <option value="Assistente virtual">Assistente virtual</option>
-                <option value="Babá">Babá</option>
-                <option value="Babysitter (cuidador de crianças)">Babysitter (cuidador de crianças)</option>
-                <option value="Barbeiro">Barbeiro</option>
-                <option value="Carpinteiro">Carpinteiro</option>
-                <option value="Cabeleireiro">Cabeleireiro</option>
-                <option value="Consultoria de imagem">Consultoria de imagem</option>
-                <option value="Consultoria de inovação e transformação digital">Consultoria de inovação e transformação digital</option>
-                <option value="Consultoria de marketing">Consultoria de marketing</option>
-                <option value="Consultoria em finanças pessoais">Consultoria em finanças pessoais</option>
-                <option value="Consultoria em produtividade">Consultoria em produtividade</option>
-                <option value="Consultoria jurídica">Consultoria jurídica</option>
-                <option value="Contador">Contador</option>
-                <option value="Cozinheiro">Cozinheiro</option>
-                <option value="Cuidador de idosos">Cuidador de idosos</option>
-                <option value="Dentista">Dentista</option>
-                <option value="Desentupidora">Desentupidora</option>
-                <option value="Design gráfico">Design gráfico</option>
-                <option value="Diarista">Diarista</option>
-                <option value="Eletricista">Eletricista</option>
-                <option value="Encanador">Encanador</option>
-                <option value="Engenheiro">Engenheiro</option>
-                <option value="Estética (depilação, manicure, pedicure)">Estética (depilação, manicure, pedicure)</option>
-                <option value="Fisioterapeuta">Fisioterapeuta</option>
-                <option value="Freelancer (diversas áreas)">Freelancer (diversas áreas)</option>
-                <option value="Free Lancer de Designer">Free Lancer de Designer</option>
-                <option value="Fotógrafo">Fotógrafo</option>
-                <option value="Gestão de eventos">Gestão de eventos</option>
-                <option value="Gestão de redes sociais">Gestão de redes sociais</option>
-                <option value="Gerente de projetos">Gerente de projetos</option>
-                <option value="Jardinagem">Jardinagem</option>
-                <option value="Limpeza residencial">Limpeza residencial</option>
-                <option value="Marceneiro">Marceneiro</option>
-                <option value="Manutenção de computadores">Manutenção de computadores</option>
-                <option value="Manutenção de eletrodomésticos">Manutenção de eletrodomésticos</option>
-                <option value="Maquiador">Maquiador</option>
-                <option value="Médico (atendimentos particulares)">Médico (atendimentos particulares)</option>
-                <option value="Mestre de Obras">Mestre de Obras</option>
-                <option value="Nutricionista">Nutricionista</option>
-                <option value="Organização de ambientes e espaços">Organização de ambientes e espaços</option>
-                <option value="Padeiro">Padeiro</option>
-                <option value="Personal trainer">Personal trainer</option>
-                <option value="Pintor">Pintor</option>
-                <option value="Produção de conteúdo para blogs e mídias sociais">Produção de conteúdo para blogs e mídias sociais</option>
-                <option value="Reformas e reparos (gerais)">Reformas e reparos (gerais)</option>
-                <option value="Recepcionista">Recepcionista</option>
-                <option value="Recrutamento e seleção">Recrutamento e seleção</option>
-                <option value="Redator">Redator</option>
-                <option value="Segurança privada">Segurança privada</option>
-                <option value="Serviços de TI (tecnologia da informação)">Serviços de TI (tecnologia da informação)</option>
-                <option value="Serviços de comida (chef particular)">Serviços de comida (chef particular)</option>
-                <option value="Serviços de transporte (motoboy, fretes)">Serviços de transporte (motoboy, fretes)</option>
-                <option value="Serviços Gerais">Serviços Gerais</option>
-                <option value="Terapeuta">Terapeuta</option>
-                <option value="Translator (tradução)">Translator (tradução)</option>
-                <option value="Veterinário">Veterinário</option>
-                <option value="Web designer">Web designer</option>
-                <option value="Web developer (desenvolvedor de sites)">Web developer (desenvolvedor de sites)</option>
-                <option value="Zelador">Zelador</option>
-            </select>
-
-            <div class="button-container">
-                <button type="submit">Criar Serviço</button>
-                <button type="button" onclick="cancelEdit()">Cancelar</button>
-            </div>
             
-        </form>
+                <div id="addressOutput" style="display: none;">
+                    <input><strong>Endereço do serviço a ser salvo:</strong> <span id="formattedAddress"></span></input>
+                </div>
+                <div id="locationContainer" style=" display: flex; align-items: center; gap: 10px;">
+                    <label for="cep" id="cepLabel">CEP:</label>
+                    <input type="text"  id="cep" name="cep" placeholder="Digite seu CEP" required>
+                    <button type="button" class="botaoBuscar" id="buscarEnderecoBtn">Buscar Endereço</button>
+                </div>
+    
+    
+    
+                <p id="cep-link">
+                    <a href="https://buscacepinter.correios.com.br/app/localidade_logradouro/index.php" target="_blank">Não sabe seu endereço? Pesquise aqui seu CEP.</a>
+                </p>
+                <label for="serviceDate">Data do Serviço:</label>
+                <input type="date" id="serviceDate" required>
+                <label for="specialty">Especialidade:</label>
+                <select id="specialty" required>
+                    <option value="">Selecione uma especialidade</option>
+                    <option value="Ajudante de Mestre de Obras">Ajudante de Mestre de Obras</option>
+                    <option value="Aulas particulares">Aulas particulares</option>
+                    <option value="Arquitetura e urbanismo">Arquitetura e urbanismo</option>
+                    <option value="Assistente virtual">Assistente virtual</option>
+                    <option value="Babá">Babá</option>
+                    <option value="Babysitter (cuidador de crianças)">Babysitter (cuidador de crianças)</option>
+                    <option value="Barbeiro">Barbeiro</option>
+                    <option value="Carpinteiro">Carpinteiro</option>
+                    <option value="Cabeleireiro">Cabeleireiro</option>
+                    <option value="Consultoria de imagem">Consultoria de imagem</option>
+                    <option value="Consultoria de inovação e transformação digital">Consultoria de inovação e transformação digital</option>
+                    <option value="Consultoria de marketing">Consultoria de marketing</option>
+                    <option value="Consultoria em finanças pessoais">Consultoria em finanças pessoais</option>
+                    <option value="Consultoria em produtividade">Consultoria em produtividade</option>
+                    <option value="Consultoria jurídica">Consultoria jurídica</option>
+                    <option value="Contador">Contador</option>
+                    <option value="Cozinheiro">Cozinheiro</option>
+                    <option value="Cuidador de idosos">Cuidador de idosos</option>
+                    <option value="Dentista">Dentista</option>
+                    <option value="Desentupidora">Desentupidora</option>
+                    <option value="Design gráfico">Design gráfico</option>
+                    <option value="Diarista">Diarista</option>
+                    <option value="Eletricista">Eletricista</option>
+                    <option value="Encanador">Encanador</option>
+                    <option value="Engenheiro">Engenheiro</option>
+                    <option value="Estética (depilação, manicure, pedicure)">Estética (depilação, manicure, pedicure)</option>
+                    <option value="Fisioterapeuta">Fisioterapeuta</option>
+                    <option value="Freelancer (diversas áreas)">Freelancer (diversas áreas)</option>
+                    <option value="Free Lancer de Designer">Free Lancer de Designer</option>
+                    <option value="Fotógrafo">Fotógrafo</option>
+                    <option value="Gestão de eventos">Gestão de eventos</option>
+                    <option value="Gestão de redes sociais">Gestão de redes sociais</option>
+                    <option value="Gerente de projetos">Gerente de projetos</option>
+                    <option value="Jardinagem">Jardinagem</option>
+                    <option value="Limpeza residencial">Limpeza residencial</option>
+                    <option value="Marceneiro">Marceneiro</option>
+                    <option value="Manutenção de computadores">Manutenção de computadores</option>
+                    <option value="Manutenção de eletrodomésticos">Manutenção de eletrodomésticos</option>
+                    <option value="Maquiador">Maquiador</option>
+                    <option value="Médico (atendimentos particulares)">Médico (atendimentos particulares)</option>
+                    <option value="Mestre de Obras">Mestre de Obras</option>
+                    <option value="Nutricionista">Nutricionista</option>
+                    <option value="Organização de ambientes e espaços">Organização de ambientes e espaços</option>
+                    <option value="Padeiro">Padeiro</option>
+                    <option value="Personal trainer">Personal trainer</option>
+                    <option value="Pintor">Pintor</option>
+                    <option value="Produção de conteúdo para blogs e mídias sociais">Produção de conteúdo para blogs e mídias sociais</option>
+                    <option value="Reformas e reparos (gerais)">Reformas e reparos (gerais)</option>
+                    <option value="Recepcionista">Recepcionista</option>
+                    <option value="Recrutamento e seleção">Recrutamento e seleção</option>
+                    <option value="Redator">Redator</option>
+                    <option value="Segurança privada">Segurança privada</option>
+                    <option value="Serviços de TI (tecnologia da informação)">Serviços de TI (tecnologia da informação)</option>
+                    <option value="Serviços de comida (chef particular)">Serviços de comida (chef particular)</option>
+                    <option value="Serviços de transporte (motoboy, fretes)">Serviços de transporte (motoboy, fretes)</option>
+                    <option value="Serviços Gerais">Serviços Gerais</option>
+                    <option value="Terapeuta">Terapeuta</option>
+                    <option value="Translator (tradução)">Translator (tradução)</option>
+                    <option value="Veterinário">Veterinário</option>
+                    <option value="Web designer">Web designer</option>
+                    <option value="Web developer (desenvolvedor de sites)">Web developer (desenvolvedor de sites)</option>
+                    <option value="Zelador">Zelador</option>
+                </select>
 
-    </div>
+                <div class="button-container">
+                    <button type="submit">Criar Serviço</button>
+                    <button type="button" onclick="cancelEdit()">Cancelar</button>
+                </div>
+                
+            </form>
 
-    <footer>
-        <p>&copy; 2025 Sistema de Serviços Temporários. Todos os direitos reservados.</p>
-    </footer>
-    <script src="../createServices/scripts.js"></script>
-</body>
-</html>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Sistema de Serviços Temporários. Todos os direitos reservados.</p>
+        </footer>
+        <script src="../createServices/scripts.js"></script>
+    </body>
+    </html>
