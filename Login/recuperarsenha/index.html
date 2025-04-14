@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha</title>
+    <link rel="stylesheet" href="../recuperarsenha/styles.css">
+</head>
+<header>
+    <nav>
+        <div class="logo">
+            <a href="../Tela inicial/index.html">
+                <h1>Serviços Temporários</h1>
+            </a>
+        </div>
+    </nav>
+</header>
+<body>
+    <div class="login-container">
+        <h2>Recuperar Senha</h2>
+        <form id="recoverForm">
+            <div class="form-group">
+                <label for="recoverEmail">E-mail</label>
+                <input type="email" id="recoverEmail" name="recoverEmail" required placeholder="Digite seu e-mail cadastrado">
+            </div>
+            <button type="submit">Enviar</button>
+            <div id="recoverMessage" class="error-message"></div>
+        </form>
+        <!-- Botão para voltar ao login -->
+        <div class="back-to-login">
+            <a href="../index.html">Voltar para o Login</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Sistema de Serviços Temporários. Todos os direitos reservados.</p>
+    </footer>
+    <script src="../recuperarsenha/script.js"></script>
+</body>
+</html>
