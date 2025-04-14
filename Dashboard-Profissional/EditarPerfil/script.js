@@ -206,9 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     
-    document.getElementById("backButton").addEventListener("click", function() {
-        window.history.back();  // Volta para a página anterior
-    });
+
 
 
     document.getElementById("editProfileButton").addEventListener("click", function() {

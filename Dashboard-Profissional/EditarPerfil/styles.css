@@ -49,23 +49,26 @@ body {
 }
 
 /* Estilo do botão de voltar */
-#backButton {
-    width: auto; /* Deixe o tamanho do botão ajustado ao conteúdo */
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    margin: 0 auto; /* Centraliza o botão */
-    text-align: center;
+.btn-voltar {
+    display: inline-block;         /* Permite aplicar padding, margin e definir o tamanho conforme o conteúdo */
+    padding: 10px 20px;            /* Espaçamento interno consistente */
+    background-color: #4CAF50;     /* Cor de fundo padrão */
+    color: #fff;                   /* Texto branco */
+    border: none;                  /* Sem bordas */
+    border-radius: 5px;            /* Bordas arredondadas */
+    text-decoration: none;         /* Remove a decoração padrão dos links */
+    text-align: center;            /* Centraliza o texto */
+    cursor: pointer;               /* Mostra que é clicável */
+    font-size: 16px;               /* Tamanho da fonte */
+    transition: background-color 0.3s ease; /* Animação suave para hover/focus */
+    margin: 0 auto;                /* Centraliza o botão (se houver um contêiner com display apropriado) */
 }
 
-#backButton:hover {
-    background-color: #45a049;
+.btn-voltar:hover,
+.btn-voltar:focus {
+    background-color: #45a049;     /* Cor de fundo ao passar o mouse ou focar */
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -327,7 +330,7 @@ button {
     text-decoration: underline;
 }
 /* Estilo do rótulo de especialidades */
-#specialtiesLabel {
+.specialtiesLabel {
     font-size: 1.2em;
     margin-bottom: 10px;
     color: #333;
@@ -482,9 +485,11 @@ button {
 }
 
 .cep-container button {
-    padding: 10px 15px;
-    background-color: #007BFF;
-    border: none;
+    padding: 0px; 
+   background-color: #007BFF;
+   height: 45px;
+   margin-top: 4px;
+   border: none;
     border-radius: 4px;
     color: white;
     cursor: pointer;
