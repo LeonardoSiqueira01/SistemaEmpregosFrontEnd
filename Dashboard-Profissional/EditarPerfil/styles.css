@@ -18,7 +18,7 @@ body {
     background-color: orange;
     padding: 10px;
     text-align: end;
-    margin-top: 70px; /* Espaço para não ficar atrás do header */
+    margin-top: 130px; /* Espaço para não ficar atrás do header */
 }
 
   .barramenu button{
@@ -36,8 +36,7 @@ body {
     width: 100%;
     top: 400px;   
     margin: 0 auto;
-    max-width: 500px;
-    max-height: 925px;
+    max-width: 650px;
     box-sizing: border-box;
 }
 

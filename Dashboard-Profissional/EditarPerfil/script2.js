@@ -220,27 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Obter as especialidades selecionadas no momento
         const updatedSpecialties = [...document.querySelectorAll("#specialties option:checked")].map(option => option.value);
-
-
-        const password = document.getElementById("password").value.trim();
-        const confirmPassword = document.getElementById("confirmPassword").value.trim();
-    // Validação de senha
-        if (password) {
-            if (password.length < 6) {
-                alert("A senha deve ter no mínimo 6 caracteres.");
-                return;
-            }
-            if (password !== confirmPassword) {
-                alert("As senhas não coincidem. Tente novamente.");
-                return;
-            }
-        }
-
-        // Validação de senha
-        if (password && password !== confirmPassword) {
-            alert("As senhas não coincidem. Tente novamente.");
-            return;  // Impede o envio se as senhas não forem iguais
-        }
+    
         // Verificar se o campo de localização está vazio
         const location = document.getElementById("location").value.trim();
         if (!location) {
@@ -258,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     
         // Atualizar o perfil com as especialidades e localização
-        updateProfileWithSpecialties(updatedSpecialties,password);
+        updateProfileWithSpecialties(updatedSpecialties);
     });
     
 
@@ -278,15 +258,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     
 
-    function updateProfileWithSpecialties(specialties, password) {
-        
-            const confirmPassword = document.getElementById("confirmPassword").value.trim();
-    
-        // Validação de senha
-        if (password && password !== confirmPassword) {
-            alert("As senhas não coincidem. Tente novamente.");
-            return;  // Impede o envio se as senhas não forem iguais
-        }
+    function updateProfileWithSpecialties(specialties) {
         const name = document.getElementById("name").value;
         const location = document.getElementById("location").value;
         let email = document.getElementById("email").value;  // Pega o novo email diretamente do formulário
@@ -317,8 +289,6 @@ document.addEventListener("DOMContentLoaded", function() {
             location: location,  // Endereço completo
             specialtiesToRemove: specialtiesToRemoveString || '',  // Garante que seja uma string vazia caso esteja vazio
             specialties: specialtiesString || '',
-            password: password ? password : undefined,  // Envia a nova senha apenas se ela for fornecida
-
         };
     
         console.log('Dados enviados para o back-end:', profileData);  // Para depuração
@@ -352,9 +322,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             
             console.log('Resposta da API:', data);
-            console.log('Nova senha:', password);
-console.log('Payload enviado:', profileData);
-
             alert('Perfil atualizado com sucesso!');
             window.history.back();  // Volta para a página anterior
         })
@@ -371,6 +338,4 @@ console.log('Payload enviado:', profileData);
 
     loadSpecialties();
     loadCurrentSpecialties();
-    loadProfileData();  // <-- Deixe só aqui
-
 });
