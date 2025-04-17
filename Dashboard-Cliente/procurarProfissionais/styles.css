@@ -648,7 +648,10 @@ body {
         background-color: rgba(225, 152, 15, 0.909);
         border-radius: 10px;
     
-  }#city-suggestions {
+  }
+  
+  
+  #city-suggestions {
     list-style-type: none;
     padding: 0;
     margin-left: 30px;

@@ -1,0 +1,146 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    margin: 0;
+  }
+  
+  .container {
+    width: 400px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  #responseMessage {
+    margin-top: 15px;
+    text-align: center;
+    color: #333;
+  }
+
+  header {
+    background-color: #2e3b4e;
+  }
+  header h1{
+    text-decoration: none; /* Remove o sublinhado */
+    color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
+  }
+   
+  
+  header .logo h1 {
+    color: #fff;
+    font-size: 28px;
+    letter-spacing: 1px;
+    padding-left: 7.5%;
+    width: 100%;
+    text-decoration: none; /* Remove o sublinhado */
+  }
+  
+  
+  header a{
+      text-decoration: none; /* Remove o sublinhado */
+      color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
+    }
+    footer {
+        background-color: #2e3b4e;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 14px;
+        margin-top: auto; /* Empurra o footer para o final */
+      }
+      
+      footer p {
+        margin: 0;
+      } /* Estilo para o menu */
+      .menu {
+        background-color: #3498db;; /* Cor de fundo azul */
+        padding: 10px 0;
+        padding-top: 5px;
+        text-align: center;
+        text-align: right;
+      }
+      
+      .menu nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .menu nav ul li {
+        display: inline-block;
+        margin: 0 20px;
+      }
+      
+      .menu nav ul li a {
+        color: #fff;
+        font-size: 1.2rem;
+        text-decoration: none;
+        padding: 10px 15px;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+      }
+      
+      .menu nav ul li a:hover {
+            background-color: rgba(225, 152, 15, 0.909);
+            border-radius: 10px;
+        
+      }
+      .button2 {
+        margin-left: auto; /* Move o botão para a direita */
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-right: 20px;
+        text-decoration: none;
+        background-color: #dc3545;
+        color: white;
+        width: 100px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .button2:hover {
+        background-color: #a02834; /* Cor de fundo quando o mouse passa em cima */
+      }    
