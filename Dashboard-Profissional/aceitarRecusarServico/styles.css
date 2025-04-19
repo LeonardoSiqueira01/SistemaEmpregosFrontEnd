@@ -24,6 +24,7 @@ header {
   text-align: center;
   width: 100%;
 }
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
@@ -69,6 +70,7 @@ footer {
 .container {
   width: 100%;
   max-width: 900px;
+  min-height: 1000px;
   margin: 20px auto;
   padding: 20px;
   background-color: #fff;
