@@ -1,259 +1,230 @@
+/* Estilos gerais */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-.container {
-    max-width: 800px;
-    max-height: 1100px;
-    margin: auto;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    width: 100%;
-    height: 900px;
-    margin: 100px auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+#servicesContainer {
+  max-width: 1000px;
+  width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.status-badge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: bold;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
+.status-badge.pendente {
+  background-color: #ffe082;
+  color: #795548;
 }
 
-ul#servicos-lista {
-    list-style: none;
-    padding: 0;
+.status-badge.aceito {
+  background-color: #c8e6c9;
+  color: #2e7d32;
 }
 
-ul#servicos-lista li {
-    background: #e7eaf1;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+.status-badge.finalizado {
+  background-color: #e0e0e0;
+  color: #616161;
 }
 
-ul#servicos-lista li:hover {
-    background-color: #d1d5de;
-}
-footer {
-    background-color: #2e3b4e;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 14px;
-    margin-top: auto; /* Empurra o footer para o final */
-  }
-  
-  footer p {
-    margin: 0;
-  }
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f7fa;
-    color: #333;
-  
-  }
-  header .logo h1 {
-    color: #fff;
-    font-size: 28px;
-    letter-spacing: 1px;
-    padding-left: 7.5%;
-    text-align: left;
-    text-decoration: none; /* Remove o sublinhado */
-  }
-  header {
-    background-color: #2e3b4e;
-    padding: 20px 0;
-  }
-  header a{
-    text-decoration: none; /* Remove o sublinhado */
-    color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
-  }
-/* Reset de Margens e Padding */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Estilo básico do body */
-  body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }    .menu {
-    background-color: orange; /* Cor de fundo azul */
-    padding: 20px 0;
-    text-align: right;
-  }
-  .menu button{
-    margin-right: 10%;
-
-  }
-  .menu nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .menu nav ul li {
-    display: inline-block;
-    margin: 0 20px;
-  }
-  
-  .menu nav ul li a {
-    color: #fff;
-    font-size: 1.2rem;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-  }
-  
-  .menu nav ul li a:hover {
-        background-color: rgba(225, 152, 15, 0.909);
-        border-radius: 10px;
-    
-  }.button2 {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    background-color: #dc3545; /* Cor de fundo do botão */
-    color: white; /* Cor do texto */
-    border-radius: 5px; /* Cantos arredondados */
-    border: none; /* Sem borda */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  
-  .button2:hover {
-    background-color: #a02834; /* Cor de fundo quando o mouse passa em cima */
-  }
-  .btn-cancelar {
-    background-color: #ff4d4d;       /* Vermelho claro */
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-left: 10px;
+/* Card de serviço */
+.service-card {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  margin-bottom: 25px;
+  padding: 20px 25px;
+  transition: all 0.3s ease-in-out;
 }
 
-.btn-cancelar:hover {
-    background-color: #e60000;      /* Vermelho mais escuro */
-    transform: scale(1.05);         /* Leve efeito ao passar o mouse */
-}
-
-.btn-cancelar:active {
-    transform: scale(0.95);
-}
-.service-item {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+.service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .service-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-.service-name {
-  font-size: 1.2em;
-  margin: 0;
+.service-title {
+  font-size: 1.5em;
+  font-weight: 700;
   color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.3em;
+  cursor: pointer;
+  color: #007bff;
+  transition: transform 0.3s ease;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.2);
 }
 
 .service-status {
-  padding: 4px 10px;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.85em;
-}
-
-.service-status.aberto {
-  background-color: #28a745;
-}
-
-.service-status.iniciado {
-  background-color: #ffc107;
-}
-
-.service-status.finalizado {
   background-color: #007bff;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 0.9em;
+  font-weight: 600;
 }
 
-.service-status.cancelado {
-  background-color: #dc3545;
-}
-
-.client-info-container {
+/* Detalhes do serviço */
+.service-details {
   margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px dashed #ccc;
+  padding-left: 10px;
+  border-left: 4px solid #007bff;
+  margin-bottom: 20px;
 }
 
-.btn-cancelar {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+.service-card p {
+  margin: 6px 0;
+  color: #555;
+}
+
+.service-card p strong {
+  color: #222;
+}
+
+/* Lista de profissionais */
+.professional-list {
+  list-style-type: none;
+  padding: 0;
   margin-top: 10px;
-  margin-right: 10px;
 }
 
-.btn-cancelar:hover {
-  background-color: #e60000;
-  transform: scale(1.05);
+.professional-card {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-left: 5px solid #28a745;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 
-.btn-cancelar:active {
-  transform: scale(0.95);
+.professional-info {
+  margin-bottom: 10px;
+}
+
+.professional-name {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #343a40;
+}
+
+.professional-email {
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-bottom: 6px;
+}
+
+/* Ações */
+.professional-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
 }
 
 button {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: 6px;
+  padding: 8px 14px;
   cursor: pointer;
-  font-weight: bold;
-  margin-top: 10px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease;
+  font-size: 0.9em;
 }
 
 button:hover {
   background-color: #0056b3;
-  transform: scale(1.05);
 }
-.teste{
-  background-color: rgba(137, 191, 116, 0.4);
-  border-radius: 7px;
-     font-weight: bold;
-    padding: 10px;
-     color:green;
-      margin: 10px 0;
+
+button.remove-btn {
+  background-color: #dc3545;
+}
+
+button.remove-btn:hover {
+  background-color: #b02a37;
+}
+
+button.view-profile-btn {
+  background-color: #28a745;
+}
+
+button.view-profile-btn:hover {
+  background-color: #1e7e34;
+}
+
+.hidden {
+  display: none;
+}
+h1{
+  text-align: center;
+}.rotated {
+  transform: rotate(180deg);
+}
+
+header {
+  background-color: #2e3b4e;
+  padding: 20px 0;
+  color: white;
+}
+header .logo h1{
+text-align: left;
+margin: 0px;
+padding-left: 7.5%;
+}
+header a{
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Mantém a cor do texto original (a mesma cor do h1) */
+}
+footer {
+  background-color: #2e3b4e;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  margin-top: auto; /* Empurra o footer para o final */
+}
+.submenu{
+background-color: #3498db;
+text-align: end;
+padding: 10px;
+}
+.submenu button{
+margin-right: 10%;
+background-color: #28a745;
+}
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }

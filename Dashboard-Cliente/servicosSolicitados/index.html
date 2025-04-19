@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Serviços Solicitados</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Serviços Solicitados</title>
+  <link rel="stylesheet" href="../servicosSolicitados/styles.css">
 </head>
-<header>
+<body>
+  <header>
     <nav>
         <div class="logo">
             <a href="../Tela inicial/index.html">
@@ -15,24 +16,16 @@
         </div>
     </nav>
 </header>
-<body>
-      
-    <div class="menu">
-        <nav>
-            <ul>
-                <button class="button2" onclick="cancelEdit()">Voltar</button>
+<!-- Menu de navegação -->
+<nav class="submenu">
+<button id="cancelEdit" class="filter2" onclick="cancelEdit()">Voltar</button>
+</nav>
+  <h1>Serviços com Profissionais Solicitados</h1>
+  <div id="servicesContainer"></div>
 
-            </ul>
-        </nav>
-    </div>
-    <main class="container">
-        <h1>Serviços Solicitados</h1>
-        <ul id="servicos-lista">
-            <li>Carregando serviços...</li>
-        </ul>
-    </main>
-</body>
-<footer>
+  <footer>
     <p>&copy; 2025 Sistema de Serviços Temporários. Todos os direitos reservados.</p>
-  </footer>
+</footer>
+  <script src="../servicosSolicitados/script.js"></script>
+</body>
 </html>

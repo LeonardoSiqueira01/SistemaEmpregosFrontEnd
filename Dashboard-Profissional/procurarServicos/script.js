@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const serviceList = document.getElementById("service-list");
     const filterButton = document.getElementById("apply-filters");
     function getProfessionalEmail() {
-        return localStorage.getItem("email"); // Ajuste conforme onde armazena o email
+        return localStorage.getItem("email"); 
     }
 
 
@@ -59,8 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
             let services = await response.json();
         
-            console.log(`Cidade pesquisada: ${filters.cidade || "Nenhuma"}`);
-            console.log(`Serviços encontrados: ${services.length}`);
+           
         
             renderServices(services);
         } catch (error) {
@@ -107,8 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <p> <strong>Nome do Cliente:</strong> ${service.clientName} </p>
                 <p> <strong>Email do Cliente:</strong> ${service.clientEmail}</p> </div>
                 <button class="request-link" data-service-id="${service.id}">Solicitar Vínculo</button>
-                <button onclick="viewProfile('${service.clientEmail}')">Visualizar Perfil do Cliente</button>  <!-- Sempre visível -->
-
+                <button onclick="viewProfile('${service.clientEmail}')">Visualizar Perfil do Cliente</button> 
             `;
             serviceList.appendChild(serviceElement);
         });
@@ -117,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('.request-link').forEach(button => {
             button.addEventListener('click', async (event) => {
                 const serviceId = event.target.getAttribute('data-service-id');
-                const professionalEmail = getProfessionalEmail(); // Método para pegar o email do profissional (a ser implementado)
+                const professionalEmail = getProfessionalEmail(); 
                 const encodedEmail = encodeURIComponent(professionalEmail);
 
                 try {

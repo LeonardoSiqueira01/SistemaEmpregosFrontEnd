@@ -1,137 +1,175 @@
-const email = localStorage.getItem("email");
+// token permanece igual
+const token = localStorage.getItem("authToken");
 
 document.addEventListener("DOMContentLoaded", () => {
-    const lista = document.getElementById("servicos-lista");
-    const token = localStorage.getItem("authToken");
+  const container = document.getElementById('servicesContainer');
 
-    fetch("http://localhost:8080/api/professionals/me/servicos-solicitados", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Erro ao buscar serviços");
-        }
-        return response.json();
-    })
-    .then(data => {
-        lista.innerHTML = "";
-    
-        // Filtra os serviços que não estão finalizados
-        const servicosNaoFinalizados = data.filter(servico => servico.status.toLowerCase() !== "finalizado");
-    
-        if (servicosNaoFinalizados.length === 0) {
-            lista.innerHTML = "<li>Nenhum serviço solicitado encontrado.</li>";
-            return;
-        }
-    
-        servicosNaoFinalizados.forEach(servico => {
-            const item = document.createElement("li");
-            const statusClass = servico.status.toLowerCase(); 
-            const formattedDate = formatarData(servico.inicioServico);
-    
-            item.classList.add("service-item");
-    
-            let botoesHTML = "";
-    
-            if (!servico.professionalEmail) {
-                botoesHTML = `
-                    <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id}, '${servico.professionalEmail}')" style="width: 40%; background-color: #ff4d4d; color: white;">Cancelar solicitação</button>
-                    <button onclick="viewProfile('${servico.clientEmail}')">Visualizar Perfil do Cliente</button>
-                `;
-            } else if (servico.professionalEmail === email) {
-                botoesHTML = `
-                    <p class="teste" style="background-color: rgba(137, 191, 116, 0.3); color: green; font-weight: bold; padding: 10px; margin: 10px 0; border-radius: 5px;">
-                        O cliente aceitou sua solicitação de serviço.
-                    </p>
-                    <button onclick="viewProfile('${servico.clientEmail}')">Visualizar Perfil do Cliente</button>
-                    <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id}, '${servico.professionalEmail}')" style="width: 40%; background-color: #ff4d4d; color: white;">Ocultar solicitação</button>
-                `;
-            } else {
-                botoesHTML = `
-                    <button class="btn-remover-outro" onclick="cancelarSolicitacao(${servico.id}, '${servico.professionalEmail}')" style="width: 100%; background-color: #ff4d4d; color: white; padding: 10px; margin-top: 10px;">
-                        Serviço iniciado por outro profissional. Clique aqui para remover essa solicitação.
-                    </button>
-                `;
-            }
-    
-            item.innerHTML = `
-                <div class="service-header">
-                    <h3 class="service-name">${servico.name}</h3>
-                    <span class="service-status ${statusClass}">${servico.status}</span>
-                </div>
-                <p><strong>Especialidade:</strong> ${servico.specialty || "Não informada"}</p>
-                <p><strong>Data do Serviço:</strong> ${formattedDate}</p>
-                <p><strong>Descrição:</strong> ${servico.description || "Sem descrição"}</p>
-                <p><strong>Localização:</strong> ${servico.location || "Não especificada"}</p>
-                <div class="client-info-container">
-                    <p><strong>Nome do Cliente:</strong> ${servico.clientName}</p>
-                    <p><strong>Email do Cliente:</strong> ${servico.clientEmail}</p>
-                </div>
-                ${botoesHTML}
-            `;
-    
-            lista.appendChild(item);
-        });
-    })
-    
-    .catch(error => {
-        console.error(error);
-        lista.innerHTML = "<li>Erro ao carregar os serviços.</li>";
-    });
-});
+  fetch('http://localhost:8080/api/client/me', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro na resposta da API');
+    }
+    return response.json();
+  })
+  .then(data => {
+    container.innerHTML = "";
 
-function formatarData(dataISO) {
-    if (!dataISO) return "Sem data";
-    const data = new Date(dataISO);
-    return data.toLocaleDateString("pt-BR");
-}
-function cancelarSolicitacao(idServico, professionalEmail) {
-    const token = localStorage.getItem("authToken");
-    const email = localStorage.getItem("email");
+    const servicosNaoFinalizados = data.filter(servico => servico.status && servico.status.toLowerCase() == "aberto");
 
-    const isMesmoProfissional = professionalEmail === email;
-    const mensagemConfirmacao = isMesmoProfissional
-        ? "Tem certeza que deseja ocultar a solicitação deste serviço?"
-        : "Tem certeza que deseja cancelar a solicitação deste serviço?";
-        console.log("[" + professionalEmail + "]");
-        console.log("[" + email + "]");
-        
+    if (servicosNaoFinalizados.length === 0) {
+      container.innerHTML = '<p>Nenhum serviço com profissionais solicitados encontrado.</p>';
+      return;
+    }
 
-    if (confirm(mensagemConfirmacao)) {
-        fetch(`http://localhost:8080/api/professionals/me/remover-solicitacao/${idServico}`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
+    servicosNaoFinalizados.forEach(service => {
+      const div = document.createElement('div');
+      div.className = 'service-card';
+
+      const ul = document.createElement('ul');
+      ul.className = 'professional-list';
+
+      const formattedDate = formatarData(service.serviceDate);
+
+      div.innerHTML = `
+        <div class="service-header">
+          <h3 class="service-title">
+            ${service.serviceName || "Sem nome"}
+            <button class="toggle-btn" style="background:none;border:none;color:#ff4081;font-size:1.2em;cursor:pointer;" title="Mostrar/ocultar detalhes">▲</button>
+          </h3>
+          <span class="service-status">${service.status || "Pendente"}</span>
+        </div>
+        <div class="service-details">
+          <p><strong>Descrição:</strong> ${service.description || "Sem descrição"}</p>
+          <p><strong>Data do Serviço:</strong> ${formattedDate}</p>
+          <p><strong>Data de Criação:</strong> ${formatarData(service.createdAt)}</p>
+          ${service.completedAt ? `<p><strong>Data de Conclusão:</strong> ${formatarData(service.completedAt)}</p>` : ""}
+          ${service.observation ? `<p><strong>Observações:</strong> ${service.observation}</p>` : ""}
+          <p><strong>Especialidade:</strong> ${service.specialty || "Não informada"}</p>
+          <p><strong>Localização:</strong> ${service.location || "Não especificada"}</p>
+          <p><strong>Profissionais Solicitados:</strong></p>
+        </div>
+      `;
+
+      // Profissionais solicitados
+      service.requestedProfessionals.forEach(profId => {
+        fetch(`http://localhost:8080/api/client/profissionais/${profId}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         })
-        .then(response => {
-            if (!response.ok) {
-                return response.text().then(text => { throw new Error(text) });
-            }
+        .then(res => {
+          if (!res.ok) throw new Error('Erro ao buscar profissional');
+          return res.json();
+        })
+        .then(profissional => {
+          const li = document.createElement('li');
+          li.classList.add('professional-card');
 
-            const mensagemSucesso = isMesmoProfissional
-                ? "Solicitação ocultada com sucesso."
-                : "Solicitação cancelada com sucesso.";
+          const specialties = profissional.specialties?.trim() || "Não informadas";
+          const location = profissional.location?.trim() || "Não informada";
+          const nome = profissional.name?.trim() || "Nome não disponível";
+          const email = profissional.email?.trim() || "E-mail não disponível";
+          const concluidos = profissional.totalServicesCompleted ?? 0;
+          const mediaAvaliacao = typeof profissional.averageRating === 'number'
+            ? profissional.averageRating.toFixed(1)
+            : "Sem avaliações";
+          const disponibilidade = profissional.available ? 'Sim' : 'Não';
 
-            alert(mensagemSucesso);
-            location.reload();
+          li.innerHTML = `
+            <div class="professional-info">
+              <h4 class="professional-name">${nome}</h4>
+              <p class="professional-email">${email}</p>
+              <p><strong>Especialidades:</strong> ${specialties}</p>
+              <p><strong>Localização:</strong> ${location}</p>
+              <p><strong>Serviços Concluídos:</strong> ${concluidos}</p>
+              <p><strong>Média de Avaliações:</strong> ${mediaAvaliacao}</p>
+              <p><strong>Disponível:</strong> ${disponibilidade}</p>
+            </div>
+            <div class="professional-actions">
+              <button class="remove-btn" data-service-id="${service.serviceId}" data-prof-id="${profId}">Remover Solicitação</button>
+              <button class="view-profile-btn" data-email="${email}">Ver Perfil</button>
+            </div>
+          `;
+          ul.appendChild(li);
         })
         .catch(error => {
-            console.error("Erro ao cancelar solicitação:", error);
-            alert("Erro ao cancelar solicitação: " + error.message);
+          const li = document.createElement('li');
+          li.textContent = `Erro ao buscar profissional com ID ${profId}`;
+          ul.appendChild(li);
         });
+      });
+
+      // Botão toggle
+      const detailsDiv = div.querySelector('.service-details');
+      const toggleBtn = div.querySelector('.toggle-btn');
+      toggleBtn.addEventListener('click', () => {
+        detailsDiv.classList.toggle('hidden');
+        ul.classList.toggle('hidden');
+        toggleBtn.textContent = toggleBtn.textContent === '▲' ? '▼' : '▲';
+      });
+
+      div.appendChild(ul);
+      container.appendChild(div);
+    });
+  })
+  .catch(error => {
+    console.error('Erro ao buscar serviços:', error);
+    container.innerHTML = '<p>Erro ao buscar serviços.</p>';
+  });
+});
+
+// Delegação de eventos
+document.addEventListener('click', function (event) {
+  const target = event.target;
+
+  if (target.classList.contains('remove-btn')) {
+    const serviceId = target.getAttribute('data-service-id');
+    const profId = target.getAttribute('data-prof-id');
+
+    if (confirm("Tem certeza que deseja cancelar esta solicitação?")) {
+      fetch(`http://localhost:8080/api/client/me/remover-solicitacao/${serviceId}/${profId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Erro ao remover solicitação');
+        alert('Solicitação removida com sucesso!');
+        window.location.reload();
+      })
+      .catch(err => {
+        alert('Erro ao remover solicitação: ' + err.message);
+      });
     }
+  }
+
+  if (target.classList.contains('view-profile-btn')) {
+    const email = target.getAttribute('data-email');
+    viewProfile(email);
+  }
+});
+
+// Funções auxiliares
+function formatarData(dataISO) {
+  if (!dataISO) return "Sem data";
+  const data = new Date(dataISO);
+  return isNaN(data.getTime()) ? "Data inválida" : data.toLocaleDateString("pt-BR");
 }
 
-
+function viewProfile(email) {
+  window.open('http://127.0.0.1:5500/dashboard-cliente/visualizarPerfis/index.html?email=' + encodeURIComponent(email), '_blank');
+}
 
 function cancelEdit() {
-    window.location.href = "../index.html";
-}
-function viewProfile(email) {
-    window.open('http://127.0.0.1:5500/dashboard-cliente/visualizarPerfis/index.html?email=' + encodeURIComponent(email), '_blank');
+  window.location.href = "../index.html";
 }

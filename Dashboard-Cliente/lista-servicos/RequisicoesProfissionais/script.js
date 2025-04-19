@@ -34,10 +34,10 @@ async function loadProfessionalRequests(serviceId) {
             <p><strong>Email:</strong> ${professional.email}</p>
             <p><strong>Especialidades:</strong> ${professional.specialties}</p>
             <p><strong>Localização:</strong> ${professional.location}</p>
-            <p><strong>Avaliação:</strong> ${professional.averageRating}</p>
+            <p><strong>Avaliação:</strong> ${professional.averageRating?.toFixed(2)}</p>
             <p><strong>Total de serviços concluídos:</strong> ${professional.totalServicesCompleted}</p>
             <p><strong>Disponibilidade:</strong> ${professional.available ? 'Disponível' : 'Indisponível'}</p>
-    <button class="view-profile-btn" onclick="viewProfile('${professional.email}')">Visualizar Perfil</button>
+            <button class="view-profile-btn" onclick="viewProfile('${professional.email}')">Visualizar Perfil</button>
 
             <!-- Botões de Aceitar e Recusar -->
             <div class="action-buttons">
